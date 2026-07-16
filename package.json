@@ -1,0 +1,17 @@
+{
+  "name": "shape-rotator-demo-day",
+  "version": "1.0.0",
+  "description": "Interactive visitor app for the Shape Rotator Accelerator final demo day.",
+  "type": "module",
+  "scripts": {
+    "build:data": "node scripts/build-data.js",
+    "dev": "npm run build:data && vite",
+    "build": "npm run build:data && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "vite": "^5.4.0"
+  }
+}

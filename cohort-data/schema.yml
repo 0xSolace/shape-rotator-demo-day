@@ -1,0 +1,303 @@
+schema_version: 1
+# v1.1 (additive, backwards-compatible): person enrichment fields — go_to_them_for,
+# recurring_themes, working_style, best_contexts, prior_work, making_signature
+# (public); profile_lens + facilitator (depth-tier, documented below). No bump to
+# schema_version: all additions are optional and the build version-gate stays == 1.
+
+# Visibility schema per docs/SHAPE-ROTATOR-OS-SPEC.md §3.3.
+#
+# `surface_fields` are extracted into the cohort.surface bundle (visible
+# to all participants). Everything else in the markdown — frontmatter +
+# body — lands in cohort.depth (encrypted to alchemists).
+#
+# To add a new public field: add it to the markdown frontmatter, then
+# add the key here. To make a field steward-only: don't add it here.
+
+people:
+  surface_fields:
+    - record_id
+    - record_type
+    - name
+    - team
+    - role
+    - role_class      # "cohort-member" | "visiting-scholar" | "coordinator".
+                     # Drives the cohort-tab filter + card accent. cohort-member =
+                     # anyone whose primary or secondary team is in the formally-
+                     # invited cohort (membership: cohort). visiting-scholar = an
+                     # individual or contributor on a non-cohort project. coordinator =
+                     # program staff (dmarz, andrew-miller, …). Default if unset:
+                     # visiting-scholar.
+    - geo
+    - domain
+    # Contact emails are private operational data. They may exist in private
+    # operator config, but generated cohort surfaces must not publish them.
+    - dates_start    # YYYY-MM-DD · start of the OVERALL window this person is in the cohort
+    - dates_end      # YYYY-MM-DD · end of that overall window
+    - secondary_teams # optional list of team record_ids — this person also
+                     # contributes to these projects/teams in addition to
+                     # their primary `team`. Views that group by team list
+                     # them under each entry.
+    - absences       # optional list of {start, end, note?} ranges representing gaps
+                     # within their window — vacations, conferences, remote weeks.
+                     # Each entry is YYYY-MM-DD inclusive on both ends. The app can
+                     # compute effective-present = window minus absences when it cares.
+    - links
+    # "Personal API" — how to collaborate well with this person. All optional,
+    # all free-text. Surfaced on the person dossier + onboarding view.
+    - comm_style            # how you prefer to be reached (sync/async, DM/issue/PR, fastest path)
+    - contribute_interests  # what you'd happily pair on for other people's projects
+    - weekly_intention      # your concrete intention for this week (refreshed Monday)
+    - availability_pref     # your weekly rhythm — heads-down hours, no-meet days, etc.
+    - dietary_restrictions  # food planning — vegetarian / vegan / allergies / "none". Free-text, surfaced on person detail when set.
+    # Cohort-graph fields — populated from CRM intake or self-asserted.
+    # See `program/rules.md` for the anti-patterns we deliberately don't build.
+    - now                   # one-line "what I'm working on right now" — Sivers/now-page pattern; refresh weekly
+    - skills                # list[string] — flat, no proficiency; mixable identity/domain tags. Folksonomy half of the schema.
+    - skill_areas           # list[controlled vocab] — see schema.cohort_vocab.skill_areas below. For filterable atlas + constellation.
+    - seeking               # list[string] — verb-first "I want help with X" chips. Directional, not status.
+    - offering              # list[string] — "I'd happily be DM'd about X" chips.
+    - pair_with             # list[string] — self-asserted "I've paired well with <slug>". Asymmetric, NOT a bidirectional endorsement.
+    # ── Enrichment fields (schema v1.1) ───────────────────────────────────────
+    # Richer collaboration surface. Two kinds, distinguished by who can fake them:
+    #   SPECIFIC fields (below) only exist when real evidence produced them — a
+    #     thin profile yields empty arrays, which is honest. Safe to surface.
+    #   LABEL/lens fields (guiding_metaphor, orientation_lens) degrade into a
+    #     default cluster on low-evidence profiles, so they are NOT surface_fields —
+    #     they live in the depth tier and only render behind the gate in §profile_lens.
+    # Any field that may carry facilitator-derived values should set a sibling
+    # `<field>_source: self | derived` (default self). Derived values render with a
+    # "facilitator read — editable" affordance, never as the person's own assertion.
+    - go_to_them_for        # list[string] — concrete "ask me about X" (sharper than offering)
+    - recurring_themes      # list[string] — the throughlines across their work (specific; can't default)
+    - working_style         # one-line how-they-build ("substrate-first; lets PMF decide the surface")
+    - best_contexts         # list[string] — situations where they're at their best ("early ambiguous systems work")
+    - prior_work            # list[string] — factual shipped artifacts (public only)
+    - making_signature      # nested {built_domain:[..], shape: deep|broad, note}. Derived from public code; optional.
+                            #   NOT an identity claim — a description of what the code shows.
+
+  # ── DEPTH-TIER person fields (defined here for documentation; deliberately NOT
+  # in surface_fields — they never ship in cohort.surface). ─────────────────────
+  #
+  # profile_lens: an OPTIONAL working-lens object. Facilitator-derived archetype /
+  # metaphor framing — useful for collaboration, dangerous as a label. It is NOT
+  # surfaced by default. A lens entry is VALID only if it carries ALL of:
+  #     consent: true          (the person opted to show it)
+  #     confidence: low|medium|high   (and low is never surfaced)
+  #     not_identity_claim: true
+  #     note: <str>            (the human-readable gloss — a bare label is invalid)
+  # AND it passes the earned-vs-defaulted gate: a label equal to the cohort modal
+  # value on a low-evidence profile is presumed default-driven and suppressed.
+  #   profile_lens:
+  #     guiding_metaphor: { label: Iceberg, note: "...", confidence: medium,
+  #                         consent: false, not_identity_claim: true }
+  #     orientation_lens: { basin: "...", class: "...", genre: "...", confidence, consent }
+  #
+  # facilitator: ORGANIZER-PRIVATE coaching notes. NEVER surfaced, never consent-
+  # gated for participants (it's a steward tool). Coaching prompts, not verdicts.
+  #   facilitator:
+  #     salient_tensions: [str, ...]   # productive tensions to hold, framed kindly
+  #     open_questions:   [str, ...]   # what we haven't asked / don't yet know
+  #     growth_edge:      str          # one kindly-framed development direction
+  #     source: dossier-derived
+
+teams:
+  surface_fields:
+    - record_id
+    - record_type
+    - kind              # "team" (default) | "project" — UI discriminator only; both share the team-shaped frontmatter
+    - membership        # "cohort" | "visiting".
+                       # cohort = formally invited cohort team eligible for the program
+                       # prize pool. visiting = everything else — projects whose
+                       # contributors are in the cohort as individuals but the team
+                       # itself was not invited as a cohort project.
+                       # Default if unset: visiting. Drives the cohort-tab filter +
+                       # card accent.
+    - name
+    - focus
+    # `lead` retired 2026-05 — team identity is the full contributor list
+    # (derived from person records via team + secondary_teams), not a single
+    # primary point of contact. Anyone with role: lead on their person record
+    # is still surfaced in the dossier + member list with that label.
+    - members_count
+    - geo
+    - domain
+    - shape
+    - is_mentor
+    - links             # nested object: github, x, website, demo, deck, repo
+    - paper_basis       # the IC3 / Flashbots paper the team's work is grounded in
+    - traction          # short public-traction blurb (no funding amounts / runway)
+    - hackathon_note    # any hackathon achievement worth surfacing
+    # Program-track fields — set in week 1 office hours per the program agenda.
+    # All free-text (multiline ok). Edits flow through the same PR loop as
+    # everything else; stewards merge → next build:cohort propagates.
+    - success_dimensions  # which of {productization, research_lineage, collaborative} this project optimizes for
+    - monthly_milestones  # rough month-by-month checkpoints (one per line)
+    - weekly_goals        # the current week's concrete goal(s) — refreshed Monday
+    - graduation_target   # what "graduating well" looks like for this specific project
+    # Cohort-graph fields — populated from CRM intake or team-asserted.
+    - now                   # one-line "this week we're..." — Sivers/now-page pattern at team scope; refresh Monday
+    - prior_shipping        # list[string] — factual public outcomes (hackathon entries, papers, products). One per line.
+    - skill_areas           # list[controlled vocab] — see schema.cohort_vocab.skill_areas below. Aggregated across the team for filtering.
+    - dependencies          # list[string] — other team record_ids this project has a declared relationship with. Seeds the connection graph.
+                            # Legacy shorthand. Prefer dependency records under
+                            # cohort-data/dependencies/ when the relationship
+                            # needs reason/status/evidence/next action.
+    - seeking               # list[string] — what the team wants help with from the cohort.
+    - offering              # list[string] — what the team would happily share/help others with.
+    # PMF journey — one optional nested object placing this team/project on the
+    # startup-maturity spectrum (constellation › journey tab). All fields optional;
+    # defaulted-at-read in the app, so omitting `journey` (or any sub-field) plots
+    # the record at stage 1 / evidence 1 (idea / vibes) without breaking. Additive —
+    # never backwards-incompatible. Shape:
+    #   journey:
+    #     stage: 1..8                 # 1 Idea … 8 Scale Fit
+    #     evidence_quality: 1..5      # 1 Vibes/Thesis … 5 Repeatable Pull
+    #     market_upside: 1..5         # drives dot radius on the plot
+    #     primary_bottleneck: ICP Clarity | Pain Intensity | Solution Quality |
+    #                         Technical Risk | GTM | Retention | Business Model |
+    #                         Fundraising | Regulatory | Team   (drives dot color)
+    #     company_type: B2B | Consumer | Infra | Marketplace | Protocol | AI | Other
+    #     confidence: Low | Medium | High
+    #     icp, problem, solution, evidence_notes, next_milestone   # free text
+    - journey
+
+dependencies:
+  surface_fields:
+    - record_id
+    - record_type
+    - source          # team record_id that declares the relationship
+    - target          # team record_id the source links to, depends on, can be paired with, or is unblocked by
+    - relation        # depends_on | unblocks | pairs_with | shares_substrate | complements
+    - status          # declared | exploring | active | blocked | resolved
+    - confidence      # low | medium | high — confidence in the public relationship record, not product quality
+    - reason          # one-line human-readable reason; must be grounded in source-visible team fields
+    - evidence        # list[string] — public source facts supporting the relationship
+    - next_action     # optional concrete next action if known
+    - owner           # optional person/team record_id responsible for moving it forward
+    - updated_at      # YYYY-MM-DD — last source-data update for this relationship
+
+clusters:
+  surface_fields:
+    - record_id
+    - record_type
+    - name
+    - label
+    - teams
+    - description
+
+# Program-handbook pages. Unlike teams/people/clusters these aren't records of
+# entities — they're long-form markdown that Shape Rotator OS renders as tabs on
+# the "program" view. The build script includes the FULL body of each file
+# (frontmatter fields + the markdown after the frontmatter block) so the app
+# can render them offline-first from the bundled surface JSON.
+program:
+  surface_fields:
+    - record_id
+    - record_type
+    - title
+    - order
+
+# Program events — anchor dates the cohort is steering toward. Surface
+# powers the calendar tab's "this week", "full schedule", and event lookups.
+# Each event lives at cohort-data/events/<slug>.md so adds/edits go through
+# the standard PR loop — that's how the calendar stays "live."
+#
+# Date fields: either `date` (single day) OR `range_start` + `range_end`
+# (multi-day window). Use one or the other; the renderer picks the right
+# treatment.
+events:
+  surface_fields:
+    - record_id
+    - record_type
+    - date          # YYYY-MM-DD — single-day event
+    - range_start   # YYYY-MM-DD — start of multi-day window (use with range_end)
+    - range_end     # YYYY-MM-DD — end of multi-day window
+    - kind          # one of: anchor | demo | external | social | workshop
+    - title         # short headline
+    - subtitle      # one-line context (location, week tag, etc.)
+    - links         # nested: {website, deck, signup, recap}
+
+# Cohort-internal asks/activity — short-lived posts from participants. Supports
+# time-boxed IRL help requests and "come join" plans with lightweight
+# who-is-going metadata. Posts auto-fade 5 days after `posted_at`, after
+# `expires_at` for limited asks, or after `starts_at` for dated plans
+# (renderer-side). Author is a person record_id; ask posts can be claimed, and
+# come-join posts collect `joined_by`.
+asks:
+  surface_fields:
+    - record_id
+    - record_type
+    - posted_at        # YYYY-MM-DD — when posted; renderer uses this for the fallback 5-day fade
+    - author           # person record_id who posted it
+    - intent           # ask | come_join — help request or come-with-me plan
+    - verb             # short emoji+verb glyph (e.g. "🤝 pair on", "🎨 need 30 min with", "🔬 brain on")
+    - topic            # one-line topic — "fuzzing the AMM contract", "Electron app distribution"
+    - skill_areas      # optional list[controlled vocab] — for filtering
+    - starts_at        # date/time for IRL asks or come-join plans; future posts stay current until this day passes
+    - expires_at       # optional date/time deadline; required by the app composer for asks
+    - location         # human-readable where; required by the app composer for asks
+    - contact          # public contact detail/handle; required by the app composer for asks
+    - capacity         # optional spots or constraint text: "3", "small group", "open"
+    - joined_by        # optional list[person record_id] for come-join posts; author may include themself
+    - status           # open | claimed | done — defaults to "open"
+    - claimed_by       # optional person record_id
+
+# Cohort calendar snapshot. Unlike the rest of the data model, this is NOT
+# per-record markdown — it's a single mirror file at cohort-data/calendar.json
+# that the calendar-sync GitHub Action rewrites every 30 minutes from the
+# public Phala upstream. Build script bundles it whole into the surface JSON
+# (see scripts/build-bundles.js). At runtime the app tries the live Phala URL
+# first and only uses the bundled snapshot as an offline fallback (with a
+# "may be stale" banner).
+#
+# Shape:
+#   {
+#     "last_refresh": "<ISO datetime>",
+#     "tabs": {
+#       "May 18 Start": [ /* 14 rows: header + meta + 10 week rows + recurring */ ],
+#       "Weekly Themes": [ /* … */ ]
+#     }
+#   }
+# Each week row: [weekNum, "dates\n\ntheme", Mon, Tue, Wed, Thu, Fri, Sat,
+# Sun, onsite, feedbackGoals, notes]. Day cells are free text with embedded
+# times; renderer parses + bolds.
+calendar:
+  source: cohort-data/calendar.json
+  managed_by: .github/workflows/calendar-sync.yml
+
+# Controlled vocab. The folksonomy/skill_areas split:
+#   - `skills` (per-record, freeform): user-authored tags. Long-tail discovery.
+#   - `skill_areas` (per-record, controlled): pulled from this list. Filterable.
+# Keep this list short (~15-25 terms) and additions deliberate — every term
+# becomes a filter chip + a possible cluster anchor. New additions go through
+# the same PR review as record edits.
+cohort_vocab:
+  skill_areas:
+    # confidentiality / trust roots
+    - tee                    # trusted execution environments (Intel TDX, SGX, AMD SEV, etc.)
+    - dstack                 # Phala / dstack TEE deployment stack
+    - attestation            # remote attestation, RA-TLS, attestation chains
+    - formal-verification    # Kani, cvc5, bounded model checking, proof certificates
+    # cryptography
+    - zk                     # zero-knowledge proofs, Groth16, Schnorr, etc.
+    - post-quantum           # lattice cryptography (ML-KEM, CRYSTALS-Kyber)
+    - threshold-crypto       # threshold signatures, MPC committees
+    - mpc                    # multi-party computation
+    # agentic systems
+    - agentic                # LLM-as-primitive, agent orchestration
+    - agent-runtime          # durable agent execution, context engines, sandboxing
+    - agent-routing          # LLM routing, P2P inference, multi-provider
+    # crypto + chain
+    - mev                    # MEV, order flow, market microstructure
+    - cross-chain            # bridges, interop, asset routing
+    - identity               # credentials, pseudonyms, ASC, Sybil resistance
+    # data / runtime / infra
+    - p2p                    # peer-to-peer networking, DHT, mesh
+    - durable-workflows      # crash-safe orchestration, step-based execution
+    - confidential-db        # encrypted-at-rest + in-use database systems
+    # adjacent
+    - design                 # UI, UX, visual systems, brand
+    - bd-gtm                 # business development, go-to-market, distribution
+    - research-to-product    # productizing research IP, paper-to-prototype
+    - generative-media       # live visuals, audio-to-X, performance tech
+    - mechanism-design       # incentive design, market design, economic modeling

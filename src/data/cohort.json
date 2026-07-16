@@ -1,0 +1,3909 @@
+{
+  "meta": {
+    "generatedAt": "2026-07-16T05:56:23.293Z",
+    "program": "Shape Rotator Accelerator — Cohort 01",
+    "demoDay": "Final Demo Day #2 + Graduation · Jul 23–24, 2026 · NYC (the convent)",
+    "tagline": "a 10-week program turning cryptography and AI research into products people can use.",
+    "runBy": "IC3 × Flashbots × the convent × blockchain builders fund"
+  },
+  "teams": [
+    {
+      "id": "abra",
+      "slug": "abra",
+      "name": "Abra",
+      "focus": "formal verification · dstack TEE Postgres",
+      "shape": "hex",
+      "domain": "tee",
+      "geo": "NYC",
+      "members": 1,
+      "isMentor": true,
+      "traction": "14 yrs at EY blockchain · built Xbox royalty payments platform · partner at Greene Street XYZ",
+      "now": "writing the formal-verification registry spec",
+      "seeking": [
+        "TEE Postgres beta access for the verification registry",
+        "Rust pair on Kani / cvc5 proof certificates"
+      ],
+      "offering": [
+        "formal-verification office hours · bounded model checking primer",
+        "regulated-rollouts (SOX, healthcare compliance) perspective"
+      ],
+      "skillAreas": [
+        "formal-verification",
+        "tee",
+        "dstack",
+        "attestation"
+      ],
+      "dependencies": [
+        "teesql",
+        "tinycloud"
+      ],
+      "paperBasis": [
+        "NDAI Agreements",
+        "Liquefaction"
+      ],
+      "priorShipping": [
+        "MotherDAO-Verifiable-Agent · secure-ai-agent-prototype · snoop (hackathon entries)",
+        "Greene Street XYZ consulting (Uniswap Foundation, Polymarket, Anchorage Digital)",
+        "Xbox royalty blockchain platform at EY (production, 2M+ tx/day)"
+      ],
+      "successDimensions": [
+        "productization",
+        "collaborative"
+      ],
+      "links": {},
+      "journey": {
+        "stage": 3,
+        "companyType": "Infra",
+        "bottleneck": "Solution Quality",
+        "icp": "TEE and confidential-data teams that need formal verification or registry-grade proof of deployment properties",
+        "problem": "TEE database and agent infrastructure claims are hard to trust without inspectable verification artifacts",
+        "solution": "a formal-verification registry and proof workflow for dstack/TEE Postgres-style deployments",
+        "nextMilestone": "validate the registry spec against TeeSQL or another live TEE database project",
+        "marketUpside": 4,
+        "evidenceQuality": 2
+      },
+      "about": "",
+      "clusters": [
+        "dstack",
+        "regulated"
+      ],
+      "cluster": "dstack"
+    },
+    {
+      "id": "bitrouter",
+      "slug": "bitrouter",
+      "name": "Bitrouter",
+      "focus": "P2P LLM router",
+      "shape": "prism",
+      "domain": "ai",
+      "geo": "NYC / HK",
+      "members": 2,
+      "isMentor": false,
+      "traction": "Launched · Hang Yin (Phala CTO) referral · GitHub stars 2× after Shaw retweet · ~10% signup activation, 0 paid (conversion is the fight)",
+      "now": "repositioned around reliability + cost for coding agents; shipped Claude/Codex-subscription + open-model mixing — working non-payers one by one toward first paid",
+      "seeking": [
+        "feedback on projects in agent harnesses or LLM routing",
+        "cohort teams to dogfood x402-kit micropayments"
+      ],
+      "offering": [
+        "workshop on agentic payment with x402/MPP",
+        "dogfooding partnership with other cohort tools"
+      ],
+      "skillAreas": [
+        "agentic",
+        "agent-routing",
+        "p2p"
+      ],
+      "dependencies": [
+        "jjhub",
+        "contexto",
+        "daedalus"
+      ],
+      "paperBasis": [
+        "Persistent BitTorrent Trackers on dstack (mesh topology pattern)"
+      ],
+      "priorShipping": [
+        "bitrouter.ai — functioning gateway (live)",
+        "x402-kit — modular SDK for HTTP-native payments",
+        "amico — agent-native control plane companion"
+      ],
+      "successDimensions": [
+        "productization",
+        "collaborative"
+      ],
+      "links": {
+        "github": "bitrouter",
+        "website": "https://bitrouter.ai/"
+      },
+      "journey": {
+        "stage": 4,
+        "companyType": "Infra",
+        "bottleneck": "GTM",
+        "icp": "coding-agent builders and power users who need reliability + cost on LLM routing — not locked to one hosted provider",
+        "problem": "agentic systems need routing and payment rails that are not locked to one hosted provider",
+        "solution": "a P2P LLM router plus x402-kit for agent-native payments and gateway composition",
+        "nextMilestone": "convert the first paying user from the activated cohort and prove the supply-side cost edge inside a real agent workflow",
+        "marketUpside": 4,
+        "evidenceQuality": 3
+      },
+      "about": "",
+      "clusters": [
+        "agentic-dev-platform",
+        "agents",
+        "market-mechanism-research"
+      ],
+      "cluster": "agentic-dev-platform"
+    },
+    {
+      "id": "conclave",
+      "slug": "conclave",
+      "name": "Conclave",
+      "focus": "NDAI framework · skills runtime",
+      "shape": "prism",
+      "domain": "ai",
+      "geo": "India / NY",
+      "members": 2,
+      "isMentor": false,
+      "traction": "Solid hackathon codebase (LangGraph + Phala + Base Sepolia) · ~3,500 LOC submission",
+      "now": "factoring the skill framework into a reusable module for other TEE-agent projects",
+      "seeking": [
+        "research pairing with teams in data economics + disclosure mechanics",
+        "cohort projects to test multi-party skill workflows"
+      ],
+      "offering": [
+        "modular skill framework — open-source — for other TEE-based agent projects",
+        "hackathon-novelty skill for cohort multi-party workflows"
+      ],
+      "skillAreas": [
+        "tee",
+        "dstack",
+        "agentic",
+        "agent-runtime",
+        "mpc"
+      ],
+      "dependencies": [
+        "prova",
+        "dealproof",
+        "contexto",
+        "tinycloud"
+      ],
+      "paperBasis": [
+        "NDAI Agreements"
+      ],
+      "priorShipping": [
+        "Conclave — modular TEE framework (LangGraph + Phala + Base Sepolia, ~3.5k LOC)",
+        "Two end-to-end skills (hackathon novelty + dataset audit)"
+      ],
+      "successDimensions": [
+        "productization",
+        "research_lineage",
+        "collaborative"
+      ],
+      "links": {
+        "github": "prakhar728/conclave",
+        "website": "https://conclaveagent.vercel.app/",
+        "demo": "https://youtu.be/G9zEQloKdqI"
+      },
+      "journey": {
+        "stage": 3,
+        "companyType": "Infra",
+        "bottleneck": "ICP Clarity",
+        "icp": "developers building multi-party TEE-agent workflows who need a reusable skills runtime",
+        "problem": "every TEE-agent project re-implements its own skill plumbing from scratch",
+        "solution": "a modular, open-source skills framework (LangGraph + Phala + Base) factored for reuse",
+        "nextMilestone": "land the framework as a dependency in at least one other cohort project",
+        "marketUpside": 4,
+        "evidenceQuality": 2
+      },
+      "about": "",
+      "clusters": [
+        "agents",
+        "confidential-ai-ops",
+        "dstack",
+        "ndai"
+      ],
+      "cluster": "agents"
+    },
+    {
+      "id": "contexto",
+      "slug": "contexto",
+      "name": "Contexto",
+      "focus": "agent context engine",
+      "shape": "prism",
+      "domain": "ai",
+      "geo": "ET",
+      "members": 1,
+      "isMentor": false,
+      "traction": "Prototype shipped · Shashank PhD Toronto · 237+ citations on PoS decentralization",
+      "now": "testing a mass-market personal-assistant wedge — personal to-do/journaling agent built on Hermes, plus executive-assistant discovery interviews ($200–$5,000/mo market)",
+      "seeking": [
+        "long-running agent dogfooders for context-collapse stress-testing",
+        "instrumentation pair on agent observability"
+      ],
+      "offering": [
+        "workshop on long-running agents (OpenClaw context-collapse patterns)",
+        "agent instrumentation + context monitoring tooling for cohort"
+      ],
+      "skillAreas": [
+        "agentic",
+        "agent-runtime",
+        "durable-workflows"
+      ],
+      "dependencies": [
+        "jjhub",
+        "conclave",
+        "bitrouter",
+        "prova"
+      ],
+      "paperBasis": [
+        "NDAI Agreements (conceptual alignment)"
+      ],
+      "priorShipping": [
+        "Contexto — context engine plugin for OpenClaw (working prototype)",
+        "Episode-based retrieval system (live)"
+      ],
+      "successDimensions": [
+        "productization",
+        "collaborative"
+      ],
+      "links": {
+        "website": "https://getcontexto.com",
+        "demo": "https://youtu.be/c2trhxEE9X4",
+        "repo": "https://github.com/amiller/contexto"
+      },
+      "journey": {
+        "stage": 3,
+        "companyType": "AI",
+        "bottleneck": "ICP Clarity",
+        "icp": "long-running agent builders who need memory, episode retrieval, and context observability across runtimes — with a contested reframe toward mass-market personal-assistant users",
+        "problem": "agents lose task continuity when context collapses, moves across tools, or becomes impossible to inspect",
+        "solution": "an episode-based context engine that instruments memory and retrieval across agent runtimes",
+        "nextMilestone": "ship a personal-assistant PoC and run enough executive-assistant discovery interviews to settle the contested wedge",
+        "marketUpside": 4,
+        "evidenceQuality": 2
+      },
+      "about": "",
+      "clusters": [
+        "agentic-dev-platform",
+        "agents",
+        "realtime-creative"
+      ],
+      "cluster": "agentic-dev-platform"
+    },
+    {
+      "id": "crossroads",
+      "slug": "crossroads",
+      "name": "Crossroads",
+      "focus": "Liquefaction-built wallet",
+      "shape": "torus",
+      "domain": "crypto",
+      "geo": "NYC (Cornell Tech)",
+      "members": 2,
+      "isMentor": false,
+      "traction": "Cornell Tech MS · working with paper authors (Ari Juels, James Austgen)",
+      "now": "working prototype across Ethereum + one additional EVM chain",
+      "seeking": [
+        "cohort teams building cross-chain flows — let's compare key-encumbrance patterns",
+        "UX feedback on wallet flows for policy-constrained signing"
+      ],
+      "offering": [
+        "share wallet UX + cross-chain UX feedback",
+        "document TEE/oracle and signing-committee approaches for other infra teams",
+        "asset-movement patterns for teams prototyping cross-chain flows"
+      ],
+      "skillAreas": [
+        "cross-chain",
+        "tee",
+        "mpc",
+        "identity"
+      ],
+      "dependencies": [
+        "teesql",
+        "pramaana",
+        "abra"
+      ],
+      "paperBasis": [
+        "Liquefaction — Privately Liquefying Blockchain Assets",
+        "Complete Knowledge — Preventing Encumbrance of Cryptographic Secrets"
+      ],
+      "priorShipping": [
+        "Working prototype with on-chain signing committee + cross-chain demo",
+        "Active collaboration with paper authors at IC3"
+      ],
+      "successDimensions": [
+        "productization",
+        "research_lineage"
+      ],
+      "links": {
+        "demo": "https://drive.google.com/drive/folders/1UZcfoLPy-REX_ei7te-5foo4C_PnuFAV"
+      },
+      "journey": {
+        "stage": 3,
+        "companyType": "Protocol",
+        "bottleneck": "Technical Risk",
+        "icp": "wallet and cross-chain teams that need policy-constrained signing without encumbering user keys",
+        "problem": "cross-chain asset movement creates signing, custody, and key-encumbrance risks that are hard to express safely in UX",
+        "solution": "a Liquefaction-inspired wallet prototype with signing committee and cross-chain flow experiments",
+        "nextMilestone": "demonstrate one policy-constrained signing flow that a real wallet user can understand",
+        "marketUpside": 4,
+        "evidenceQuality": 2
+      },
+      "about": "",
+      "clusters": [
+        "crypto-id",
+        "market-mechanism-research"
+      ],
+      "cluster": "crypto-id"
+    },
+    {
+      "id": "daedalus",
+      "slug": "daedalus",
+      "name": "Daedalus",
+      "focus": "prediction market microstructure research",
+      "shape": "torus",
+      "domain": "crypto",
+      "geo": "distributed (NYC / SF / Asia)",
+      "members": 3,
+      "isMentor": false,
+      "traction": "Cornell Tech / ex-Aptos / Jane Street",
+      "now": "scraping Polymarket L2/L3 orderbook history to backtest delta-neutral stock-portfolio hedges — new demo targeted by end of next week",
+      "seeking": [
+        "feedback from cohort teams building trading or agent execution systems",
+        "integration partners for protected order flow primitives"
+      ],
+      "offering": [
+        "market microstructure learnings (toxic flow handling, latency, orderbook dynamics)",
+        "open data + evaluation pipeline (orderbook ingestion, backtesting)"
+      ],
+      "skillAreas": [
+        "mev",
+        "mechanism-design",
+        "research-to-product"
+      ],
+      "dependencies": [
+        "bitrouter",
+        "crossroads"
+      ],
+      "paperBasis": [
+        "PROF — Protected Order Flow in a Profit-Seeking World (arXiv 2510.15205)"
+      ],
+      "priorShipping": [
+        "PROF paper (arXiv 2510.15205) — protected order flow mechanism design",
+        "Real market data + live trading validation in progress"
+      ],
+      "successDimensions": [
+        "research_lineage",
+        "productization"
+      ],
+      "links": {
+        "website": "daedalus-research.com"
+      },
+      "journey": {
+        "stage": 2,
+        "companyType": "Infra",
+        "bottleneck": "ICP Clarity",
+        "icp": "systematic prediction-market traders and infrastructure builders who need protected order-flow evaluation",
+        "problem": "prediction-market liquidity and execution quality are constrained by toxic flow, latency, and weak microstructure tooling",
+        "solution": "a discovery tool for delta-neutral hedges (Polymarket + sports events vs stock portfolios) — intelligence, not execution; gated on rigorous correlation backtesting before any app is built",
+        "nextMilestone": "show one correlation backtest that validates (or kills) the delta-neutral hedge thesis — demo targeted by 2026-06-19",
+        "marketUpside": 4,
+        "evidenceQuality": 2
+      },
+      "about": "Prediction-market microstructure research — a liquidity-and-intelligence engine for prediction markets and InfoFi. Building AI-powered market-making infrastructure that combines predictive intelligence, calibrated belief models, and systematic execution into a unified data, risk, and execution layer for institutional and systematic traders. Research lineage in the PROF paper (IC3). daedalus-research.com.",
+      "clusters": [
+        "market-mechanism-research"
+      ],
+      "cluster": "market-mechanism-research"
+    },
+    {
+      "id": "dcnet",
+      "slug": "dcnet",
+      "name": "DCNet",
+      "focus": "dining-cryptographer-style anonymity network",
+      "shape": "torus",
+      "domain": "crypto",
+      "geo": "",
+      "members": 3,
+      "isMentor": false,
+      "traction": "",
+      "now": "exploring DCNet anonymous-broadcast designs for blockchain coordination and private web search",
+      "seeking": [
+        "protocol reviewers for dining-cryptographer-style anonymity tradeoffs",
+        "product collaborators who can pressure-test private-search and blockchain use cases"
+      ],
+      "offering": [
+        "anonymity-network design review",
+        "private broadcast primitives for cohort projects that need coordination without attribution leakage"
+      ],
+      "skillAreas": [
+        "p2p",
+        "identity",
+        "mechanism-design",
+        "zk"
+      ],
+      "dependencies": [
+        "searxng-wth-frnds",
+        "teleport-router",
+        "crossroads"
+      ],
+      "paperBasis": [],
+      "priorShipping": [],
+      "successDimensions": [
+        "research_lineage",
+        "collaborative"
+      ],
+      "links": {},
+      "journey": {
+        "stage": 2,
+        "companyType": "Protocol",
+        "bottleneck": "Technical Risk",
+        "icp": "protocol builders who need anonymous broadcast or private group coordination",
+        "problem": "useful coordination often reveals who spoke, searched, or initiated a message even when payloads are encrypted",
+        "solution": "productize DCNet-style anonymous broadcast for blockchain and private-search settings",
+        "nextMilestone": "publish a minimal architecture note or demo showing the anonymity/scalability tradeoff",
+        "marketUpside": 3,
+        "evidenceQuality": 1
+      },
+      "about": "DCNets, _Dining Cryptographers Networks_, are overlay networking protocols for _anonymous broadcast_ of messages. Multiple promising architectures have been proposed, with varying tradeoffs for scalability and trust. This team will explore the state-of-the-art and productization of the technology, with applications to blockchains and private web search.",
+      "clusters": [
+        "local-first-networking"
+      ],
+      "cluster": "local-first-networking"
+    },
+    {
+      "id": "dealproof",
+      "slug": "dealproof",
+      "name": "DealProof",
+      "focus": "TEE · PQ · dual-agent contracts",
+      "shape": "hex",
+      "domain": "tee",
+      "geo": "Rugby UK",
+      "members": 1,
+      "isMentor": false,
+      "traction": "Working Intel DCAP prototype · contributed to Quantinuum's guppylang",
+      "now": "negotiation app carries memory across rounds via Contexto; implementing PiCred provenance (arXiv:2606.03771); scoping a CVM API platform + first AI-negotiation outreach",
+      "seeking": [
+        "cohort teams to integrate dual-attestation contract layer",
+        "feedback on DCAP verification UX for non-TEE-native developers"
+      ],
+      "offering": [
+        "TEE/dstack deployment patterns (socket mounts, attestation, DCAP)",
+        "open-source dual-attestation library as cohort module",
+        "dealproof as AI-to-AI contract layer for cohort teams"
+      ],
+      "skillAreas": [
+        "tee",
+        "dstack",
+        "attestation",
+        "agentic",
+        "post-quantum"
+      ],
+      "dependencies": [
+        "prova",
+        "conclave",
+        "signalstack",
+        "contexto",
+        "tinycloud"
+      ],
+      "paperBasis": [
+        "NDAI Agreements",
+        "Props for ML Security"
+      ],
+      "priorShipping": [
+        "DealProof — dual-agent attestation + on-chain escrow (56 passing tests)",
+        "confidential-agent-market hackathon repo",
+        "Quantum-classical contributor (guppylang) · Quantinuum",
+        "QuantumBrush 2.0 with Moth Quantum (presented AIPS + SXSW)"
+      ],
+      "successDimensions": [
+        "productization",
+        "research_lineage",
+        "collaborative"
+      ],
+      "links": {
+        "github": "kkoci/Dealproof",
+        "x": "kkoci80",
+        "website": "https://medium.com/@feeltech_kkoci",
+        "demo": "https://youtu.be/Dc6iVYAl9OU",
+        "article": "https://bit.ly/4tbAmJA"
+      },
+      "journey": {
+        "stage": 4,
+        "companyType": "Protocol",
+        "bottleneck": "Technical Risk",
+        "icp": "agent builders who need verifiable AI-to-AI contracts with on-chain escrow",
+        "problem": "there's no trustworthy primitive for two autonomous agents to transact with attestable terms",
+        "solution": "dual-agent attestation layer (Intel DCAP) with on-chain escrow and a standalone open-source library",
+        "nextMilestone": "turn the negotiation product + PiCred provenance into a CVM API-platform PoC and land the first external discovery conversation",
+        "marketUpside": 4,
+        "evidenceQuality": 2
+      },
+      "about": "",
+      "clusters": [
+        "confidential-ai-ops",
+        "confidential-data",
+        "ndai"
+      ],
+      "cluster": "confidential-ai-ops"
+    },
+    {
+      "id": "elizaos",
+      "slug": "elizaos",
+      "name": "elizaOS",
+      "focus": "agentic fullstack operating system · local-first AI agents",
+      "shape": "prism",
+      "domain": "ai",
+      "geo": "SF / Bay Area",
+      "members": 1,
+      "isMentor": false,
+      "traction": "Open-source agent framework with an active plugin ecosystem; runtime + cloud + desktop (Electrobun) + mobile surfaces; 3k+ followers on the elizaOS org. Now runs cohort infrastructure — Bitrouter for routing (OpenRouter fallback) and Smithers as the workflow engine.",
+      "now": "hard pivot to a new agent interface; focus moving from capability to buyer definition and last-mile distribution — MVP scope (cloud, multiplayer, power users) on the table",
+      "seeking": [
+        "cohort projects that want to embed agentic surfaces (skills, connectors, local inference)",
+        "feedback from TEE / dstack teams on running agents in attested environments"
+      ],
+      "offering": [
+        "elizaOS as a runtime + plugin substrate for other cohort projects",
+        "skills system (USE_SKILL) for packaging agent capabilities"
+      ],
+      "skillAreas": [
+        "agentic",
+        "agent-runtime",
+        "ai"
+      ],
+      "dependencies": [],
+      "paperBasis": [],
+      "priorShipping": [
+        "elizaOS runtime + plugin system (open source)",
+        "Eliza Cloud — managed backend for hosted agents (auth, billing, container deploys)",
+        "Desktop (Electrobun) and mobile clients with local-first agent runtimes"
+      ],
+      "successDimensions": [
+        "productization",
+        "collaborative"
+      ],
+      "links": {
+        "github": "elizaOS",
+        "x": "elizaOS",
+        "website": "https://elizaos.ai",
+        "repo": "https://github.com/elizaOS/eliza"
+      },
+      "journey": {
+        "stage": 7,
+        "companyType": "AI",
+        "bottleneck": "GTM",
+        "icp": "developers and teams building agentic applications that need a runtime, plugin system, and hosted deployment path",
+        "problem": "agent builders repeatedly rebuild runtime, connector, memory, and deployment plumbing before reaching product work",
+        "solution": "an open-source agentic fullstack operating system with runtime, cloud, desktop, mobile, and plugin surfaces",
+        "nextMilestone": "define the buyer and last-mile distribution — scope the MVP (cloud, multiplayer, power users) and test a non-technical co-founder GTM motion",
+        "marketUpside": 5,
+        "evidenceQuality": 5
+      },
+      "about": "",
+      "clusters": [
+        "agents"
+      ],
+      "cluster": "agents"
+    },
+    {
+      "id": "elocute",
+      "slug": "elocute",
+      "name": "Elocute",
+      "focus": "AI speaking practice · solo reps with scored feedback",
+      "shape": "prism",
+      "domain": "ai",
+      "geo": "NYC",
+      "members": 1,
+      "isMentor": false,
+      "traction": "elocute.fun live · 538 users · 130 power users (24%) · 1,599 sessions · avg score 5.62/10 · 39% 30-day active · articulation-reps post 40k views / 5.25% save / 97% non-followers",
+      "now": "compressing user feedback into one executable product/UX plan — three research cycles (interview 3, ship, re-interview 3+3) ahead of the ETH Global NY hackathon",
+      "seeking": [
+        "cohort users willing to do repeated speaking reps and give product feedback",
+        "GTM help translating social traction into durable retention"
+      ],
+      "offering": [
+        "fast AI product validation patterns",
+        "user-facing scoring/feedback loop design",
+        "consumer launch and content-distribution lessons from live traction"
+      ],
+      "skillAreas": [
+        "agentic",
+        "generative-media",
+        "design",
+        "bd-gtm"
+      ],
+      "dependencies": [
+        "etherea",
+        "contexto",
+        "tinycloud"
+      ],
+      "paperBasis": [],
+      "priorShipping": [
+        "Elocute — live AI speaking-practice app with scored feedback",
+        "wiki-speech-trainer public repo",
+        "538 users / 1,599 sessions / 39% 30-day active in current public surface"
+      ],
+      "successDimensions": [
+        "productization",
+        "collaborative"
+      ],
+      "links": {
+        "github": "AlbionaHoti/wiki-speech-trainer",
+        "x": "albicodes",
+        "website": "https://www.albiona.dev/",
+        "demo": "https://elocute.fun"
+      },
+      "journey": {
+        "stage": 5,
+        "companyType": "Consumer",
+        "bottleneck": "Retention",
+        "icp": "people who need repeatable practice for interviews, pitches, meetings, and high-pressure speaking",
+        "problem": "people consume information constantly but rarely practice articulating it out loud before it matters",
+        "solution": "short speaking reps with AI scoring, content feedback, and targeted next-practice suggestions",
+        "nextMilestone": "turn active users into a repeatable weekly practice loop with clearer paid conversion signal",
+        "marketUpside": 4,
+        "evidenceQuality": 4
+      },
+      "about": "",
+      "clusters": [
+        "consumer-behavior-apps"
+      ],
+      "cluster": "consumer-behavior-apps"
+    },
+    {
+      "id": "enclave",
+      "slug": "enclave",
+      "name": "Enclave",
+      "focus": "TEE-enabled medical data sharing",
+      "shape": "hex",
+      "domain": "tee",
+      "geo": "Toronto (valid US visa)",
+      "members": 0,
+      "isMentor": false,
+      "traction": "UWaterloo CS · Dayforce ML Engineer (7M+ users)",
+      "now": "shaping a TEE-backed medical-data sharing prototype around concrete trust-boundary and compliance workflows",
+      "seeking": [
+        "healthcare or regulated-data users who can validate the first workflow",
+        "TEE reviewers for medical-data threat modeling"
+      ],
+      "offering": [
+        "applied ML/product perspective for sensitive-data workflows",
+        "regulated-data use cases for TEE infrastructure teams"
+      ],
+      "skillAreas": [
+        "tee",
+        "confidential-db",
+        "attestation"
+      ],
+      "dependencies": [
+        "teesql",
+        "signalstack",
+        "dealproof"
+      ],
+      "paperBasis": [],
+      "priorShipping": [],
+      "successDimensions": [
+        "productization",
+        "research_lineage"
+      ],
+      "links": {
+        "github": "khushidahi",
+        "website": "enclave-demo.onrender.com"
+      },
+      "journey": {
+        "stage": 2,
+        "companyType": "B2B",
+        "bottleneck": "ICP Clarity",
+        "icp": "healthcare teams that need to collaborate on sensitive medical data without exposing the raw data",
+        "problem": "medical data is valuable for coordination and analysis but hard to share across trust boundaries",
+        "solution": "TEE-enabled medical-data exchange where sensitive inputs can be used without being exposed",
+        "nextMilestone": "identify one concrete medical-data sharing workflow and demo the trust boundary end to end",
+        "marketUpside": 4,
+        "evidenceQuality": 1
+      },
+      "about": "TEE-enabled medical data sharing — confidential compute for exchanging sensitive medical data across stronger trust boundaries, so the data can be used without being exposed.",
+      "clusters": [
+        "regulated"
+      ],
+      "cluster": "regulated"
+    },
+    {
+      "id": "etherea",
+      "slug": "etherea",
+      "name": "Etherea",
+      "focus": "generative live-stage system",
+      "shape": "prism",
+      "domain": "app-ux",
+      "geo": "NYC (the Convent)",
+      "members": 2,
+      "isMentor": false,
+      "traction": "Hardware in NYC creative spaces · exhibited at Anthropic HQ · Florent residency",
+      "now": "prepping a live-stage demo with cohort voice/transcript input",
+      "seeking": [
+        "cohort feedback on the Teleport Router architecture",
+        "product framing + fundraising mentorship"
+      ],
+      "offering": [
+        "live demo-day visuals for cohort teams (voice → transcript → stage)",
+        "design + storytelling consultation"
+      ],
+      "skillAreas": [
+        "generative-media",
+        "design",
+        "agentic"
+      ],
+      "dependencies": [
+        "tinycloud",
+        "contexto"
+      ],
+      "paperBasis": [],
+      "priorShipping": [
+        "Etherea — generative stage system (hardware installed in NYC creative spaces)",
+        "Florent residency (historic NYC Meatpacking venue)",
+        "Exhibited at Anthropic HQ",
+        "Live performer interaction with multimodal AI"
+      ],
+      "successDimensions": [
+        "productization",
+        "collaborative"
+      ],
+      "links": {
+        "website": "http://www.withetherea.com",
+        "repo": "https://github.com/jameslbarnes/etherea-ai"
+      },
+      "journey": {
+        "stage": 4,
+        "companyType": "AI",
+        "bottleneck": "Solution Quality",
+        "icp": "performers, creative venues, and demo teams that need live generative staging tied to human input",
+        "problem": "live AI visuals often feel generic because they do not ingest the actual voice, context, or ritual of the room",
+        "solution": "a generative stage system that turns live voice/transcript/context into responsive visual performance",
+        "nextMilestone": "run the cohort voice/transcript demo and identify the smallest repeatable stage-kit product",
+        "marketUpside": 4,
+        "evidenceQuality": 3
+      },
+      "about": "",
+      "clusters": [
+        "realtime-creative"
+      ],
+      "cluster": "realtime-creative"
+    },
+    {
+      "id": "feedling",
+      "slug": "feedling",
+      "name": "Feedling",
+      "focus": "information-diet interventions for short-form video · TEE-delegated watch history",
+      "shape": null,
+      "domain": "ai",
+      "geo": "",
+      "members": 1,
+      "isMentor": false,
+      "traction": "",
+      "now": "exploring a second consumer app — a customizable AI companion with early interest from the Xiaohongshu (RED) community — alongside the info-diet thesis",
+      "seeking": [
+        "users willing to inspect their short-form video diet and test intervention formats",
+        "privacy reviewers for delegated watch-history access"
+      ],
+      "offering": [
+        "information-diet and feed-intervention use cases for TEE/delegation teams",
+        "consumer-facing testbed for private agent mediation"
+      ],
+      "skillAreas": [
+        "tee",
+        "agentic",
+        "design",
+        "mechanism-design"
+      ],
+      "dependencies": [
+        "teleport-router",
+        "contexto",
+        "tinycloud"
+      ],
+      "paperBasis": [],
+      "priorShipping": [],
+      "successDimensions": [
+        "productization",
+        "collaborative"
+      ],
+      "links": {},
+      "journey": {
+        "stage": 2,
+        "companyType": "Consumer",
+        "bottleneck": "ICP Clarity",
+        "icp": "people who want agency over short-form video consumption without handing their watch history to another platform",
+        "problem": "feeds optimize for platform attention while users lack private, actionable control over their own information diet",
+        "solution": "TEE-delegated access to watch-history signals that can drive user-owned feed interventions",
+        "nextMilestone": "convert the RED community interest into the first live user thread and one quickly-testable intervention or onboarding loop",
+        "marketUpside": 4,
+        "evidenceQuality": 1
+      },
+      "about": "Information-diet interventions for short-form video. Uses TEE-delegated access to a person's watch history to reshape what their feed serves — putting the user, not the platform, in control of their information diet.",
+      "clusters": [
+        "consumer-behavior-apps"
+      ],
+      "cluster": "consumer-behavior-apps"
+    },
+    {
+      "id": "jjhub",
+      "slug": "jjhub",
+      "name": "JJHub",
+      "focus": "agentic coding platform",
+      "shape": "prism",
+      "domain": "ai",
+      "geo": "PST",
+      "members": 2,
+      "isMentor": false,
+      "traction": "EF grant for Tevm (441 stars) · Smithers featured on HN · Guillotine (Zig EVM) 168 stars · ~6 organic onboards roughly doubling week-over-week (no marketing) · elizaOS adopted Smithers as its workflow engine",
+      "now": "shipped the long-awaited Smithers UI (\"the dots are actually good now\") — positioning toward \"the Linear of workflow tools\" while organic onboards double weekly",
+      "seeking": [
+        "cohort teams willing to dogfood Smithers for agentic CI",
+        "DX feedback from teams building with LLM-as-primitive"
+      ],
+      "offering": [
+        "live demo sessions on jjhub + Smithers integration",
+        "EVM internals + agentic-workflow consultation"
+      ],
+      "skillAreas": [
+        "agentic",
+        "agent-runtime",
+        "durable-workflows"
+      ],
+      "dependencies": [
+        "contexto",
+        "bitrouter"
+      ],
+      "paperBasis": [],
+      "priorShipping": [
+        "Tevm — EVM toolkit (441 stars, EF grant)",
+        "Smithers — durable agentic workflows as JSX (HN front page)",
+        "Guillotine — high-performance EVM in Zig (168 stars)",
+        "Burns — autonomous agent swarm (planner/worker)"
+      ],
+      "successDimensions": [
+        "productization",
+        "collaborative"
+      ],
+      "links": {
+        "website": "https://jjhub.tech",
+        "alt": "https://smithers.sh",
+        "repo": "https://github.com/roninjin10/smithers"
+      },
+      "journey": {
+        "stage": 4,
+        "companyType": "AI",
+        "bottleneck": "ICP Clarity",
+        "icp": "developers using agentic coding systems who need durable workflows, review loops, and CI-grade orchestration",
+        "problem": "coding agents can produce useful work but struggle with durable workflow state, review discipline, and repo-scale orchestration",
+        "solution": "JJHub and Smithers as an agentic coding platform with durable workflow primitives",
+        "nextMilestone": "serve a non-self ICP with a clean one-line position (\"the Linear of workflow tools\") and keep the organic onboard curve doubling",
+        "marketUpside": 4,
+        "evidenceQuality": 3
+      },
+      "about": "",
+      "clusters": [
+        "agentic-dev-platform",
+        "agents"
+      ],
+      "cluster": "agentic-dev-platform"
+    },
+    {
+      "id": "pramaana",
+      "slug": "pramaana",
+      "name": "Pramaana",
+      "focus": "lattice / PQ crypto, ZK proofs",
+      "shape": "torus",
+      "domain": "crypto",
+      "geo": "NYC (Columbia)",
+      "members": 3,
+      "isMentor": false,
+      "traction": "Polygon Fellowship alumna · Columbia",
+      "now": "tightening the PALC enrollment flow + post-quantum identity SDK",
+      "seeking": [
+        "cohort tools that want identity verification — let's integrate",
+        "cryptographic design pair on PALC + lattice property testing"
+      ],
+      "offering": [
+        "open-source PALC test suite (ML-KEM-1024, MLWE property testing)",
+        "workshop on post-quantum identity + Sybil resistance for dApps",
+        "cryptographic design sprint pairing",
+        "Pramaana SDK as identity layer for cohort tools"
+      ],
+      "skillAreas": [
+        "post-quantum",
+        "zk",
+        "identity",
+        "tee"
+      ],
+      "dependencies": [
+        "crossroads",
+        "teesql",
+        "abra",
+        "wikigen"
+      ],
+      "paperBasis": [
+        "Anonymous Self-Credentials (IACR 2025/618)",
+        "Narrowing the Gap between TEEs Threat Model and Deployment Strategies",
+        "Props for ML Security"
+      ],
+      "priorShipping": [
+        "1st place Shape Rotator Hackathon — paper-to-product in 4 weeks",
+        "Live platform (pramaana.lovable.app) with real ML-KEM enrollment + multichain registry",
+        "10/10 passing cryptographic test suite (NIST FIPS 203 ML-KEM-1024)",
+        "kitewrap — supporting tooling repo"
+      ],
+      "successDimensions": [
+        "productization",
+        "research_lineage",
+        "collaborative"
+      ],
+      "links": {
+        "website": "https://pramaana.lovable.app/",
+        "demo": "https://youtu.be/Db80c0QhiHo",
+        "deck": "https://canva.link/tkkj90oa5x1nizg"
+      },
+      "journey": {
+        "stage": 5,
+        "companyType": "Protocol",
+        "bottleneck": "GTM",
+        "icp": "dApps and identity protocols that need post-quantum enrollment, Sybil resistance, or PALC-style anonymous credentials",
+        "problem": "crypto identity systems need stronger privacy and post-quantum readiness without making integration impossible",
+        "solution": "Pramaana SDK and PALC enrollment flow backed by ML-KEM tests and multichain registry work",
+        "nextMilestone": "integrate Pramaana identity into one other cohort tool or dApp flow",
+        "marketUpside": 4,
+        "evidenceQuality": 4
+      },
+      "about": "",
+      "clusters": [
+        "crypto-id"
+      ],
+      "cluster": "crypto-id"
+    },
+    {
+      "id": "prova",
+      "slug": "prova",
+      "name": "Prova",
+      "focus": "healthcare AI agents · EHR pilot",
+      "shape": "prism",
+      "domain": "ai",
+      "geo": "St. Louis",
+      "members": 1,
+      "isMentor": false,
+      "traction": "Live on Phala TDX · 2x prior founder",
+      "now": "hardening the dual-attestation library for cohort reuse",
+      "seeking": [
+        "cohort teams shipping LLM inference in TEEs to compare deployment patterns",
+        "integration partners for the trust-api attestation layer"
+      ],
+      "offering": [
+        "TEE-deployment workshop (docker compose, dstack secrets, async patterns)",
+        "dual-attestation library — open-sourced for cohort reuse",
+        "prova trust-api as free attestation layer for other cohort teams"
+      ],
+      "skillAreas": [
+        "tee",
+        "dstack",
+        "attestation",
+        "agentic",
+        "threshold-crypto"
+      ],
+      "dependencies": [
+        "dealproof",
+        "signalstack",
+        "conclave",
+        "teesql"
+      ],
+      "paperBasis": [
+        "Props (MPC-TLS data provenance)",
+        "dstack (Intel TDX attestation)",
+        "NDAI Agreements",
+        "U2SSO / Anonymous Self-Credentials",
+        "Conditional Recall",
+        "Thetacrypt",
+        "Narrowing the Gap between TEEs Threat Model and Deployment Strategies"
+      ],
+      "priorShipping": [
+        "Production live on Phala TDX (stable uptime since hackathon)",
+        "1st place Shape Rotator Hackathon · TEE track",
+        "health.provatrust.com demo (healthcare prior-auth workflow)",
+        "Working payer integrations (Da Vinci PAS, X12 278)"
+      ],
+      "successDimensions": [
+        "productization",
+        "research_lineage",
+        "collaborative"
+      ],
+      "links": {
+        "website": "https://health.provatrust.com/",
+        "demo": "https://www.loom.com/share/56f76b67a8374a6aa745f02ee4ce3945",
+        "deck": "https://www.provatrust.com/ic3-deck"
+      },
+      "journey": {
+        "stage": 5,
+        "companyType": "B2B",
+        "bottleneck": "GTM",
+        "icp": "regional payers + provider groups drowning in prior-auth volume",
+        "problem": "prior-authorization is a manual, multi-day fax-and-phone slog that delays care and burns clinical staff time",
+        "solution": "TEE-attested healthcare AI agent that runs the prior-auth workflow end-to-end against payer EHR integrations",
+        "nextMilestone": "convert the active EHR pilot into a signed paid design-partner contract",
+        "marketUpside": 5,
+        "evidenceQuality": 3
+      },
+      "about": "",
+      "clusters": [
+        "confidential-ai-ops",
+        "confidential-data",
+        "ndai",
+        "regulated"
+      ],
+      "cluster": "confidential-ai-ops"
+    },
+    {
+      "id": "searxng-wth-frnds",
+      "slug": "searxng-wth-frnds",
+      "name": "searxng-wth-frnds",
+      "focus": "LAN-first peer search daemon",
+      "shape": "torus",
+      "domain": "crypto",
+      "geo": "NYC",
+      "members": 1,
+      "isMentor": false,
+      "traction": "deployed private-LLM-search prototype benchmarked at 10k queries — median +1.2s latency, p99 ~9s",
+      "now": "private LLM search with metadata privacy via flashnet — exploring reputation-gated egress to dodge Tor-exit blocking and IP poisoning",
+      "seeking": [
+        "cohort peers who want private/local search over trusted shared context",
+        "feedback on what should stay local, what should sync, and what should never leave the LAN"
+      ],
+      "offering": [
+        "local-first search patterns for cohort tools",
+        "practical privacy defaults for small trusted groups"
+      ],
+      "skillAreas": [
+        "p2p",
+        "identity",
+        "bd-gtm"
+      ],
+      "dependencies": [
+        "dcnet",
+        "contexto"
+      ],
+      "paperBasis": [],
+      "priorShipping": [
+        "searxng-wth-frnds — SearXNG-based LAN-first peer search daemon"
+      ],
+      "successDimensions": [
+        "productization",
+        "collaborative"
+      ],
+      "links": {
+        "github": "dmarzzz/searxng-wth-frnds",
+        "repo": "dmarzzz/searxng-wth-frnds"
+      },
+      "journey": {
+        "stage": 2,
+        "companyType": "Infra",
+        "bottleneck": "ICP Clarity",
+        "icp": "small trusted groups that need private shared search without a hosted search backend",
+        "problem": "useful group search often leaks private queries, sources, or social context into centralized infrastructure",
+        "solution": "a LAN-first peer search daemon built around SearXNG and trusted local peers",
+        "nextMilestone": "one real cohort workflow using private search, plus a minimal anonymity architecture note for the reputation-gated egress design",
+        "marketUpside": 3,
+        "evidenceQuality": 2
+      },
+      "about": "A LAN-first peer search daemon — local-first, privacy-by-default search shared across a local network of trusted peers. Built on the SearXNG metasearch engine.",
+      "clusters": [
+        "local-first-networking"
+      ],
+      "cluster": "local-first-networking"
+    },
+    {
+      "id": "shake",
+      "slug": "shake",
+      "name": "Shake",
+      "focus": "shake-to-connect social networking",
+      "shape": "prism",
+      "domain": "app-ux",
+      "geo": "NYC",
+      "members": 1,
+      "isMentor": false,
+      "traction": "150+ users, pre-monetization",
+      "now": "validating whether the shake-to-connect gesture becomes a repeatable social graph behavior beyond novelty",
+      "seeking": [
+        "live-event or cohort moments to test shake-to-connect density",
+        "feedback on retention after the first physical interaction"
+      ],
+      "offering": [
+        "consumer social gesture design",
+        "lightweight IRL connection mechanic for cohort demos and events"
+      ],
+      "skillAreas": [
+        "design",
+        "identity",
+        "bd-gtm"
+      ],
+      "dependencies": [
+        "crossroads",
+        "elocute",
+        "etherea"
+      ],
+      "paperBasis": [],
+      "priorShipping": [],
+      "successDimensions": [
+        "productization"
+      ],
+      "links": {
+        "website": "https://quasimatt.com"
+      },
+      "journey": {
+        "stage": 4,
+        "companyType": "Consumer",
+        "bottleneck": "Retention",
+        "icp": "people at events or dense social spaces who want a quick mutual connection without exchanging handles manually",
+        "problem": "IRL social connection still has awkward manual exchange and weak memory after the moment passes",
+        "solution": "an iOS social app where a shared phone-shake gesture creates the connection",
+        "nextMilestone": "test whether repeated event use creates second-session behavior rather than one-time novelty",
+        "marketUpside": 3,
+        "evidenceQuality": 3
+      },
+      "about": "A consumer social app that connects people when they physically shake their phones together — turning a shared gesture into a connection. iOS (Shake Social).",
+      "clusters": [
+        "consumer-behavior-apps"
+      ],
+      "cluster": "consumer-behavior-apps"
+    },
+    {
+      "id": "shape-rotator-os",
+      "slug": "shape-rotator-os",
+      "name": "Shape Rotator OS",
+      "focus": "cohort coordination layer · cohort viewer + context vault",
+      "shape": null,
+      "domain": "ai",
+      "geo": "NYC",
+      "members": 3,
+      "isMentor": false,
+      "traction": "first outside cohort-project contribution merged (Teleport Router, PR by James Barnes)",
+      "now": "re-architected for outside contributions — hunting real user stories for product-driven development",
+      "seeking": [
+        "cohort projects that want to merge a surface or workflow into the OS",
+        "named user stories — what should the OS answer for you on a normal day?"
+      ],
+      "offering": [
+        "a merge target for cohort-project integrations (first one landed)",
+        "cohort surface data, timelines, and context-vault plumbing as reusable substrate"
+      ],
+      "skillAreas": [
+        "agentic",
+        "design",
+        "p2p"
+      ],
+      "dependencies": [
+        "teleport-router",
+        "searxng-wth-frnds"
+      ],
+      "paperBasis": [],
+      "priorShipping": [
+        "shape-rotator-os — local-first Electron cohort viewer (atlas, alchemy, timeline, context vault)",
+        "os-web.shaperotator.xyz — public web mirror of the cohort surface"
+      ],
+      "successDimensions": [
+        "productization",
+        "collaborative"
+      ],
+      "links": {
+        "github": "dmarzzz/shape-rotator-os",
+        "repo": "dmarzzz/shape-rotator-os",
+        "website": "https://os-web.shaperotator.xyz"
+      },
+      "journey": {
+        "stage": 2,
+        "companyType": "Infra",
+        "bottleneck": "ICP Clarity",
+        "icp": "cohorts and residencies that need a shared coordination surface — people, projects, timelines, and context in one local-first viewer",
+        "problem": "cohort knowledge lives in scattered transcripts, profiles, and chats, so coordination work stays invisible and unqueryable",
+        "solution": "an open, local-first cohort OS — surface data, context vault, and timeline views — that outside projects can merge into",
+        "nextMilestone": "open real cohort workflows to outside contributions and ship the next updates against named user stories",
+        "marketUpside": 3,
+        "evidenceQuality": 2
+      },
+      "about": "The cohort's own coordination layer and viewer (dmarzzz/shape-rotator-os): cohort surface data, context vault, timelines, and program views in one local-first Electron app, with a public web mirror at os-web.shaperotator.xyz. Re-architected in week 3 to take outside contributions — the Teleport Router merge was the first cohort-project-to-OS integration.",
+      "clusters": [],
+      "cluster": null
+    },
+    {
+      "id": "signalstack",
+      "slug": "signalstack",
+      "name": "SignalStack",
+      "focus": "TEE + LLM into Signal",
+      "shape": "hex",
+      "domain": "tee",
+      "geo": "NYC",
+      "members": 2,
+      "isMentor": false,
+      "traction": "Vitalik blog mention · prior at Lightblocks (Ittay Eyal lab, eoracle)",
+      "now": "shipping the beta of confidential LLM inference on Intel TDX inside Signal",
+      "seeking": [
+        "cohort teams comparing TEE deployment patterns + attestation UX",
+        "integration testers for the attestation verification SDK"
+      ],
+      "offering": [
+        "TEE deployment workshop (setup, remote attestation, pitfalls)",
+        "open-source attestation verification SDK for cohort",
+        "AI tasks + AI translation features available to cohort via Signal"
+      ],
+      "skillAreas": [
+        "tee",
+        "dstack",
+        "agentic",
+        "attestation"
+      ],
+      "dependencies": [
+        "prova",
+        "dealproof",
+        "conclave"
+      ],
+      "paperBasis": [],
+      "priorShipping": [
+        "SignalStack — confidential LLM inference on Intel TDX (beta development)",
+        "SigStack public repo — Rust Signal bot, TEE attestation, and modular services",
+        "Vitalik Buterin acknowledgment in April 2026 secure-LLM blog post"
+      ],
+      "successDimensions": [
+        "productization",
+        "collaborative"
+      ],
+      "links": {
+        "github": "RonTuretzky/sigstack",
+        "repo": "RonTuretzky/sigstack",
+        "slides": "https://ronturetzky.github.io/sigstack-slides/"
+      },
+      "journey": {
+        "stage": 4,
+        "companyType": "AI",
+        "bottleneck": "Solution Quality",
+        "icp": "Signal users and privacy-sensitive teams that want AI assistance without moving private messages into a hosted AI app",
+        "problem": "mainstream AI tools require users to leave private messaging contexts and trust servers with sensitive prompts",
+        "solution": "confidential LLM inference inside Signal with TEE attestation and zero-retention workflow primitives",
+        "nextMilestone": "onboard real Signal users or cohort teams to test translation, summarization, and assistant workflows",
+        "marketUpside": 4,
+        "evidenceQuality": 3
+      },
+      "about": "",
+      "clusters": [
+        "confidential-ai-ops",
+        "regulated"
+      ],
+      "cluster": "confidential-ai-ops"
+    },
+    {
+      "id": "teesql",
+      "slug": "teesql",
+      "name": "TeeSQL",
+      "focus": "attestation-gated mesh for open-source workloads · TEE Postgres on dstack",
+      "shape": "hex",
+      "domain": "tee",
+      "geo": "NYC / Estonia",
+      "members": 3,
+      "isMentor": false,
+      "traction": "4 open-source supporting repos · core private",
+      "now": "generalizing from TEE Postgres to an attestation-gated mesh for any open-source workload (Clickhouse, Redis) — hunting an off-cohort ICP in European confidential-computing enterprise",
+      "seeking": [
+        "cohort teams needing confidential SQL — let's bring you onto the beta",
+        "feedback on CVM provider deployment patterns"
+      ],
+      "offering": [
+        "free TeeSQL service to cohort teams during the accelerator",
+        "open-source connection-layer attestation code",
+        "CVM provider market analysis sharing"
+      ],
+      "skillAreas": [
+        "tee",
+        "dstack",
+        "confidential-db",
+        "attestation"
+      ],
+      "dependencies": [
+        "abra",
+        "tinycloud",
+        "pramaana",
+        "crossroads"
+      ],
+      "paperBasis": [
+        "Narrowing the Gap between TEEs Threat Model and Deployment Strategies",
+        "Persistent BitTorrent Trackers on dstack"
+      ],
+      "priorShipping": [
+        "attestation-report — open-source RA artifact tooling",
+        "ra-tls-parse, ra-tls-proxy, prisma-ra-tls (4 supporting repos)",
+        "Shopped to Phala + Flashbots; multiple Flashbots X-adjacent projects need this today"
+      ],
+      "successDimensions": [
+        "productization",
+        "collaborative"
+      ],
+      "links": {
+        "github": "TeeSQL",
+        "repo": "https://github.com/orgs/TeeSQL/repositories"
+      },
+      "journey": {
+        "stage": 4,
+        "companyType": "Infra",
+        "bottleneck": "ICP Clarity",
+        "icp": "European confidential-computing enterprises reducing US-cloud reliance (reached via web2 enterprise networks), alongside teams needing confidential SQL with attested connections",
+        "problem": "confidential applications need normal database ergonomics without silently losing the attestation and deployment guarantees",
+        "solution": "a generalized attestation-gated mesh that can run any open-source software (Postgres, Clickhouse, Redis) with a blockchain control plane and host- or dev-proof modes",
+        "nextMilestone": "open the first European confidential-computing enterprise conversation while keeping one cohort team on the attested beta path",
+        "marketUpside": 4,
+        "evidenceQuality": 3
+      },
+      "about": "",
+      "clusters": [
+        "confidential-data",
+        "dstack"
+      ],
+      "cluster": "confidential-data"
+    },
+    {
+      "id": "teleport-router",
+      "slug": "teleport-router",
+      "name": "Teleport Router",
+      "focus": "cross-network routing",
+      "shape": "prism",
+      "domain": "crypto",
+      "geo": "",
+      "members": 3,
+      "isMentor": false,
+      "traction": "first merged cohort-project-to-Shape-Rotator-OS contribution (PR by James Barnes) · Daybook demoed at the Princeton event",
+      "now": "shipping Daybook + the \"Day\" local daily log of Claude-Code/Codex sessions with a cloud-SDK onboarding flow; router merged into Shape Rotator OS",
+      "seeking": [
+        "teams that need delegated posting, cross-network routing, or social account handoff",
+        "reviewers for attestation-verified delegation flows"
+      ],
+      "offering": [
+        "one-time delegation and routing primitives",
+        "social/account-boundary experiments for projects with user-owned context"
+      ],
+      "skillAreas": [
+        "cross-chain",
+        "identity",
+        "attestation",
+        "agent-routing"
+      ],
+      "dependencies": [
+        "dcnet",
+        "feedling",
+        "contexto",
+        "crossroads"
+      ],
+      "paperBasis": [],
+      "priorShipping": [
+        "teleport.best — one-time-use delegated posting surface",
+        "teleport-router public repo"
+      ],
+      "successDimensions": [
+        "productization",
+        "research_lineage",
+        "collaborative"
+      ],
+      "links": {
+        "repo": "https://github.com/jameslbarnes/teleport-router",
+        "website": "https://teleport.best"
+      },
+      "journey": {
+        "stage": 3,
+        "companyType": "Protocol",
+        "bottleneck": "Solution Quality",
+        "icp": "builders who need temporary delegated control across social or network surfaces without giving away account custody",
+        "problem": "routing actions across accounts/networks often requires either full custody transfer or brittle manual coordination",
+        "solution": "one-time-use delegated posting and attestation-verified routing primitives",
+        "nextMilestone": "turn the Shape Rotator OS integration into a recurring routed workflow and put the Day(book) daily log in first users' hands",
+        "marketUpside": 4,
+        "evidenceQuality": 2
+      },
+      "about": "Cross-network routing in the TEE/attestation space. The public surface (teleport.best) offers one-time-use delegated posting — let someone post to your account once without handing over control — with related work on attestation-verified delegation.",
+      "clusters": [
+        "local-first-networking"
+      ],
+      "cluster": "local-first-networking"
+    },
+    {
+      "id": "tinycloud",
+      "slug": "tinycloud",
+      "name": "Tinycloud",
+      "focus": "user-owned cloud, dstack TEEs",
+      "shape": "hex",
+      "domain": "tee",
+      "geo": "NYC / Berlin / Lisbon",
+      "members": 4,
+      "isMentor": false,
+      "traction": "Live SDK + protocol · paid pilot with Sparq Gaming · Sam ex-SpruceID",
+      "now": "single-message delegation shipped; tinycloud-secrets powers Listen (transcript aggregator) + Tiny Cloud Chats; policy engine finalized — building a personalized feed mined from a user's own transcripts",
+      "seeking": [
+        "cohort teams to dogfood tinycloud-secrets (scoped credential delegation)",
+        "design feedback on the agentic collaboration platform"
+      ],
+      "offering": [
+        "tinycloud-secrets for cohort teams (scoped credential delegation for agents)",
+        "cryptographic engineering pair on threshold + proxy re-encryption"
+      ],
+      "skillAreas": [
+        "tee",
+        "dstack",
+        "threshold-crypto",
+        "attestation",
+        "identity"
+      ],
+      "dependencies": [
+        "teesql",
+        "etherea",
+        "conclave"
+      ],
+      "paperBasis": [
+        "Thetacrypt (threshold cryptography for delegation)",
+        "Anonymous Self-Credentials / SD-JWT",
+        "Narrowing the Gap between TEEs Threat Model and Deployment Strategies"
+      ],
+      "priorShipping": [
+        "tinycloud-node SDK (Rust + TypeScript)",
+        "tinycloud-dstack — TEE attestation fork",
+        "Muse — AI memory bank (Edge Esmeralda 2025 residency)",
+        "Realtime audio transcriber (shipped with Etherea)"
+      ],
+      "successDimensions": [
+        "productization",
+        "research_lineage",
+        "collaborative"
+      ],
+      "links": {
+        "github": "TinyCloudLabs",
+        "website": "https://tinycloud.xyz",
+        "deck": "https://tinycloud.xyz/deck"
+      },
+      "journey": {
+        "stage": 4,
+        "companyType": "Infra",
+        "bottleneck": "ICP Clarity",
+        "icp": "people with lots of private transcripts who need user-owned aggregation, plus agent builders needing scoped credential delegation on TEE rails",
+        "problem": "users and agents need to delegate secrets or cloud actions without giving broad account control to opaque services",
+        "solution": "user-owned cloud and tinycloud-secrets for scoped credential delegation on dstack/TEE rails",
+        "nextMilestone": "land the first external user of tinycloud-secrets/Listen — sharpening the ICP around people with lots of private transcripts",
+        "marketUpside": 4,
+        "evidenceQuality": 3
+      },
+      "about": "",
+      "clusters": [
+        "confidential-data",
+        "dstack",
+        "realtime-creative"
+      ],
+      "cluster": "confidential-data"
+    },
+    {
+      "id": "trustless-tee",
+      "slug": "trustless-tee",
+      "name": "Trustless TEE",
+      "focus": "trustless trusted-execution",
+      "shape": "hex",
+      "domain": "tee",
+      "geo": "",
+      "members": 1,
+      "isMentor": false,
+      "traction": "",
+      "now": "clarifying the TEE trust-root problem rather than treating vendor signing keys as invisible infrastructure",
+      "seeking": [
+        "TEE builders to pressure-test where trust actually enters their stack",
+        "protocol reviewers who can separate enclave proof from hardware-root trust"
+      ],
+      "offering": [
+        "sharp trust-boundary review for TEE-based projects",
+        "Ethereum execution context around latency, sequencing, and priority updates"
+      ],
+      "skillAreas": [
+        "tee",
+        "attestation",
+        "mechanism-design"
+      ],
+      "dependencies": [
+        "signalstack",
+        "prova",
+        "dealproof"
+      ],
+      "paperBasis": [],
+      "priorShipping": [],
+      "successDimensions": [
+        "research_lineage",
+        "collaborative"
+      ],
+      "links": {
+        "x": "0xQuintus"
+      },
+      "journey": {
+        "stage": 2,
+        "companyType": "Infra",
+        "bottleneck": "Technical Risk",
+        "icp": "TEE protocol builders who need a clearer answer to the vendor-key trust assumption",
+        "problem": "confidential-compute designs can inherit a hidden trust root from Intel/AMD signing keys even when the rest of the protocol is trust-minimized",
+        "solution": "make that trust root explicit and explore a trustless or less-vendor-dependent TEE design",
+        "nextMilestone": "publish or demo the minimum concrete trust-root alternative the cohort can inspect",
+        "marketUpside": 3,
+        "evidenceQuality": 1
+      },
+      "about": "Trustless trusted-execution. Addresses the trust-root problem that confidential-compute systems inherit — the hardware vendor's signing key — rather than treating it as a given.",
+      "clusters": [
+        "confidential-ai-ops"
+      ],
+      "cluster": "confidential-ai-ops"
+    },
+    {
+      "id": "tvee-rl",
+      "slug": "tvee-rl",
+      "name": "TvEE RL",
+      "focus": "attested reinforcement learning workflows",
+      "shape": "hex",
+      "domain": "tee",
+      "geo": "distributed (PT-based · expects 2+ weeks on-site)",
+      "members": 2,
+      "isMentor": false,
+      "traction": "Qwen 2.5-VL contribution to Tinker · 253 GitHub repos (Luc)",
+      "now": "connecting attested RL workflow design to a concrete tuvalugpt.tv demo path",
+      "seeking": [
+        "RL/agent builders who need verifiable training or evaluation workflows",
+        "TEE reviewers for attested model-evaluation boundaries"
+      ],
+      "offering": [
+        "attested RL workflow framing",
+        "Tuvalu-focused AI/chat demo surface for testing trusted workflows"
+      ],
+      "skillAreas": [
+        "tee",
+        "agentic",
+        "research-to-product"
+      ],
+      "dependencies": [
+        "signalstack",
+        "tinycloud",
+        "conclave"
+      ],
+      "paperBasis": [],
+      "priorShipping": [],
+      "successDimensions": [
+        "research_lineage",
+        "productization"
+      ],
+      "links": {
+        "website": "tuvalugpt.tv",
+        "demo": "tuvalugpt.tv/chat"
+      },
+      "journey": {
+        "stage": 2,
+        "companyType": "AI",
+        "bottleneck": "Technical Risk",
+        "icp": "AI builders who need verifiable RL training/evaluation rather than unverifiable offline claims",
+        "problem": "RL workflows are hard to audit because data, training, and evaluation can be hidden or mutable",
+        "solution": "attested reinforcement-learning workflows that make the training/evaluation path inspectable",
+        "nextMilestone": "show one attested training or evaluation run tied to the public demo surface",
+        "marketUpside": 3,
+        "evidenceQuality": 2
+      },
+      "about": "Attested reinforcement-learning workflows — running RL training and evaluation inside trusted-execution environments so the process is verifiable. The team also runs tuvalugpt.tv, a Tuvalu-focused AI/chat surface.",
+      "clusters": [
+        "confidential-ai-ops"
+      ],
+      "cluster": "confidential-ai-ops"
+    },
+    {
+      "id": "wikigen",
+      "slug": "wikigen",
+      "name": "WikiGen",
+      "focus": "bio-eng cryptography · curation",
+      "shape": "torus",
+      "domain": "crypto",
+      "geo": "Bay / TX",
+      "members": 3,
+      "isMentor": false,
+      "traction": "Nature Comms 2021 co-author (GEDI biosensor) · Caltech / ex-Facebook on team",
+      "now": "extending Topos backend (dialogues.ai) for secure collaborative research",
+      "seeking": [
+        "bioinformatics teams interested in confidential collaborative pipelines",
+        "identity layer pair on consent workflows for sensitive datasets"
+      ],
+      "offering": [
+        "workshop on agentic pipelines for personal data banks",
+        "RL + tinker environments for ML tasks",
+        "data intake/processing infrastructure for cohort dogfooders"
+      ],
+      "skillAreas": [
+        "research-to-product",
+        "identity",
+        "agentic"
+      ],
+      "dependencies": [
+        "pramaana",
+        "teesql"
+      ],
+      "paperBasis": [
+        "NDAI Agreements"
+      ],
+      "priorShipping": [
+        "Nature Communications 2021 co-author (GEDI biosensor, Linsley et al.)",
+        "BioToolsHub (wikigen.me) — live curated bioinformatics tools",
+        "Topos backend (dialogues.ai) — secure collaborative research workflows"
+      ],
+      "successDimensions": [
+        "productization",
+        "research_lineage"
+      ],
+      "links": {
+        "website": "https://www.wikigen.me",
+        "alt": "https://topos.dialogues.ai",
+        "demo": "https://drive.google.com/file/d/1VRtFkLiUZTv5ea4VACJPEJqZgwasvY9z/view"
+      },
+      "journey": {
+        "stage": 3,
+        "companyType": "AI",
+        "bottleneck": "ICP Clarity",
+        "icp": "bioinformatics and research teams that need secure collaborative curation over sensitive scientific workflows",
+        "problem": "collaborative research pipelines need curation, identity, and privacy boundaries before sensitive data can move productively",
+        "solution": "WikiGen/BioToolsHub plus Topos backend for secure, agentic research curation",
+        "nextMilestone": "demonstrate one secure collaborative research workflow with identity/consent boundaries visible",
+        "marketUpside": 3,
+        "evidenceQuality": 2
+      },
+      "about": "",
+      "clusters": [
+        "crypto-id"
+      ],
+      "cluster": "crypto-id"
+    }
+  ],
+  "people": [
+    {
+      "id": "albiona-hoti",
+      "name": "Albiona Hoti",
+      "team": "elocute",
+      "role": "lead",
+      "geo": "NYC",
+      "domain": "ai",
+      "skillAreas": [
+        "agentic",
+        "generative-media",
+        "design",
+        "bd-gtm"
+      ],
+      "goToThemFor": [
+        "speech-practice tools",
+        "tight feedback loops",
+        "friendly solo-rep interfaces",
+        "turning self-improvement into software"
+      ],
+      "now": "compressing a flood of user conversations into one executable Elocute product plan — three research cycles before the ETH Global NY hackathon",
+      "workingStyle": "fast consumer-product builder who turns her own learning and validation process into tools others can use",
+      "links": {
+        "github": "AlbionaHoti",
+        "x": "albicodes",
+        "website": "albiona.dev",
+        "linkedin": "AlbionaHoti"
+      },
+      "about": "Solo founder building Elocute — AI speaking practice with scored feedback — the consumer product with the strongest live traction in the cohort. EIR at Flashbots X. A prolific, AI-first product builder (GitHub albicodes) who packages her own process into reusable tooling: Claude Code skills, app-validation kits, and idea-to-spec workflows."
+    },
+    {
+      "id": "alexis-bednarick",
+      "name": "Alexis Bednarick",
+      "team": null,
+      "role": "people ops",
+      "geo": "",
+      "domain": "ops",
+      "skillAreas": [
+        "people-ops"
+      ],
+      "goToThemFor": [
+        "housing and logistics questions",
+        "people-ops and program operations"
+      ],
+      "now": "running people ops for the accelerator — housing, logistics, and keeping the cohort's week-to-week machinery humming",
+      "workingStyle": "",
+      "links": {},
+      "about": "Alexis runs People Ops for the accelerator. She was in the operations\ndirectory but missing from the cohort surface entirely (the one person of 52\nthe app couldn't show — found in the 2026-07-02 new-user-flow audit), so this\nrecord is intentionally minimal: name, role, and where to point people. Alexis\n(or an organizer) should flesh out contact handles and details via the normal\nprofile-edit path."
+    },
+    {
+      "id": "andrew-forman",
+      "name": "Andrew Forman",
+      "team": "abra",
+      "role": "lead",
+      "geo": "NYC",
+      "domain": "tee",
+      "skillAreas": [
+        "formal-verification",
+        "tee",
+        "dstack",
+        "attestation"
+      ],
+      "goToThemFor": [
+        "formal verification",
+        "TEE-backed compliance",
+        "proof-carrying software",
+        "enterprise assurance"
+      ],
+      "now": "writing Abra's formal-verification registry spec for TEE-backed compliance proofs",
+      "workingStyle": "compliance-first systems thinker; starts from the proof consumer and works backward to the technical artifact",
+      "links": {},
+      "about": "Solo, self-funded founder building Abra, a formally-verified application platform. The core idea is to sell the proof to the consumer of the proof — the auditor, CFO, or compliance officer — rather than to the developer. The first app is a \"verified SailPoint\" that machine-checkably proves every access grant followed the right approval chain, aimed at SOX compliance: a proof over all records rather than sampling. Background in compliance technology."
+    },
+    {
+      "id": "andrew-miller",
+      "name": "Andrew Miller",
+      "team": "teleport-router",
+      "role": "steward",
+      "geo": "NYC",
+      "domain": "crypto",
+      "skillAreas": [
+        "tee",
+        "dstack",
+        "attestation",
+        "agent-runtime",
+        "agentic"
+      ],
+      "goToThemFor": [
+        "TEE / dstack / attestation infrastructure",
+        "cohort matrix and onboarding issues",
+        "Hermes, Contexto, and local agent runtime integration",
+        "Feedling and delegated-data architecture"
+      ],
+      "now": "daybook + \"day\" local session log · teleport-router merged into shape rotator os · feedling AI-companion exploration",
+      "workingStyle": "infrastructure steward who keeps protocol details tied to concrete cohort operations",
+      "links": {
+        "github": "amiller",
+        "x": "socrates1024",
+        "website": "soc1024.ece.illinois.edu"
+      },
+      "about": "Shape Rotator cohort steward — runs the matrix homeserver and onboarding\nflow. Day job is TEE / dstack / attestation infra. Part of the Teleport\ncrew working on Router and Feedling.\n\nDM `@socrates1024:matrix.org` for cohort infra issues, code requests, or\nanything matrix/dstack/TEE-adjacent."
+    },
+    {
+      "id": "archer-yang",
+      "name": "Archer Yang",
+      "team": "bitrouter",
+      "role": "cofounder",
+      "geo": "Hong Kong",
+      "domain": "ai",
+      "skillAreas": [
+        "p2p-networks",
+        "agent-payment-rails",
+        "crypto-infrastructure",
+        "model-routing"
+      ],
+      "goToThemFor": [
+        "P2P model routing",
+        "agent payment rails",
+        "runtime state for agents",
+        "crypto-network infrastructure"
+      ],
+      "now": "Building BitRouter's technical core, including x402 and MPP payment integrations for P2P model routing.",
+      "workingStyle": "Inferred only from the commit trace: steady daily cadence, primary authorship of the hard payment-rails work",
+      "links": {},
+      "about": "BitRouter's CTO and technical engine — primary author of the bitrouter/bitrouter codebase, including the x402 and MPP payment integrations. Based in Hong Kong."
+    },
+    {
+      "id": "chloe-wang",
+      "name": "Chloe Wang",
+      "team": "crossroads",
+      "role": "lead",
+      "geo": "",
+      "domain": "",
+      "skillAreas": [
+        "cross-chain",
+        "wallet-infrastructure",
+        "policy-constrained-signing",
+        "crypto-product"
+      ],
+      "goToThemFor": [
+        "wallet UX questions",
+        "Liquefaction-adjacent implementation",
+        "crypto product mechanics"
+      ],
+      "now": "Leading Crossroads, a policy-constrained cross-chain signing wallet built from Liquefaction and Complete Knowledge primitives.",
+      "workingStyle": "Project-context read: wallet/product lead working from academic crypto primitives toward a concrete signing experience.",
+      "links": {},
+      "about": "Lead of Crossroads (Cornell Tech) — a Liquefaction-based, policy-constrained cross-chain signing wallet built on IC3-adjacent primitives (Liquefaction and Complete Knowledge)."
+    },
+    {
+      "id": "cnode",
+      "name": "cnode",
+      "team": "dcnet",
+      "role": "",
+      "geo": "nyc",
+      "domain": "crypto",
+      "skillAreas": [
+        "p2p",
+        "identity",
+        "mechanism-design",
+        "zk"
+      ],
+      "goToThemFor": [
+        "DCNet anonymity design",
+        "cryptocurrency protocol questions",
+        "Zcash / Project Tachyon context"
+      ],
+      "now": "hacking on DCNets with Shape Rotator while tracking Zcash Project Tachyon-style anonymity work",
+      "workingStyle": "cryptography-oriented engineer; explores primitives from first principles before productizing",
+      "links": {
+        "github": "https://github.com/s1nus",
+        "x": "https://x.com/colludingnode",
+        "website": "https://cnode.phd"
+      },
+      "about": "Software engineer and aspiring cryptographer. Mostly interested in cryptocurrencies. Focused on [ZCash's Project Tachyon](https://tachyon.z.cash/). Hacking on DCNets with Shape Rotator."
+    },
+    {
+      "id": "dev-motlani",
+      "name": "Dev Motlani",
+      "team": null,
+      "role": "",
+      "geo": "Bangalore / LA",
+      "domain": "crypto",
+      "skillAreas": [
+        "agentic",
+        "mev",
+        "mechanism-design",
+        "bd-gtm"
+      ],
+      "goToThemFor": [
+        "agentic trading systems",
+        "quant-finance product framing",
+        "crypto market thesis and trader workflows"
+      ],
+      "now": "building AlphaI as an agentic trading OS for AI-native funds and serious traders",
+      "workingStyle": "market-thesis-led founder; connects trading operations to product and buyer language",
+      "links": {},
+      "about": "Co-founder & CEO of AlphaI, an agentic trading OS for AI-native funds and serious traders. Quant-finance background (formerly Equarion Capital, managing crypto AUM and building live trading models). Leads product and market thesis. Bangalore / LA."
+    },
+    {
+      "id": "dmarz",
+      "name": "dmarz",
+      "team": "searxng-wth-frnds",
+      "role": "lead",
+      "geo": "NYC",
+      "domain": "bd-gtm",
+      "skillAreas": [
+        "p2p",
+        "identity",
+        "design",
+        "bd-gtm"
+      ],
+      "goToThemFor": [
+        "Shape Rotator OS and local-first cohort tooling",
+        "privacy-search and LAN-first retrieval",
+        "field-kit / VoxTerm / app distribution questions"
+      ],
+      "now": "opened Shape Rotator OS to outside contributions (Teleport Router merged first) — benchmarked private LLM search routed through flashnet",
+      "workingStyle": "tool-maker operator; builds the working surface while keeping the social workflow in view",
+      "links": {
+        "github": "dmarzzz",
+        "x": "DistributedMarz",
+        "website": "dmarz.xyz"
+      },
+      "about": "Flashbots-adjacent infrastructure builder (GitHub dmarzzz). Builds Shape Rotator's local-first OS and field-kit, the VoxTerm transcription tool, and his own cohort project searxng-wth-frnds (a LAN-first peer search daemon). A cohort tool-maker and privacy-search builder as much as a single-project founder. NYC."
+    },
+    {
+      "id": "fran",
+      "name": "Fran",
+      "team": "teesql",
+      "role": "Product",
+      "geo": "NYC",
+      "domain": "crypto",
+      "skillAreas": [
+        "product-strategy",
+        "go-to-market",
+        "protocol-design",
+        "fundraising"
+      ],
+      "goToThemFor": [
+        "product shaping",
+        "protocol/product feedback",
+        "GTM and fundraising context",
+        "Superfluid-style crypto product lessons"
+      ],
+      "now": "helping teesql figure out the product boundary and gtm",
+      "workingStyle": "High-context product/strategy operator; useful when a protocol team needs the product boundary made legible.",
+      "links": {
+        "github": "kobuta23",
+        "x": "francescorenzia",
+        "website": "https://superfluid.org"
+      },
+      "about": "## bio\n\nlong time crypto person. Founder of Superfluid.org. Sidequest maxi. Hopefully helpful product person. On teesql team but open to share feedback on anyone's projects on protocol/product/gtm/fundraising"
+    },
+    {
+      "id": "freddmannen",
+      "name": "Fredster",
+      "team": "shape-rotator-os",
+      "role": "ai psychotherapist",
+      "geo": "SWE",
+      "domain": "app-ux",
+      "skillAreas": [],
+      "goToThemFor": [],
+      "now": "",
+      "workingStyle": "",
+      "links": {
+        "github": "freddmannen",
+        "x": "freddmannen",
+        "website": "fred.computer"
+      },
+      "about": "## bio\n\nI'll add stuff here soon!"
+    },
+    {
+      "id": "freya-zhang",
+      "name": "Freya Zhang",
+      "team": "daedalus",
+      "role": "cofounder",
+      "geo": "distributed (NYC / SF / Asia)",
+      "domain": "crypto",
+      "skillAreas": [
+        "prediction-markets",
+        "market-microstructure",
+        "technical-product-management",
+        "infofi"
+      ],
+      "goToThemFor": [
+        "prediction market infrastructure",
+        "InfoFi coordination",
+        "TPM-style execution",
+        "market microstructure framing"
+      ],
+      "now": "Backtesting delta-neutral stock-portfolio hedges on Polymarket sports markets — scraping L2/L3 orderbook history toward a demo.",
+      "workingStyle": "Execution-centered operator who makes a research-heavy market-infrastructure project legible and shippable.",
+      "links": {},
+      "about": "Co-founder and technical PM on Daedalus, and the team's primary contact, carrying much of the team's operating substance. Distributed (NYC / SF / Asia)."
+    },
+    {
+      "id": "gonzo-gelso",
+      "name": "Gonzo Gelso",
+      "team": "etherea",
+      "role": "",
+      "geo": "",
+      "domain": "",
+      "skillAreas": [
+        "generative-media",
+        "product-design",
+        "community",
+        "developer-relations"
+      ],
+      "goToThemFor": [
+        "generative live systems",
+        "performance tooling",
+        "creative technical demos",
+        "stage-like product experiences"
+      ],
+      "now": "Carrying Etherea's product, community, and developer-relations voice around live generative performance systems.",
+      "workingStyle": "Experience-led product cofounder: sharpest when a technical system has to become something a community can feel and use.",
+      "links": {},
+      "about": "Design co-founder of Etherea, carrying the product, community, and developer-relations voice alongside James Barnes's technical and mechanism work. Co-founded Etherea with James after meeting at the Convent in September 2025."
+    },
+    {
+      "id": "hudson",
+      "name": "Hudson Headley",
+      "team": "signalstack",
+      "role": "Engineer",
+      "geo": "",
+      "domain": "",
+      "skillAreas": [
+        "tee",
+        "agentic",
+        "identity",
+        "attestation"
+      ],
+      "goToThemFor": [
+        "private AI messaging",
+        "Signal-adjacent workflows",
+        "TEE/LLM integration",
+        "encrypted coordination"
+      ],
+      "now": "building SignalStack as the on-chain/privacy systems counterpart to the Signal interface",
+      "workingStyle": "systems generalist who translates decentralization, identity, and private-agent ideas into concrete Solidity/TypeScript surfaces",
+      "links": {
+        "github": "hudsonhrh",
+        "x": "hudsonhrh"
+      },
+      "about": "SignalStack's second builder, alongside Ron Turetzky. A Solidity/TypeScript on-chain engineer working in the Ethereum DAO and decentralized-identity space (GitHub hudsonhrh): a \"Proof of Participation\" identity protocol built on Chainlink Functions/CCIP and The Graph, DAO tooling, gas-optimization tooling, and Breadchain ecosystem work."
+    },
+    {
+      "id": "hunter-horsfall",
+      "name": "Hunter Horsfall",
+      "team": "tinycloud",
+      "role": "Co-Founder",
+      "geo": "NYC (from mid-May)",
+      "domain": "tee",
+      "skillAreas": [
+        "tee",
+        "agentic-workflows",
+        "did-auth",
+        "physical-digital-systems"
+      ],
+      "goToThemFor": [
+        "user-owned cloud architecture",
+        "DID/auth capability systems",
+        "TEE-backed storage",
+        "decentralized systems implementation"
+      ],
+      "now": "Improving an agentic personal feed and fundraising engine while co-building TinyCloud's user-owned cloud surface.",
+      "workingStyle": "Cross-domain builder comfortable moving between systems software, agent workflows, spatial design, and physical installations.",
+      "links": {
+        "github": "huntertinycloud",
+        "x": "QuantaNode",
+        "website": "tinycloud.xyz",
+        "linkedin": "hunterhorsfall"
+      },
+      "about": "Building sovereign tools for the agentic web."
+    },
+    {
+      "id": "james-barnes",
+      "name": "James Barnes",
+      "team": "etherea",
+      "role": "lead",
+      "geo": "NYC (the Convent)",
+      "domain": "ai",
+      "skillAreas": [
+        "generative-media",
+        "creative-engineering",
+        "attestation",
+        "live-demo-systems"
+      ],
+      "goToThemFor": [
+        "generative performance systems",
+        "creative engineering",
+        "live demos",
+        "experience-led product work"
+      ],
+      "now": "Shipping Etherea's revenue-positive creative-AI surface: speech, music, and motion into real-time video and shaders.",
+      "workingStyle": "Demo-first technical lead who has already made the infra-to-product turn from crypto attestation into a focused creative-AI surface.",
+      "links": {},
+      "about": "CEO and technical lead of Etherea — a shipping, revenue-positive creative-AI team. Formerly at Flashbots (egress attestation), he made a deliberate move into creative AI: a generative live-stage system that turns speech, music, and motion into real-time video and shaders (roughly five seconds from concept to screen). NYC (the Convent)."
+    },
+    {
+      "id": "jay-wang",
+      "name": "Jay Wang",
+      "team": "daedalus",
+      "role": "",
+      "geo": "",
+      "domain": "crypto",
+      "skillAreas": [],
+      "goToThemFor": [
+        "prediction market mechanics",
+        "DeFi/MEV research translation",
+        "market intelligence infrastructure",
+        "quant-flavored product questions"
+      ],
+      "now": "",
+      "workingStyle": "",
+      "links": {},
+      "about": "A member of Daedalus Research, working in the crypto domain."
+    },
+    {
+      "id": "jonny-johnson",
+      "name": "Jonny Johnson",
+      "team": "wikigen",
+      "role": "engineer",
+      "geo": "Bay / TX",
+      "domain": "crypto",
+      "skillAreas": [],
+      "goToThemFor": [
+        "AI/VR research perspectives",
+        "personal-data futures",
+        "concept expansion",
+        "prototype critique"
+      ],
+      "now": "I'm designing v2 of product before implementation and organizing skills and agents for better coding agents and to help increase founder abilities.",
+      "workingStyle": "",
+      "links": {
+        "github": "draftin1",
+        "x": "JonathanJohnson",
+        "website": "https://jonnyjohnson.com"
+      },
+      "about": "## bio\n\nJonny Johnson is the founder and builder behind Dialogues and Topos. For nearly a decade, he has worked at the intersection of language models, and human communication systems--product, design, research, technologies. His work includes building realistic AI simulations, LLM-powered conversation flows, human-centered data schemas, and production AI systems for venture-backed teams."
+    },
+    {
+      "id": "josh-chang",
+      "name": "Josh Chang",
+      "team": "crossroads",
+      "role": "cofounder",
+      "geo": "NYC (Cornell Tech)",
+      "domain": "crypto",
+      "skillAreas": [
+        "cross-chain",
+        "wallet-infrastructure",
+        "policy-constrained-signing",
+        "crypto-routing"
+      ],
+      "goToThemFor": [
+        "wallet infrastructure review",
+        "crypto routing questions",
+        "implementation details after direct evidence"
+      ],
+      "now": "Co-building Crossroads, a Liquefaction-based wallet for policy-constrained cross-chain signing.",
+      "workingStyle": "Implementation-side wallet builder; strongest current read comes through Crossroads project context rather than a large standalone profile.",
+      "links": {},
+      "about": "Co-founder of Crossroads (Cornell Tech MS) — a Liquefaction-based wallet with policy-constrained cross-chain signing via an on-chain signing committee, built on IC3-adjacent academic primitives (Liquefaction and Complete Knowledge). NYC."
+    },
+    {
+      "id": "justin-gaffney",
+      "name": "Justin Gaffney",
+      "team": "prova",
+      "role": "lead",
+      "geo": "",
+      "domain": "",
+      "skillAreas": [
+        "healthcare-ai",
+        "ehr-workflows",
+        "tee",
+        "productized-agents"
+      ],
+      "goToThemFor": [
+        "healthcare AI pilots",
+        "EHR workflow questions",
+        "clinical agent productization",
+        "practical deployment constraints"
+      ],
+      "now": "Running Prova's TEE-attested healthcare-agent workflow across prior authorization and EHR integration.",
+      "workingStyle": "Inferred only — his own voice is absent from the evidence",
+      "links": {},
+      "about": "Solo founder of Prova — a healthcare-AI-agent venture (St. Louis) running TEE-attested prior-authorization and EHR workflows on Phala TDX. Prova reached production on Phala TDX, took first place in the hackathon's TEE track, and built working US prior-authorization payer integrations."
+    },
+    {
+      "id": "kelsen-liu",
+      "name": "Kelsen Liu",
+      "team": "bitrouter",
+      "role": "",
+      "geo": "NYC",
+      "domain": "ai",
+      "skillAreas": [
+        "ai-infrastructure",
+        "go-to-market",
+        "fundraising",
+        "developer-adoption"
+      ],
+      "goToThemFor": [
+        "AI infra GTM",
+        "agent routing networks",
+        "crypto fundraising context",
+        "developer adoption questions"
+      ],
+      "now": "Repositioned Bitrouter around reliability + cost for coding agents — stars 2× post-Shaw-retweet; working signups one by one toward first paid.",
+      "workingStyle": "Builds the company's narrative, marketing, and business surface rather than the core engine",
+      "links": {
+        "github": "SPIKESPIGEL404",
+        "x": "kelrouter",
+        "linkedin": "kelsen-liu-668b72258"
+      },
+      "about": "Team lead and CEO of BitRouter, and an NYU undergraduate. Carries the team's narrative, marketing, and front-of-house (GitHub SPIKESPIGEL404 — a personal site and a marketing-agent that agentizes BitRouter's marketing). NYC."
+    },
+    {
+      "id": "khrystian-koci",
+      "name": "Khrystian Koci",
+      "team": "dealproof",
+      "role": "engineer",
+      "geo": "UK (GMT+1)",
+      "domain": "tee",
+      "skillAreas": [
+        "tee",
+        "dstack",
+        "attestation",
+        "agentic",
+        "post-quantum"
+      ],
+      "goToThemFor": [
+        "dual-agent attestation",
+        "DCAP verification",
+        "AI-to-AI escrow and contract flows",
+        "Phala / TDX deployment debugging"
+      ],
+      "now": "Wiring Contexto memory + PiCred provenance into DealProof negotiations; scoping a CVM API platform and first AI-negotiation outreach.",
+      "workingStyle": "solo technical founder who pushes from working tests to real attested deployment",
+      "links": {
+        "github": "kkoci",
+        "x": "kkoci80",
+        "website": "https://medium.com/@feeltech_kkoci",
+        "linkedin": "https://www.linkedin.com/in/kristian-koci/"
+      },
+      "about": "A solo technical founder building DealProof — a TEE-enforced agent-to-agent negotiation protocol with dual attestation and on-chain escrow, an early implementation of the NDAI Agreements framework. A real, solo technical prototype (GitHub kkoci): 15 commits, 56 passing tests, Phases 1-7 documented, working on Intel TDX/DCAP. UK-based contract Python developer since 2019."
+    },
+    {
+      "id": "kristel-alliksaar",
+      "name": "Kristel Alliksaar",
+      "team": "teesql",
+      "role": "product research/strategy, marketing",
+      "geo": "Estonia",
+      "domain": "bd-gtm",
+      "skillAreas": [],
+      "goToThemFor": [
+        "TEE Postgres",
+        "database trust boundaries",
+        "dstack deployment",
+        "developer-facing infrastructure"
+      ],
+      "now": "",
+      "workingStyle": "Self-described as a product/strategy/BD thinker rather than a builder (empty GitHub)",
+      "links": {
+        "github": "nikolaixyz",
+        "linkedin": "https://www.linkedin.com/in/kristelalliksaar/"
+      },
+      "about": "## bio"
+    },
+    {
+      "id": "leo-fang",
+      "name": "Leo Fang",
+      "team": "daedalus",
+      "role": "lead",
+      "geo": "distributed (NYC / SF / Asia)",
+      "domain": "crypto",
+      "skillAreas": [
+        "prediction-markets",
+        "market-microstructure",
+        "quant-finance",
+        "research-to-product"
+      ],
+      "goToThemFor": [
+        "prediction-market design",
+        "quant/crypto market structure",
+        "PROF/order-flow questions",
+        "InfoFi strategy"
+      ],
+      "now": "Leading Daedalus on prediction-market liquidity intelligence and protected order-flow infrastructure.",
+      "workingStyle": "Quant-founder profile: most useful where market design, order-flow mechanics, and product surface have to stay mathematically coherent.",
+      "links": {
+        "website": "daedalus-research.com"
+      },
+      "about": "CEO of Daedalus — a former CICC quant anchoring a TradFi/crypto financial-infrastructure team building a liquidity-and-intelligence engine for prediction markets (PROF-paper lineage). Distributed (NYC / SF / Asia)."
+    },
+    {
+      "id": "lila-rivers",
+      "name": "Lila Rivers",
+      "team": "pramaana",
+      "role": "lattice cryptography",
+      "geo": "NYC (Columbia)",
+      "domain": "crypto",
+      "skillAreas": [
+        "lattice-cryptography",
+        "post-quantum-identity",
+        "anonymous-credentials",
+        "privacy-preserving-verification"
+      ],
+      "goToThemFor": [
+        "anonymous credential UX",
+        "post-quantum identity framing",
+        "privacy-preserving verification",
+        "research-to-user translation"
+      ],
+      "now": "Working on Pramaana's lattice-cryptography side for post-quantum anonymous identity.",
+      "workingStyle": "Unknown — no independent behavioral evidence yet",
+      "links": {
+        "github": "lilariv",
+        "x": "lilariv_"
+      },
+      "about": "A member of Pramaana working on lattice cryptography. NYC / Columbia (GitHub lilariv, X lilariv_)."
+    },
+    {
+      "id": "lsdan",
+      "name": "LSDan",
+      "team": "teesql",
+      "role": "Tech, Architecture, TEE Stuff",
+      "geo": "NYC, nomadic",
+      "domain": "tee",
+      "skillAreas": [
+        "tee",
+        "confidential-databases",
+        "postgres",
+        "attestation"
+      ],
+      "goToThemFor": [
+        "TEE database architecture",
+        "Postgres deployment",
+        "attestation boundaries",
+        "developer trust models"
+      ],
+      "now": "Generalizing TeeSQL into an attestation-gated mesh for any open-source workload — hunting a European confidential-computing enterprise ICP.",
+      "workingStyle": "Pragmatic systems architect: useful when a TEE idea has to survive real database operations and developer trust boundaries.",
+      "links": {
+        "github": "dmvt",
+        "x": "@lsdan_defi",
+        "website": "https://teesql.com",
+        "linkedin": "dandefi"
+      },
+      "about": "A long-tenured (8-year) crypto-ecosystem builder and the technical center of TeeSQL — a managed Postgres-as-a-service running inside Confidential VMs on dstack (AMD SEV-SNP / Intel TDX via Phala) with mutual RA-TLS and per-transaction attestation. Domain-authentic TEE depth: a maintained dstack fork, phala-cloud-cli, and a working three-CVM Postgres demo. Reads TeeSQL as an attested-storage substrate that folds into other teams' stacks. GitHub dmvt. NYC, nomadic."
+    },
+    {
+      "id": "luc-chartier",
+      "name": "Luc Chartier",
+      "team": "tvee-rl",
+      "role": "lead",
+      "geo": "PT (distributed)",
+      "domain": "tee",
+      "skillAreas": [
+        "tee",
+        "reinforcement-learning",
+        "modern-ml",
+        "research-to-product"
+      ],
+      "goToThemFor": [
+        "attested RL workflows",
+        "VLM/RL implementation",
+        "Qwen/Tinker ecosystem context",
+        "ML demo shaping"
+      ],
+      "now": "Building TvEE RL's attested reinforcement-learning workflow and tuvalugpt demo surface.",
+      "workingStyle": "Inferred from the team record: high-volume building plus hands-on modern-ML work (VLM/RL, Tinker/Qwen ecosystem)",
+      "links": {
+        "website": "tuvalugpt.tv"
+      },
+      "about": "Lead of TvEE RL — attested reinforcement-learning workflows (tuvalugpt.tv). A prolific builder with an ML credential (a Qwen 2.5-VL contribution to Tinker). A visiting, distributed pair with Natalia Kokoromyti. Portugal (distributed)."
+    },
+    {
+      "id": "mikeishiring",
+      "name": "Mike",
+      "team": "shape-rotator-os",
+      "role": "I Vibe",
+      "geo": "London",
+      "domain": "crypto",
+      "skillAreas": [
+        "product-feedback",
+        "crypto-product",
+        "nontechnical-framing",
+        "go-to-market"
+      ],
+      "goToThemFor": [
+        "live-fire feedback from a nontechnical perspective",
+        "product framing",
+        "rough agent/crypto idea testing"
+      ],
+      "now": "Shape Rotator OS product feedback and Centaur trial",
+      "workingStyle": "Direct feedback partner: useful when a technical idea needs to be tested against nontechnical comprehension quickly.",
+      "links": {
+        "github": "mikeishiring",
+        "x": "mikeishiring",
+        "website": "https://www.mikeishiring.com",
+        "linkedin": "mikeishiring"
+      },
+      "about": "## bio\n\nWorking around the Shape Rotator OS orbit. Useful thought partner for live-fire product feedback, non-technical framing, and turning rough agent/crypto ideas into something a real person can react to."
+    },
+    {
+      "id": "mira-ozawa",
+      "name": "Mira Ozawa",
+      "team": null,
+      "role": "ml infrastructure",
+      "geo": "NYC",
+      "domain": "ai",
+      "skillAreas": [
+        "agentic-workflows",
+        "memory-retrieval",
+        "ml-infrastructure",
+        "developer-tools"
+      ],
+      "goToThemFor": [
+        "agent context systems",
+        "memory and retrieval workflows",
+        "developer-facing AI infrastructure",
+        "framework critique"
+      ],
+      "now": "Working in ML infrastructure around Contexto-style agent context, memory, and retrieval systems.",
+      "workingStyle": "Infrastructure-minded ML builder: sharpest on the hidden state, memory, and retrieval layer that makes agent systems actually usable.",
+      "links": {
+        "github": "miraoz",
+        "linkedin": "mira-ozawa"
+      },
+      "about": "A member of Contexto, working in ML infrastructure. NYC (GitHub MiraOz)."
+    },
+    {
+      "id": "natalia-kokoromyti",
+      "name": "Natalia Kokoromyti",
+      "team": "tvee-rl",
+      "role": "cofounder",
+      "geo": "",
+      "domain": "ai",
+      "skillAreas": [
+        "reinforcement-learning",
+        "ai-evaluation",
+        "tee",
+        "research-to-product"
+      ],
+      "goToThemFor": [
+        "RL workflow framing",
+        "evaluation design",
+        "Stanford Scaling Intelligence Lab context",
+        "TvEE RL research direction"
+      ],
+      "now": "Co-building TvEE RL: attested reinforcement-learning workflows with Stanford Scaling Intelligence Lab context.",
+      "workingStyle": "Research-oriented ML cofounder; strongest current read is TvEE RL plus Scaling Intelligence Lab affiliation.",
+      "links": {},
+      "about": "Co-founder of TvEE RL — attested reinforcement-learning workflows. Affiliated with Stanford's Scaling Intelligence Lab."
+    },
+    {
+      "id": "novel-tokens",
+      "name": "Novel Tokens",
+      "team": null,
+      "role": "",
+      "geo": "",
+      "domain": "design",
+      "skillAreas": [],
+      "goToThemFor": [],
+      "now": "",
+      "workingStyle": "",
+      "links": {
+        "x": "@noveltokens"
+      },
+      "about": ""
+    },
+    {
+      "id": "parth-thapliyal",
+      "name": "Parth Thapliyal",
+      "team": "conclave",
+      "role": "cofounder",
+      "geo": "NY State (Stony Brook)",
+      "domain": "ai",
+      "skillAreas": [
+        "embeddings",
+        "clustering",
+        "agentic-workflows",
+        "ml-infrastructure"
+      ],
+      "goToThemFor": [
+        "NDAI frameworks",
+        "skills runtime design",
+        "agent coordination protocols",
+        "developer abstractions"
+      ],
+      "now": "Building Conclave's ML and AI layer: embeddings, clustering, and agentic pre-checks before LLM inference.",
+      "workingStyle": "Under-observed",
+      "links": {},
+      "about": "Co-founder and ML & AI lead of Conclave. Works on embeddings, clustering, and agentic pre-checks before LLM inference. NY State (Stony Brook)."
+    },
+    {
+      "id": "patrick-messall",
+      "name": "Patrick Messall",
+      "team": "tinycloud",
+      "role": "Head of Strategy",
+      "geo": "Nomad / NYC",
+      "domain": "tee",
+      "skillAreas": [
+        "strategy",
+        "crypto-product",
+        "decentralized-storage",
+        "founder-coaching"
+      ],
+      "goToThemFor": [
+        "Tinycloud architecture",
+        "decentralized storage",
+        "authorization capabilities",
+        "TEE-backed personal cloud"
+      ],
+      "now": "Helping TinyCloud sharpen strategy, vision mapping, and product narrative around user-owned cloud.",
+      "workingStyle": "People-and-strategy oriented operator; useful when a technical system needs a clearer human, market, or narrative boundary.",
+      "links": {
+        "github": "sssoforth",
+        "x": "patrickm",
+        "linkedin": "https://www.linkedin.com/in/patrick-messall-677236a0"
+      },
+      "about": "Angel investor, advisor, dreamer and strategist. Crypto background.\nMore about people than code. Let's talk about the nature of reality."
+    },
+    {
+      "id": "prakhar",
+      "name": "Prakhar Ojha",
+      "team": "conclave",
+      "role": "lead",
+      "geo": "NYC",
+      "domain": "ai",
+      "skillAreas": [
+        "tee",
+        "agentic-workflows",
+        "backend-systems",
+        "coordination-protocols"
+      ],
+      "goToThemFor": [
+        "agent framework architecture",
+        "NDAI interpretation",
+        "skills/runtime abstractions",
+        "coordination protocol design"
+      ],
+      "now": "Shipping Conclave backend work and translating NDAI Agreements into a usable skills/runtime surface.",
+      "workingStyle": "Rust/systems builder who can turn abstract protocol language into concrete backend features and runtime primitives.",
+      "links": {
+        "github": "prakhar728",
+        "x": "@prakharojha4",
+        "linkedin": "prakhar-ojha"
+      },
+      "about": "A Rust/systems engineer and core builder of Conclave — TEE confidential-compute productionizing the NDAI Agreements paper. Prior work includes NEAR shade-agents and Smart Bet (NEAR/Proximity-funded), and a from-scratch CLOB matching engine. GitHub prakhar728. NYC."
+    },
+    {
+      "id": "qendresa-hoti",
+      "name": "Qendresa Hoti",
+      "team": null,
+      "role": "",
+      "geo": "NYC (from mid-April)",
+      "domain": "ai",
+      "skillAreas": [
+        "ai-evaluation",
+        "commerce-ai",
+        "full-stack-engineering",
+        "agentic-workflows"
+      ],
+      "goToThemFor": [
+        "pre-deployment agent evaluation",
+        "commerce AI workflows",
+        "solo-founder shipping discipline",
+        "full-stack product execution"
+      ],
+      "now": "Building AgentEval, a pre-deployment evaluation system for commerce AI agents.",
+      "workingStyle": "Solo founder/engineer with enough startup reps to push evaluation from abstract metric into an operational product.",
+      "links": {
+        "website": "qendresa.dev"
+      },
+      "about": "Solo founder/engineer (NYC, GitHub kju4q, qendresa.dev) building AgentEval — a pre-deployment evaluation system for commerce AI agents (\"know if your agent works before it goes live\"). Eight years of full-stack engineering across funded startups (Jiga, Butler Hospitality); currently in the 60days.ai builder accelerator (Virtuals)."
+    },
+    {
+      "id": "quasimatt",
+      "name": "Matt Van Ommeren (quasimatt)",
+      "team": "shake",
+      "role": "",
+      "geo": "NYC",
+      "domain": "app-ux",
+      "skillAreas": [
+        "consumer-apps",
+        "product-design",
+        "social-ux",
+        "ios"
+      ],
+      "goToThemFor": [
+        "consumer social gestures",
+        "relationship-tracking UX",
+        "lightweight iOS product feel"
+      ],
+      "now": "Building Shake Social, an iOS relationship-tracking app meant to feel lightweight and fun.",
+      "workingStyle": "By his own account, a consumer-app builder focused on a fun, relationship-tracking iOS product",
+      "links": {
+        "github": "quasimatt",
+        "x": "quasimatt",
+        "website": "https://quasimatt.com",
+        "linkedin": "mattvanommeren"
+      },
+      "about": "## bio\n\nI'm making the Shake app, which is Shake Social on the iOS App Store. It's meant to track relationships and be fun."
+    },
+    {
+      "id": "quintus",
+      "name": "Quintus",
+      "team": "trustless-tee",
+      "role": "lead",
+      "geo": "",
+      "domain": "tee",
+      "skillAreas": [
+        "tee",
+        "attestation",
+        "mechanism-design"
+      ],
+      "goToThemFor": [
+        "TEE trust-root assumptions",
+        "remote-attestation threat modeling",
+        "Ethereum execution and priority-update questions"
+      ],
+      "now": "working on Trustless TEE and the trust-root assumptions under confidential-compute systems",
+      "workingStyle": "Trust-minimization specialist focused below the application layer, especially where TEE systems inherit hardware-vendor assumptions.",
+      "links": {
+        "x": "0xQuintus"
+      },
+      "about": "Solo lead of Trustless TEE (\"trustless trusted-execution\", X handle 0xQuintus) — a one-person team addressing the trust-root problem that TEE systems inherit (the Intel/AMD signing key)."
+    },
+    {
+      "id": "rajat-verma",
+      "name": "Rajat Verma",
+      "team": "pramaana",
+      "role": "co-founder",
+      "geo": "India",
+      "domain": "crypto",
+      "skillAreas": [],
+      "goToThemFor": [
+        "post-quantum identity implementation",
+        "anonymous credential systems",
+        "ZK/lattice-adjacent engineering",
+        "privacy infrastructure"
+      ],
+      "now": "",
+      "workingStyle": "",
+      "links": {},
+      "about": "## bio"
+    },
+    {
+      "id": "robert-cordwell",
+      "name": "Robert Cordwell",
+      "team": "wikigen",
+      "role": "engineer",
+      "geo": "Bay / TX",
+      "domain": "crypto",
+      "skillAreas": [],
+      "goToThemFor": [
+        "prototype grounding",
+        "blockchain implementation",
+        "personal-data tooling",
+        "turning broad vision into demo"
+      ],
+      "now": "",
+      "workingStyle": "",
+      "links": {},
+      "about": "## bio"
+    },
+    {
+      "id": "roman-svistel",
+      "name": "Roman Svistel",
+      "team": "tinycloud",
+      "role": "cofounder",
+      "geo": "Lisbon",
+      "domain": "tee",
+      "skillAreas": [
+        "decentralized-storage",
+        "rust",
+        "typescript",
+        "capability-systems"
+      ],
+      "goToThemFor": [
+        "decentralized storage architecture",
+        "Tinycloud implementation",
+        "capability-based access",
+        "TEE/cloud trust boundaries"
+      ],
+      "now": "Engineering TinyCloud's sovereign-data node SDK and storage primitives.",
+      "workingStyle": "Visible only through release credits — a steady engineering contributor to the sovereign-data node SDK (Rust + TypeScript)",
+      "links": {},
+      "about": "TinyCloud's founding engineer, based in Lisbon — credited in TinyCloud's GitHub release history (notably a burst of four releases in six weeks in March 2025)."
+    },
+    {
+      "id": "ron-turetzky",
+      "name": "Ron Turetzky",
+      "team": "signalstack",
+      "role": "lead",
+      "geo": "",
+      "domain": "",
+      "skillAreas": [
+        "tee",
+        "dstack",
+        "attestation",
+        "agentic"
+      ],
+      "goToThemFor": [
+        "private agent messaging",
+        "TEE/LLM integration",
+        "Signal-style workflows",
+        "security-boundary questions"
+      ],
+      "now": "shipping confidential LLM inference inside Signal with TEE attestation",
+      "workingStyle": "product-surface-first TEE builder: put private inference inside existing messenger behavior before asking users to learn a new app",
+      "links": {
+        "github": "RonTuretzky",
+        "x": "RonTuretzky"
+      },
+      "about": "Lead of SignalStack — confidential LLM inference run on Intel TDX and surfaced inside Signal the messenger, plus an attestation-verification SDK offered to the cohort. The thesis: put verifiable private inference where users already are, rather than build a new app surface. Lineage in the IC3-adjacent TEE/oracle scene (Lightblocks, Ittay Eyal's lab, eoracle)."
+    },
+    {
+      "id": "sai-nakamura",
+      "name": "Sai Nakamura",
+      "team": "jjhub",
+      "role": "agent runtime",
+      "geo": "PST",
+      "domain": "ai",
+      "skillAreas": [
+        "agentic-workflows",
+        "developer-tools",
+        "agent-runtime",
+        "ai-coding"
+      ],
+      "goToThemFor": [
+        "agentic coding workflows",
+        "developer tooling",
+        "multi-agent review loops",
+        "AI coding product feedback"
+      ],
+      "now": "Co-building JJHub's agent runtime and developer-tooling surface.",
+      "workingStyle": "Developer-tooling builder; useful where agentic coding needs to become a concrete workflow rather than a demo.",
+      "links": {
+        "github": "sainak",
+        "x": "sainak",
+        "website": "sainak.dev"
+      },
+      "about": "Co-founder of JJHub, working on agent runtime. PST."
+    },
+    {
+      "id": "sam-gbafa",
+      "name": "Sam Gbafa",
+      "team": "tinycloud",
+      "role": "lead",
+      "geo": "",
+      "domain": "",
+      "skillAreas": [
+        "tee",
+        "did-auth",
+        "threshold-crypto",
+        "agentic-workflows"
+      ],
+      "goToThemFor": [
+        "user-owned cloud strategy",
+        "DID/capability architecture",
+        "decentralized storage lineage",
+        "program momentum and ecosystem building"
+      ],
+      "now": "Shipped single-message delegation; tinycloud-secrets now powers Listen — building toward a personalized feed mined from private transcripts.",
+      "workingStyle": "AI-first infrastructure founder who builds his own tools, then folds them back into the product thesis.",
+      "links": {},
+      "about": "CEO and center of TinyCloud — a former SpruceID and OpenAI engineer with a d/acc-native, sovereign-data thesis (TinyCloud Node, a code-level Kepler descendant). An AI-first solo-developer power-user who builds his own tool-chain (claude-ws, agent-browser, opencode, linear-cli) and is pop-up-community-native (built edge-city-bot on the ground at Edge City). GitHub skgbafa."
+    },
+    {
+      "id": "sevenfloor",
+      "name": "sevenfloor",
+      "team": "teleport-router",
+      "role": "lead",
+      "geo": "",
+      "domain": "crypto",
+      "skillAreas": [
+        "cross-chain",
+        "routing-infrastructure",
+        "delegation",
+        "crypto-coordination"
+      ],
+      "goToThemFor": [
+        "cross-network routing follow-up",
+        "Teleport Router project context",
+        "evidence collection"
+      ],
+      "now": "Leading Teleport Router, a cross-network routing and delegated-posting project.",
+      "workingStyle": "Sparse-profile project lead; use the Teleport Router surface as the current operating context and collect direct evidence before heavier claims.",
+      "links": {},
+      "about": "Lead of Teleport Router (cross-network routing), on the crew with steward Andrew Miller and sxysun."
+    },
+    {
+      "id": "shaw-walters",
+      "name": "Shaw Walters",
+      "team": "elizaos",
+      "role": "lead",
+      "geo": "SF / Bay Area",
+      "domain": "ai",
+      "skillAreas": [
+        "agentic",
+        "agent-runtime",
+        "ai"
+      ],
+      "goToThemFor": [
+        "elizaOS runtime and plugin architecture",
+        "local-first agent surfaces",
+        "agent cloud / desktop / connector strategy"
+      ],
+      "now": "Pivoting Eliza's agent interface and moving focus from capability to buyer definition + last-mile distribution — Eliza now runs on Bitrouter and Smithers.",
+      "workingStyle": "ecosystem-scale founder; holds runtime, cloud, desktop, mobile, and connector surfaces in parallel",
+      "links": {
+        "github": "lalalune",
+        "x": "shawmakesmagic",
+        "website": "https://elizaos.ai"
+      },
+      "about": "## bio\n\nShaw Walters is creating elizaOS, an agentic fullstack operating system. Working across runtime, cloud, desktop, and connector surfaces to make local-first AI agents practical."
+    },
+    {
+      "id": "sm86",
+      "name": "shashank",
+      "team": "contexto",
+      "role": "founder",
+      "geo": "Toronto",
+      "domain": "ai",
+      "skillAreas": [
+        "agentic",
+        "agent-runtime",
+        "durable-workflows"
+      ],
+      "goToThemFor": [
+        "context engines for agentic AI",
+        "long-running agent memory",
+        "middleware systems research"
+      ],
+      "now": "testing a mass-market personal-assistant wedge for Contexto — to-do/journaling agent on Hermes plus executive-assistant discovery interviews",
+      "workingStyle": "research-backed systems founder; frames agent memory as infrastructure rather than a feature",
+      "links": {
+        "github": "sm86",
+        "x": "sh1sh1nk",
+        "website": "ekailabs.xyz",
+        "linkedin": "smotepalli"
+      },
+      "about": "## bio\n\nbuilding context layer for agentic AI. My vision to enable sovereign AI. \nPreviously, PhD in Middleware Systems Research Group at University of Toronto."
+    },
+    {
+      "id": "sri",
+      "name": "Sri",
+      "team": "pramaana",
+      "role": "",
+      "geo": "",
+      "domain": "",
+      "skillAreas": [
+        "post-quantum-identity",
+        "lattice-cryptography",
+        "anonymous-credentials",
+        "formal-proofs"
+      ],
+      "goToThemFor": [
+        "post-quantum anonymous identity",
+        "lattice credential design",
+        "research collaboration",
+        "privacy-preserving proof systems"
+      ],
+      "now": "Architecting Pramaana's PALC post-quantum anonymous-identity primitive.",
+      "workingStyle": "Builds research-first: formal proofs plus a working prototype, assembled in 'relative isolation' (her own framing)",
+      "links": {},
+      "about": "Lead researcher and architect of Pramaana — a Columbia SEAS CS student building a post-quantum anonymous-identity primitive (PALC: PII-Anchored Lattice Commitment; ML-KEM-1024 + SHA3-512 + HKDF) that extends IC3 reading-list work (Anonymous Self-Credentials, IACR 2025/618)."
+    },
+    {
+      "id": "sxysun",
+      "name": "sxysun",
+      "team": "teleport-router",
+      "role": "",
+      "geo": "",
+      "domain": "crypto",
+      "skillAreas": [
+        "cross-chain",
+        "routing-infrastructure",
+        "tee",
+        "attestation"
+      ],
+      "goToThemFor": [
+        "cross-network routing follow-up",
+        "crypto infrastructure context",
+        "direct evidence collection"
+      ],
+      "now": "Building around Teleport Router and TEE-attestation experiments.",
+      "workingStyle": "Implementation-oriented crypto/attestation builder; strongest evidence comes from public project artifacts rather than a polished personal profile.",
+      "links": {
+        "github": "sxysun",
+        "x": "sxysun1",
+        "website": "https://teleport.best"
+      },
+      "about": "A member of the Teleport Router crew (cross-network routing), alongside steward Andrew Miller and sevenfloor. GitHub sxysun; builds in the TEE-attestation space (fisherman, is-this-real-tea). Site: teleport.best."
+    },
+    {
+      "id": "valordragon",
+      "name": "valordragon",
+      "team": "dcnet",
+      "role": "",
+      "geo": "",
+      "domain": "crypto",
+      "skillAreas": [
+        "anonymous-broadcast",
+        "privacy-infrastructure",
+        "blockchain",
+        "private-search"
+      ],
+      "goToThemFor": [
+        "DCNet project context",
+        "anonymous-broadcast follow-up",
+        "direct evidence collection"
+      ],
+      "now": "Working in the DCNet project context: anonymous broadcast with blockchain and private-search applications.",
+      "workingStyle": "Sparse-profile teammate; current interpretation should stay anchored to DCNet until direct personal evidence is added.",
+      "links": {},
+      "about": "A member of DCNet — a dining-cryptographer-style anonymity network for anonymous broadcast, with blockchain and private-web-search applications — alongside cnode."
+    },
+    {
+      "id": "vishesh",
+      "name": "Vishesh",
+      "team": null,
+      "role": "lead",
+      "geo": "NYC/FL",
+      "domain": "ai",
+      "skillAreas": [
+        "generative-media",
+        "creative-coding",
+        "audio-reactive-visuals",
+        "installation-art"
+      ],
+      "goToThemFor": [
+        "audio-reactive visuals",
+        "volumetric LED experiments",
+        "generative AV demos",
+        "creative technology prototyping"
+      ],
+      "now": "Building real-time generative visualization and audio-reactive volumetric LED experiments.",
+      "workingStyle": "Creative technologist whose strongest signal is a coherent body of public code experiments rather than application-form prose.",
+      "links": {
+        "github": "cytonomy",
+        "x": "visavishesh"
+      },
+      "about": "A creative technologist building audio-reactive volumetric LED and generative visualization work (GitHub cytonomy) — a coherent body of real-time generative-AV experiments: audio-reactive volumetric LED \"neural-burst\" visualizers, flowfield visualizers, and volumetric LED renderings of neuronal signal transduction. NYC / FL."
+    },
+    {
+      "id": "wiktoria-leks",
+      "name": "Wiktoria Leks",
+      "team": "wikigen",
+      "role": "",
+      "geo": "Ohio (PT)",
+      "domain": "crypto",
+      "skillAreas": [
+        "healthcare-data",
+        "bd",
+        "marketplace-design",
+        "tee"
+      ],
+      "goToThemFor": [
+        "personal-data agency vision",
+        "AI curation concepts",
+        "pilot narrative",
+        "founder vision critique"
+      ],
+      "now": "Leading WikiGen's healthcare-data marketplace narrative, data-provider relationships, and pilot surface.",
+      "workingStyle": "BD-first, network-led — she opens doors in bioscience and frames the venture around data-provider relationships",
+      "links": {},
+      "about": "Founder and BD lead of WikiGen — a healthcare-data TEE marketplace (DNAI: matching data-owners such as sequencing labs with consumers such as pharma, via TEE-mediated confidential compute). Brings a dense bioscience BD network (orchestrate.bio, Stanford pediatrics, longevity cell lines, epigenetics labs). Ohio (PT)."
+    },
+    {
+      "id": "will-cory",
+      "name": "Will Cory",
+      "team": "jjhub",
+      "role": "",
+      "geo": "SF (PST)",
+      "domain": "ai",
+      "skillAreas": [
+        "agentic-workflows",
+        "developer-tools",
+        "evm-internals",
+        "durable-workflows"
+      ],
+      "goToThemFor": [
+        "agentic coding systems",
+        "developer workflow experiments",
+        "repo-level builder signal",
+        "multi-agent review loops"
+      ],
+      "now": "Shipped the Smithers UI (\"the dots are actually good now\") — ~6 organic onboards doubling weekly; positioning toward the Linear of workflow tools.",
+      "workingStyle": "High-context open-source builder; most valuable where repo-scale tests, agentic workflow, and EVM internals meet.",
+      "links": {
+        "github": "roninjin10",
+        "x": "@fucory",
+        "website": "https://smithers.sh",
+        "linkedin": "willcory10"
+      },
+      "about": "A scene-native open-source builder (GitHub roninjin10) running an interlocking set of Ethereum-infrastructure and agentic-coding projects: Tevm (an EVM implemented in TypeScript, ~440 stars, EF-grant-supported), Smithers (durable agentic-workflow orchestration), and JJHub (an agentic-coding platform with 80k+ tests). SF (PST)."
+    }
+  ],
+  "clusters": [
+    {
+      "id": "agentic-dev-platform",
+      "name": "agentic-dev-platform",
+      "label": "agentic coding + memory infrastructure",
+      "description": "Layers of agentic dev infra — JJHub is a jj-native forge for agent-generated code; Contexto manages memory/context for long-running agent processes; Bitrouter routes inference across agents. Together — a complete stack for building AI-native dev teams. Workshop candidate — \"building with the agentic forge\".",
+      "teams": [
+        "jjhub",
+        "contexto",
+        "bitrouter"
+      ]
+    },
+    {
+      "id": "agents",
+      "name": "agents",
+      "label": "agent runtime",
+      "description": "Agent runtime stack — JJHub harness, Contexto context engine, Bitrouter routing, Conclave skills runtime, and elizaOS runtime/plugin substrate. Composable; workshop candidate.",
+      "teams": [
+        "jjhub",
+        "contexto",
+        "bitrouter",
+        "conclave",
+        "elizaos"
+      ]
+    },
+    {
+      "id": "confidential-ai-ops",
+      "name": "confidential-ai-ops",
+      "label": "attestable AI inside TEEs",
+      "description": "Teams working on attestable AI or confidential execution workflows. Prova targets healthcare prior-auth; DealProof targets negotiation; SignalStack targets privacy comms; Conclave targets confidential dataset evaluation; Trustless TEE and TvEE RL sit on the trusted-execution and attested workflow side of the same primitive. All could benefit from shared attestation, logging, and enclave-operating patterns.",
+      "teams": [
+        "prova",
+        "dealproof",
+        "signalstack",
+        "conclave",
+        "trustless-tee",
+        "tvee-rl"
+      ]
+    },
+    {
+      "id": "confidential-data",
+      "name": "confidential-data",
+      "label": "data procurement + attestation",
+      "description": "Marketplaces where data buyers + sellers transact inside TEEs without revealing raw data. Prova provides TLSNotary-backed data integrity; DealProof adds dual-agent negotiation; TeeSQL + Tinycloud provide the storage and delegation primitives. Shared vertical surface — healthcare/research dataset procurement, confidential vendor negotiations.",
+      "teams": [
+        "prova",
+        "dealproof",
+        "teesql",
+        "tinycloud"
+      ]
+    },
+    {
+      "id": "consumer-behavior-apps",
+      "name": "consumer-behavior-apps",
+      "label": "consumer behavior + feedback apps",
+      "description": "Consumer-facing applications that turn user behavior into feedback loops: Elocute for speaking practice with scored feedback, Feedling for information-diet interventions around short-form video, and Shake as a social app surface.",
+      "teams": [
+        "elocute",
+        "feedling",
+        "shake"
+      ]
+    },
+    {
+      "id": "crypto-id",
+      "name": "crypto-id",
+      "label": "crypto / identity research",
+      "description": "Crypto + identity research axis — Pramaana lattice/ASC, Crossroads Liquefaction, WikiGen bio-cryptography. Could share an IC3 mentor pairing.",
+      "teams": [
+        "pramaana",
+        "crossroads",
+        "wikigen"
+      ]
+    },
+    {
+      "id": "dstack",
+      "name": "dstack",
+      "label": "dstack / TEE-postgres",
+      "description": "TEE Postgres axis — TeeSQL builds it, Abra integrates, Tinycloud + Conclave deploy.",
+      "teams": [
+        "teesql",
+        "abra",
+        "tinycloud",
+        "conclave"
+      ]
+    },
+    {
+      "id": "local-first-networking",
+      "name": "local-first-networking",
+      "label": "local-first / peer networking",
+      "description": "Peer, local-first, and cross-network primitives: DCNet explores dining-cryptographer-style anonymity, searxng-wth-frnds is a LAN-first peer search daemon, and Teleport Router works on cross-network routing.",
+      "teams": [
+        "dcnet",
+        "searxng-wth-frnds",
+        "teleport-router"
+      ]
+    },
+    {
+      "id": "market-mechanism-research",
+      "name": "market-mechanism-research",
+      "label": "markets / mechanism research",
+      "description": "Market and mechanism-design work spanning prediction market microstructure, routing, and Liquefaction-style crypto research. Daedalus is the focal market-microstructure project; Crossroads and Bitrouter are adjacent mechanism and routing substrates.",
+      "teams": [
+        "daedalus",
+        "crossroads",
+        "bitrouter"
+      ]
+    },
+    {
+      "id": "ndai",
+      "name": "ndai",
+      "label": "NDAI lineage",
+      "description": "Three teams share the NDAI paper — Conclave framework, Prova sandbox marketplace, DealProof dual-agent. Risk of stepping on each other; DealProof flagged Prova as collaboration target.",
+      "teams": [
+        "conclave",
+        "prova",
+        "dealproof"
+      ]
+    },
+    {
+      "id": "realtime-creative",
+      "name": "realtime-creative",
+      "label": "voice-to-output generative stage",
+      "description": "Three teams converge on a runtime — capture voice/context, process via agents (Contexto memory), output live generatives (Etherea). Tinycloud provides the sovereign data backbone. Natural demo-day artifact — accelerator uses this for live pitch backdrops and agent-assisted curation.",
+      "teams": [
+        "etherea",
+        "tinycloud",
+        "contexto"
+      ]
+    },
+    {
+      "id": "regulated",
+      "name": "regulated",
+      "label": "healthcare / regulated",
+      "description": "Compliance-driven enterprise as a shared GTM target buyer — Prova EHR pilot, Abra SOC2/SOX, SignalStack privacy NGOs/journalists, and Enclave medical data sharing.",
+      "teams": [
+        "prova",
+        "abra",
+        "signalstack",
+        "enclave"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "abra-teesql",
+      "source": "abra",
+      "target": "teesql",
+      "relation": "depends_on",
+      "status": "exploring",
+      "reason": "Abra is building a formal-verification registry around dstack TEE Postgres and explicitly asks for TEE Postgres beta access; TeeSQL is the cohort team offering TEE Postgres service and onboarding."
+    },
+    {
+      "id": "bitrouter-jjhub",
+      "source": "bitrouter",
+      "target": "jjhub",
+      "relation": "pairs_with",
+      "status": "exploring",
+      "reason": "Bitrouter is opening an agentic payment/LLM-routing toolkit and asks for feedback from projects in agent harnesses; JJHub is the cohort's agentic coding platform and is seeking DX feedback from teams building with LLM-as-primitive."
+    },
+    {
+      "id": "bitrouter-teesql",
+      "source": "bitrouter",
+      "target": "teesql",
+      "relation": "shares_substrate",
+      "status": "exploring",
+      "reason": "Bitrouter and TeeSQL both lean on TEE remote attestation as an admission/trust primitive that displaces reputation — Bitrouter for permissionless LLM-provider onboarding, TeeSQL for attestation-gated cluster membership."
+    },
+    {
+      "id": "conclave-contexto",
+      "source": "conclave",
+      "target": "contexto",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": "Conclave's confidential-signal pipeline needs long-horizon memory (keeping early-cohort signal relevant weeks later), which is exactly Contexto's relevant-subtree context-injection capability; both teams already list each other as dependencies."
+    },
+    {
+      "id": "conclave-teleport-router",
+      "source": "conclave",
+      "target": "teleport-router",
+      "relation": "shares_substrate",
+      "status": "declared",
+      "reason": "Conclave and Teleport Router build on the same substrate — an open-source, policy-enforcing agent running inside a TEE that processes private data from mutually-distrusting parties and emits only scoped, derived output — applied to organizer-signal mining vs ambient session routing."
+    },
+    {
+      "id": "contexto-jjhub",
+      "source": "contexto",
+      "target": "jjhub",
+      "relation": "pairs_with",
+      "status": "exploring",
+      "reason": "Contexto is looking for long-running agent dogfooders and observability pairs; JJHub is shipping an agentic coding platform and seeking cohort teams to dogfood Smithers for agentic CI."
+    },
+    {
+      "id": "contexto-teleport-router",
+      "source": "contexto",
+      "target": "teleport-router",
+      "relation": "complements",
+      "status": "exploring",
+      "reason": "Contexto (ingest long-horizon context) and Teleport Router (ambient cross-pollination feed) are adjacent stages of the same goal — removing manual prompt relay between collaborators' agents; Teleport Router already lists contexto as a dependency."
+    },
+    {
+      "id": "pramaana-crossroads",
+      "source": "pramaana",
+      "target": "crossroads",
+      "relation": "complements",
+      "status": "exploring",
+      "reason": "Pramaana offers a post-quantum identity layer and SDK for cohort tools; Crossroads is building a wallet and asks for cross-chain/policy-constrained signing feedback. The public records support product complementarity around identity and wallet flows."
+    },
+    {
+      "id": "prova-conclave",
+      "source": "prova",
+      "target": "conclave",
+      "relation": "pairs_with",
+      "status": "exploring",
+      "reason": "Conclave is factoring a reusable TEE-agent skill framework while Prova is building a healthcare AI agent and offering a trust API for other cohort teams."
+    },
+    {
+      "id": "prova-dealproof",
+      "source": "prova",
+      "target": "dealproof",
+      "relation": "complements",
+      "status": "exploring",
+      "reason": "Both projects expose dual-attestation / contract-layer primitives for agent workflows, and DealProof's weekly goal names ProvaTrust attestation-layer complementarity as a conversation to pursue."
+    },
+    {
+      "id": "prova-signalstack",
+      "source": "prova",
+      "target": "signalstack",
+      "relation": "shares_substrate",
+      "status": "exploring",
+      "reason": "Prova and SignalStack are both shipping TEE-backed AI workflows and both ask for comparison around deployment patterns and attestation UX."
+    },
+    {
+      "id": "prova-teesql",
+      "source": "prova",
+      "target": "teesql",
+      "relation": "shares_substrate",
+      "status": "exploring",
+      "reason": "Prova is hardening TEE attestation for a healthcare AI agent while TeeSQL is onboarding cohort teams to confidential SQL on dstack; the public source supports shared TEE substrate, not a confirmed product dependency."
+    },
+    {
+      "id": "shape-rotator-os-teleport-router",
+      "source": "shape-rotator-os",
+      "target": "teleport-router",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": "Shape Rotator OS can consume Teleport Router's shared-notebook / cross-pollination feed (exposed as a plain REST API) instead of reimplementing the cohort introduction pipeline; the OS already lists teleport-router as a dependency and the router is the first cohort project merged into the OS."
+    },
+    {
+      "id": "tinycloud-teesql",
+      "source": "tinycloud",
+      "target": "teesql",
+      "relation": "shares_substrate",
+      "status": "exploring",
+      "reason": "Tinycloud and TeeSQL both operate around dstack TEEs, scoped delegation, confidential infrastructure, and cohort-facing services, but the current public records support substrate overlap rather than a confirmed product dependency."
+    },
+    {
+      "id": "abra-tinycloud",
+      "source": "abra",
+      "target": "tinycloud",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "bitrouter-contexto",
+      "source": "bitrouter",
+      "target": "contexto",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "bitrouter-daedalus",
+      "source": "bitrouter",
+      "target": "daedalus",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "conclave-prova",
+      "source": "conclave",
+      "target": "prova",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "conclave-dealproof",
+      "source": "conclave",
+      "target": "dealproof",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "conclave-tinycloud",
+      "source": "conclave",
+      "target": "tinycloud",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "contexto-conclave",
+      "source": "contexto",
+      "target": "conclave",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "contexto-bitrouter",
+      "source": "contexto",
+      "target": "bitrouter",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "contexto-prova",
+      "source": "contexto",
+      "target": "prova",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "crossroads-teesql",
+      "source": "crossroads",
+      "target": "teesql",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "crossroads-pramaana",
+      "source": "crossroads",
+      "target": "pramaana",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "crossroads-abra",
+      "source": "crossroads",
+      "target": "abra",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "daedalus-bitrouter",
+      "source": "daedalus",
+      "target": "bitrouter",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "daedalus-crossroads",
+      "source": "daedalus",
+      "target": "crossroads",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "dcnet-searxng-wth-frnds",
+      "source": "dcnet",
+      "target": "searxng-wth-frnds",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "dcnet-teleport-router",
+      "source": "dcnet",
+      "target": "teleport-router",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "dcnet-crossroads",
+      "source": "dcnet",
+      "target": "crossroads",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "dealproof-prova",
+      "source": "dealproof",
+      "target": "prova",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "dealproof-conclave",
+      "source": "dealproof",
+      "target": "conclave",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "dealproof-signalstack",
+      "source": "dealproof",
+      "target": "signalstack",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "dealproof-contexto",
+      "source": "dealproof",
+      "target": "contexto",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "dealproof-tinycloud",
+      "source": "dealproof",
+      "target": "tinycloud",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "elocute-etherea",
+      "source": "elocute",
+      "target": "etherea",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "elocute-contexto",
+      "source": "elocute",
+      "target": "contexto",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "elocute-tinycloud",
+      "source": "elocute",
+      "target": "tinycloud",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "enclave-teesql",
+      "source": "enclave",
+      "target": "teesql",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "enclave-signalstack",
+      "source": "enclave",
+      "target": "signalstack",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "enclave-dealproof",
+      "source": "enclave",
+      "target": "dealproof",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "etherea-tinycloud",
+      "source": "etherea",
+      "target": "tinycloud",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "etherea-contexto",
+      "source": "etherea",
+      "target": "contexto",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "feedling-teleport-router",
+      "source": "feedling",
+      "target": "teleport-router",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "feedling-contexto",
+      "source": "feedling",
+      "target": "contexto",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "feedling-tinycloud",
+      "source": "feedling",
+      "target": "tinycloud",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "jjhub-contexto",
+      "source": "jjhub",
+      "target": "contexto",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "jjhub-bitrouter",
+      "source": "jjhub",
+      "target": "bitrouter",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "pramaana-teesql",
+      "source": "pramaana",
+      "target": "teesql",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "pramaana-abra",
+      "source": "pramaana",
+      "target": "abra",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "pramaana-wikigen",
+      "source": "pramaana",
+      "target": "wikigen",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "searxng-wth-frnds-dcnet",
+      "source": "searxng-wth-frnds",
+      "target": "dcnet",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "searxng-wth-frnds-contexto",
+      "source": "searxng-wth-frnds",
+      "target": "contexto",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "shake-crossroads",
+      "source": "shake",
+      "target": "crossroads",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "shake-elocute",
+      "source": "shake",
+      "target": "elocute",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "shake-etherea",
+      "source": "shake",
+      "target": "etherea",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "shape-rotator-os-searxng-wth-frnds",
+      "source": "shape-rotator-os",
+      "target": "searxng-wth-frnds",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "signalstack-prova",
+      "source": "signalstack",
+      "target": "prova",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "signalstack-dealproof",
+      "source": "signalstack",
+      "target": "dealproof",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "signalstack-conclave",
+      "source": "signalstack",
+      "target": "conclave",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "teesql-abra",
+      "source": "teesql",
+      "target": "abra",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "teesql-tinycloud",
+      "source": "teesql",
+      "target": "tinycloud",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "teesql-pramaana",
+      "source": "teesql",
+      "target": "pramaana",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "teesql-crossroads",
+      "source": "teesql",
+      "target": "crossroads",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "teleport-router-dcnet",
+      "source": "teleport-router",
+      "target": "dcnet",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "teleport-router-feedling",
+      "source": "teleport-router",
+      "target": "feedling",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "teleport-router-contexto",
+      "source": "teleport-router",
+      "target": "contexto",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "teleport-router-crossroads",
+      "source": "teleport-router",
+      "target": "crossroads",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "tinycloud-etherea",
+      "source": "tinycloud",
+      "target": "etherea",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "tinycloud-conclave",
+      "source": "tinycloud",
+      "target": "conclave",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "trustless-tee-signalstack",
+      "source": "trustless-tee",
+      "target": "signalstack",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "trustless-tee-prova",
+      "source": "trustless-tee",
+      "target": "prova",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "trustless-tee-dealproof",
+      "source": "trustless-tee",
+      "target": "dealproof",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "tvee-rl-signalstack",
+      "source": "tvee-rl",
+      "target": "signalstack",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "tvee-rl-tinycloud",
+      "source": "tvee-rl",
+      "target": "tinycloud",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "tvee-rl-conclave",
+      "source": "tvee-rl",
+      "target": "conclave",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "wikigen-pramaana",
+      "source": "wikigen",
+      "target": "pramaana",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    },
+    {
+      "id": "wikigen-teesql",
+      "source": "wikigen",
+      "target": "teesql",
+      "relation": "depends_on",
+      "status": "declared",
+      "reason": ""
+    }
+  ],
+  "scheduleRows": [
+    {
+      "tab": "May 18 Start",
+      "week": "1",
+      "dates": "May 18–23\n\nOrientation and Onboarding week",
+      "days": [
+        "Mon May 18:\n12:00–14:00 onboarding\n    - follow the field guide (dmarz)\n    - interview intake (10min) (Novel)\n    - tours of the school (Alexis)\n\n14:00–14:30 tea on roof\nno tea and its too hot\n\n14:30-17:00 onboarding (cont'd)\n\n19:30 kickoff dinner @ Auditorium\n            augmented welcome",
+        "Tue May 19:\n14:00–14:30 tea on roof\n\n16:00-19:00  Project intros&workflow\nTheme: Info markets & Consumer\n   Daedalus, Prova, Feedling, Etherea (reprise, if time)\n\n19:00  Founder night - Carter Cleveland\nNotes:\n     - Founder journey\n     - How do you define PMF?\n     - Art + Mechanism design?\n     - Attribution+Routing",
+        "Wed May 20:\n12:00:14:00\n Tutorial: Dstack\n\n14:00-14:30  tea on roof\n\n16:00 - 19:00 Project Intros (Salon room)\nTheme: Local/Private first\n   Pramaana, Tinycloud, Bitrouter, TeeSQL, SignalStack\n\n19:00 Founder's journey (Auditorium)\n  Phil Daian (Flashbots)",
+        "Thu May 21:\n12:00:14:00\n Tutorial: Dumb agent tricks, install hermes\n\n14:00–14:30 tea on roof\n\n14:30-16:00\n - More onboarding & on-site reigstration\n\n16:00-18:00 Project Intros\n   Theme: Agentic: Contexto, Conclave, Router, JJHub\n\n18:00-19:00  Yoga",
+        "Fri May 22:\n6:30 PMF Roast w/ Tina and Greg The Greek\n\n7:30 - 9:00 Founders Journey w/ Shaw\n\n14:00–14:30 tea on roof\n\n5:15-6:30pm Introduce Tina,\ninteractive recap the week\nProject Mappings",
+        "",
+        ""
+      ]
+    },
+    {
+      "tab": "May 18 Start",
+      "week": "2",
+      "dates": "May 25–30\n\n·(Memorial Day May 25)",
+      "days": [
+        "Mon May 25:\nMemorial Day\n\n16:00-17:30.   Andrew has office hours (in salon room)\n\n19:00 muse dinner",
+        "Tue May 26:\n14:30–15:00 tea on roof\n\n15:00-17:00 Project Intros\n- Elocute (Albi)\n- Dealproof (Kristian)\n- Wikigen (Wiki)\n- Crossroads (Chloe Wang)\n\n18:00-1930 Lecture - Defining Product Market Fit\n Gil Rosen (Blockchain Builders)\n\n19:30 Community Dinner in auditorium (Chef Matt presents)",
+        "Wed May 27:\n14:00-15:30  (James, Andrew) Onboarding for teleport router, q&a\n\n15:30–16:00 tea on roof\n\n- 1600-1730 Salon: Ideal Customer Profiling, User Interviews (James)\n(TAs: Albi, Sevenfloor)\n\n- 18:00-19:30: Flashnet jam (Dmarz)\n\n- 19:30-21:00: low key dinner (auditorium)",
+        "Thu May 28:\n15:30–16:00 tea on roof\n\n1600 - 1830: Agentic Tooling workshops/clinic",
+        "Fri May 29:\n14:30-15:30 router onboarding/workshop\n\n15:30–16:00 tea on roof\n\n19:00: sorting hat dinner (Tina)",
+        "Sat May 30:\nConvent",
+        ""
+      ]
+    },
+    {
+      "tab": "May 18 Start",
+      "week": "3",
+      "dates": "Jun 1–6",
+      "days": [
+        "Mon Jun 1:\n15:30–16:00 tea on roof",
+        "Tue Jun 2:\n15:30–16:00 tea on roof",
+        "Wed Jun 3:\n15:30–16:00 tea on roof",
+        "Thu Jun 4:\nThu — group activity, sculpture garden\n15:30–16:00 tea on roof",
+        "Fri Jun 5:\nFri — reception at art museum (overlap w/ shaperotator)\n15:30–16:00 tea on roof\n17:00 \"what did you do last week\" retro (Andrew hosts)",
+        "",
+        "Sun Jun 7:\n09:00am: Eth Global hackathon due"
+      ]
+    },
+    {
+      "tab": "May 18 Start",
+      "week": "4",
+      "dates": "Jun 8–13",
+      "days": [
+        "Mon Jun 8:\n11:30–13:00 Agentic Organizations with Sreeram @EigenLabs\n\n15:30–16:00 tea on roof\n\n16:00--17:00 WDYDLW with Shaw as Moderator @ the auditorium",
+        "Tue Jun 9:\n15:30–16:00 tea on roof\n\n16:30--19:30 PMF Checkpoint\n\n20:00--22:30 Info Markets Design\nHosted by Vinny / Vishesh / Tina. Enterprise B2B in Agentic Time.",
+        "Wed Jun 10:\n[All Day] Anarchy Day protected build time. No Shape Rotator programming.\n\n16:00–16:30 tea on roof\n\n16:30 Team-led sessions\nTeams encouraged to self-organize. Post a clear title, ask, and channel.",
+        "Thu Jun 11:\n15:30–16:30 ICP research for Private Inference (self-organized)\n\n16:00–16:30 tea on roof\n\n16:30–19:30 Design Thinking Workshop\nAgency-preserving private coordination substrate for human flourishing.\n\n19:30–22:30 Open Jams / Muse Dinner | Hackathon team open jams + dinner at the Convent.",
+        "Fri Jun 12:\nFriday night > Hacking begins | At the ETH NY venue or the Convent.\n\n16:00–16:30 tea on roof\n\n16:30–19:30 Internal ETH NY product review | Demo review + hackathon team goal-setting.",
+        "Sat Jun 13:\nShip something used. ETH NY venue or the Convent.\n\nAll day / night Build",
+        "Sun Jun 14:\nSubmission 9 AM: judging & ceremony to ~5 PM (@ethglobal)\n\nManaged by Shape Rotator OS. Manually backdated from the June 14 calendar notes.\n\nBack running ETH NY. Short timed demos + friendly investor feedback.\n\nManaged by Shape Rotator OS. Manually backdated from the June 14 calendar notes."
+      ]
+    },
+    {
+      "tab": "May 18 Start",
+      "week": "5",
+      "dates": "Jun 15–20",
+      "days": [
+        "Mon Jun 15:\nMon-Tue: TEE Technical - AI and LLM Inference\nTEEs/Attestation with Near, Phala, Venice.AI, and Tinfoil\n15:30–16:00 tea on roof",
+        "Tue Jun 16:\n15:30–16:00 tea on roof",
+        "Wed Jun 17:\n15:30–16:00 tea on roof",
+        "",
+        "Fri Jun 19:\n15:30–16:00 tea on roof\n17:00 \"what did you do last week\" retro (Andrew hosts)",
+        "Sat Jun 20:\nConvent",
+        ""
+      ]
+    },
+    {
+      "tab": "May 18 Start",
+      "week": "6",
+      "dates": "Jun 22–27",
+      "days": [
+        "Mon Jun 22:\nMon-Tue: Lecture: Go-to-Market (Eshita Nandini)\n15:30–16:00 tea on roof",
+        "Tue Jun 23:\n15:30–16:00 tea on roof",
+        "Wed Jun 24:\n15:30–16:00 tea on roof",
+        "Thu Jun 25:\nThu-Fri: Salon: Content and Marketing (Liz, Albi)\n+ Duna legal wrapper (Wyoming UNA — discussion sub-topic)\n15:30–16:00 tea on roof",
+        "Fri Jun 26:\n15:30–16:00 tea on roof\n17:00 \"what did you do last week\" retro (Andrew hosts)",
+        "Sat Jun 27:\nConvent",
+        ""
+      ]
+    },
+    {
+      "tab": "May 18 Start",
+      "week": "7",
+      "dates": "Jun 29–Jul 4\n\n·(July 4 Sat)",
+      "days": [
+        "Mon Jun 29:\nMon-Tue: Lecture: Legal and Policy (speaker via Gil)\nSalon: AI and Legal or Regulation (Ahmed, James, Daniel Barabender)\n15:30–16:00 tea on roof",
+        "Tue Jun 30:\n15:30–16:00 tea on roof",
+        "Wed Jul 1:\n15:30–16:00 tea on roof",
+        "Thu Jul 2:\nThu-Fri: Cohort Builds itself Demo Day\nLead: Novel\n15:30–16:00 tea on roof",
+        "Fri Jul 3:\n15:30–16:00 tea on roof\n17:00 \"what did you do last week\" retro (Andrew hosts)",
+        "Sat Jul 4:\nConvent + Cornell Tech",
+        ""
+      ]
+    },
+    {
+      "tab": "May 18 Start",
+      "week": "8",
+      "dates": "Jul 6–11",
+      "days": [
+        "Mon Jul 6:\nMon-Tue: Lecture: Fundraising + Incentive Design (speakers via Gil)\nTeam-driven deep dives\n15:30–16:00 tea on roof",
+        "Tue Jul 7:\n15:30–16:00 tea on roof",
+        "Wed Jul 8:\n15:30–16:00 tea on roof",
+        "Thu Jul 9:\nThu-Fri: TEE Technical: P2P and Self-Host Day (dmarz et al.)\n15:30–16:00 tea on roof",
+        "Fri Jul 10:\n15:30–16:00 tea on roof\n17:00 \"what did you do last week\" retro (Andrew hosts)",
+        "Sat Jul 11:\nConvent + Cornell Tech",
+        ""
+      ]
+    },
+    {
+      "tab": "May 18 Start",
+      "week": "9",
+      "dates": "Jul 13–18",
+      "days": [
+        "Mon Jul 13:\nMon-Tue: People Ops + Business Development\nRecruiting and AI CRMs with Mike Williams + Alexis; business development and hiring via Gil\nPitch training + final rehearsals\n15:30–16:00 tea on roof",
+        "Tue Jul 14:\n15:30–16:00 tea on roof",
+        "Wed Jul 15:\n15:30–16:00 tea on roof",
+        "Thu Jul 16:\nThu-Fri: Pitch practice + VC intros\nMock Demo Day (internal dry-run)\n15:30–16:00 tea on roof",
+        "Fri Jul 17:\n15:30–16:00 tea on roof\n17:00 \"what did you do last week\" retro (Andrew hosts)",
+        "Sat Jul 18:\nConvent + Cornell Tech · Sat Jul 18 (Andrew → Berlin)",
+        ""
+      ]
+    },
+    {
+      "tab": "May 18 Start",
+      "week": "10",
+      "dates": "Jul 20–25",
+      "days": [
+        "Mon Jul 20:\nMon-Tue: Convergence: investor + partner feedback · Final product polish\n15:30–16:00 tea on roof",
+        "Tue Jul 21:\n15:30–16:00 tea on roof",
+        "Wed Jul 22:\n15:30–16:00 tea on roof",
+        "Thu Jul 23:\nThu-Fri: **Final Demo Day #2 (Thu Jul 23 or Fri Jul 24)**\nGraduation · Follow-on intros\n15:30–16:00 tea on roof",
+        "Fri Jul 24:\n15:30–16:00 tea on roof\n17:00 \"what did you do last week\" retro (Andrew hosts)",
+        "Sat Jul 25:\nConvent + Cornell Tech · Demo Day weekend",
+        ""
+      ]
+    },
+    {
+      "tab": "May 18 Start",
+      "week": "",
+      "dates": "",
+      "days": [
+        "RECURRING (all weeks): Weekly Show & Tell (Andrew hosts) — open sign-up for demos, tool exchange, IRL experiences (Novel TBD). Self-organized.",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    }
+  ],
+  "awardCategories": [
+    {
+      "id": "best-shape-rotation",
+      "label": "Best Shape Rotation",
+      "description": "The most substantiated pivot toward product-market fit over the program — a team that changed shape in response to real feedback and can show it."
+    },
+    {
+      "id": "best-team-product-fit",
+      "label": "Best Team–Product Fit",
+      "description": "The clearest evidence that this is the right team for this problem, drawn from how they work, what they ship, and how they take feedback."
+    }
+  ],
+  "counts": {
+    "teams": 26,
+    "people": 52,
+    "clusters": 12,
+    "dependencies": 79
+  }
+}

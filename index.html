@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#f1ece7" />
+  <meta name="description" content="A visitor field guide for Shape Rotator Cohort 01 final demo day." />
+  <title>Shape Rotator · Demo Day Field Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/tokens.css" />
+  <link rel="stylesheet" href="/src/styles/app.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="app">
+    <header class="site-header">
+      <button class="brand" data-view="teams" aria-label="Shape Rotator home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span><b>SHAPE ROTATOR</b><small>DEMO DAY / COHORT 01</small></span>
+      </button>
+      <nav class="desktop-nav" aria-label="Primary">
+        <button data-view="teams" class="active">Teams</button>
+        <button data-view="constellation">Constellation</button>
+        <button data-view="schedule">Schedule</button>
+        <button data-view="people">People</button>
+        <button data-view="match">Match me</button>
+      </nav>
+      <button class="interest-count" data-view="saved" aria-label="Open saved teams"><span class="saved-glyph" aria-hidden="true"></span><span id="saved-count">0</span></button>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="view active" id="view-teams" aria-labelledby="teams-heading">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">FINAL DEMO DAY · JUL 23–24 · NYC</p>
+            <h1 id="teams-heading">Find your next<br><i>useful collision.</i></h1>
+            <p class="lede">Twenty-six teams rotating cryptography and AI research into products people can use.</p>
+            <button class="text-link" data-view="match">Tell us what brings you here <span aria-hidden="true">OPEN</span></button>
+          </div>
+          <div class="hero-object" aria-hidden="true">
+            <svg viewBox="0 0 360 360"><defs><radialGradient id="sphere"><stop offset="0" stop-color="#b43a19"/><stop offset="1" stop-color="#8f220e"/></radialGradient></defs><circle cx="180" cy="180" r="118" fill="url(#sphere)"/><g fill="none" stroke="#f1ece7" stroke-opacity=".55" stroke-width="1"><ellipse cx="180" cy="180" rx="118" ry="39"/><ellipse cx="180" cy="180" rx="118" ry="75"/><ellipse cx="180" cy="180" rx="39" ry="118"/><ellipse cx="180" cy="180" rx="75" ry="118"/><circle cx="180" cy="180" r="118"/></g><circle cx="180" cy="180" r="4" fill="#f1ece7"/></svg>
+            <p><span>26</span> ACTIVE SHAPES</p>
+          </div>
+        </div>
+        <div class="directory-head">
+          <div><p class="eyebrow">THE COHORT</p><h2>Teams in the field</h2></div>
+          <label class="search-wrap"><span class="search-icon" aria-hidden="true"></span><input id="team-search" type="search" placeholder="Search teams, focus, needs…" /></label>
+        </div>
+        <div class="filter-row" id="team-filters" aria-label="Filter teams"></div>
+        <p class="result-count" id="team-result-count" aria-live="polite"></p>
+        <div class="team-grid" id="team-grid"></div>
+      </section>
+
+      <section class="view" id="view-constellation" aria-labelledby="constellation-heading">
+        <div class="section-heading split-heading">
+          <div><p class="eyebrow">THE COHORT AS A SYSTEM</p><h1 id="constellation-heading">Constellation</h1></div>
+          <p>Connections are declared dependencies. Select a node to inspect it; drag or scroll to move through the field.</p>
+        </div>
+        <div class="constellation-shell">
+          <div class="graph-toolbar"><button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-reset">Reset</button><button id="zoom-in" aria-label="Zoom in">+</button></div>
+          <svg id="constellation" role="img" aria-label="Network of Shape Rotator teams and their dependencies" viewBox="0 0 1200 700"><g id="graph-stage"></g></svg>
+          <div class="graph-key"><span><i class="key-node"></i>team</span><span><i class="key-edge"></i>dependency</span><span>drag to move · pinch to zoom</span></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-schedule" aria-labelledby="schedule-heading">
+        <div class="section-heading split-heading">
+          <div><p class="eyebrow">FINAL WEEK / THE CONVENT</p><h1 id="schedule-heading">Two days to<br>close the loop.</h1></div>
+          <p>The final public slot is deliberately less pitch theater, more evidence: what changed, what shipped, and who helped it happen.</p>
+        </div>
+        <div class="schedule-layout">
+          <aside class="date-block"><b>23–24</b><span>JULY<br>2026</span><small>NEW YORK CITY<br>THE CONVENT</small></aside>
+          <div class="agenda">
+            <article><time>THU 23 · DAY ONE</time><h3>Final demos in clusters</h3><p>Commercial viability, growth, and commons projects present in formats shaped around their actual path.</p><span class="agenda-tag">DEMOS · PARTNER FEEDBACK</span></article>
+            <article><time>FRI 24 · DAY TWO</time><h3>Graduation + recognition</h3><p>Individual growth and cross-project contribution take half the ceremony. Follow-on introductions continue.</p><span class="agenda-tag">GRADUATION · 17:00 RETRO</span></article>
+            <article><time>ALL WEEK</time><h3>Convergence</h3><p>Investor and partner feedback, final product polish, tea on the roof at 15:30, and the conversations between the programmed moments.</p><span class="agenda-tag">JUL 20–25</span></article>
+          </div>
+        </div>
+        <div class="awards-wrap"><p class="eyebrow">GRADUATION RECOGNITION</p><div id="awards-list"></div></div>
+      </section>
+
+      <section class="view" id="view-people" aria-labelledby="people-heading">
+        <div class="section-heading split-heading">
+          <div><p class="eyebrow">THE PEOPLE BETWEEN PROJECTS</p><h1 id="people-heading">Cohort directory</h1></div>
+          <p>Shape Rotator admits people, not just companies. Find the person behind a team or the skill you need in the room.</p>
+        </div>
+        <label class="search-wrap people-search"><span class="search-icon"></span><input id="people-search" type="search" placeholder="Search people, team, or skill…" /></label>
+        <div class="people-grid" id="people-grid"></div>
+      </section>
+
+      <section class="view" id="view-match" aria-labelledby="match-heading">
+        <div class="matcher-intro">
+          <p class="eyebrow">CONVERSATION ROUTER / 01</p><h1 id="match-heading">Who should you<br><i>talk to?</i></h1>
+          <p>Three quick signals. We’ll route you toward teams where the conversation can be useful in both directions.</p>
+        </div>
+        <form id="matcher-form" class="matcher-form">
+          <fieldset><legend><span>01</span> What pulls your attention?</legend><div class="choice-grid" id="interest-choices"></div></fieldset>
+          <fieldset><legend><span>02</span> What can you bring?</legend><div class="choice-grid" id="offer-choices"></div></fieldset>
+          <fieldset><legend><span>03</span> What kind of conversation?</legend><div class="choice-grid compact" id="intent-choices"></div></fieldset>
+          <button class="primary-button" type="submit">Route my conversations <span aria-hidden="true">OPEN</span></button>
+        </form>
+        <div id="match-results" hidden></div>
+      </section>
+
+      <section class="view" id="view-saved" aria-labelledby="saved-heading">
+        <div class="section-heading split-heading"><div><p class="eyebrow">YOUR FIELD NOTES</p><h1 id="saved-heading">Saved teams</h1></div><p>Keep the conversations you do not want to lose between sessions.</p></div>
+        <div id="saved-grid" class="team-grid"></div>
+      </section>
+    </main>
+
+    <nav class="mobile-nav" aria-label="Primary">
+      <button data-view="teams" class="active"><span class="nav-glyph grid-glyph"></span>Teams</button>
+      <button data-view="constellation"><span class="nav-glyph orbit-glyph"></span>Field</button>
+      <button data-view="schedule"><span class="nav-glyph calendar-glyph"></span>Schedule</button>
+      <button data-view="people"><span class="nav-glyph people-glyph"></span>People</button>
+      <button data-view="match"><span class="nav-glyph route-glyph"></span>Match</button>
+    </nav>
+  </div>
+
+  <dialog id="team-dialog"><div id="dialog-content"></div></dialog>
+  <div id="onboarding" class="onboarding" hidden></div>
+  <script type="module" src="/src/app.js"></script>
+</body>
+</html>

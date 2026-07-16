@@ -1,0 +1,113 @@
+/* tokens.css — shape-ui token NAMES, marketing-site (shaperotator.xyz) VALUES.
+ *
+ * The desktop OS app uses these tokens on a dark charcoal substrate with a gold
+ * accent. The public marketing site (shaperotator.xyz) instead reads LIGHT: warm
+ * paper substrate, charcoal ink, one oxide-red accent. This visitor app matches
+ * the marketing site. Palette extracted from the live site CSS:
+ *   --color-sr-paper   #F1ECE7   (section paper)
+ *   page bg            #FAF8F5   (lightest warm paper)
+ *   --color-sr-cream   #F7F1EC
+ *   --color-sr-ink     #231F20   (charcoal ink)
+ *   --color-sr-charcoal #211D1F
+ *   --color-sr-gray-light #655C59 (muted ink)
+ *   --color-sr-gray    #C2B7B0
+ *   --color-sr-red     #8F220E   (oxide-red accent, hover #B43A19)
+ * Fonts: Space Grotesk (300–700) + JetBrains Mono, from Google Fonts. */
+:root {
+  /* ── substrate — warm paper (marketing light theme) ─────────────────── */
+  --paper-0: #FAF8F5;   /* page background — lightest */
+  --paper-1: #F7F1EC;   /* cream — cards / raised surfaces */
+  --paper-2: #F1ECE7;   /* paper — section fills */
+  --paper-3: #C8BFB9;   /* paper-muted — hairlines on paper */
+  --gray-1: #C2B7B0;    /* muted fill */
+
+  /* legacy shape-ui aliases retargeted to paper substrate */
+  --abyss: var(--paper-0);
+  --water: var(--paper-1);
+  --glass: rgba(247, 241, 236, 0.72);
+  --canvas-bg: var(--paper-0);
+
+  /* ── ink ramp — charcoal on paper (inverted from OS dark ramp) ───────── */
+  --ink-1: rgba(33, 29, 31, 0.96);  /* title / emphasis — near charcoal */
+  --ink-2: rgba(33, 29, 31, 0.78);  /* body */
+  --ink-3: rgba(101, 92, 89, 0.92); /* caption / smallcaps — sr-gray-light */
+  --ink-4: rgba(101, 92, 89, 0.62); /* marginalia */
+  --hairline: rgba(33, 29, 31, 0.12);
+  --hairline-strong: rgba(33, 29, 31, 0.22);
+  --charcoal-1: #211D1F;
+  --ink-solid: #231F20;
+
+  --aura: rgba(33, 29, 31, 0.14);
+  --aura-strong: rgba(33, 29, 31, 0.24);
+
+  /* ── accent — oxide red (the ONE brand color on the marketing site) ──── */
+  --red-1: #8F220E;   /* primary brand accent */
+  --red-2: #B43A19;   /* hover / focus — lighter oxide */
+  --red-deep: #6E1908;
+  --accent: var(--red-1);
+  --accent-hover: var(--red-2);
+  --accent-soft: rgba(143, 34, 14, 0.10);
+  --accent-line: rgba(143, 34, 14, 0.28);
+  --accent-glow: rgba(143, 34, 14, 0.16);
+
+  /* semantic state */
+  --c-success: #3D7A3D;
+  --c-warn: #9A5A12;
+  --c-error: #A32218;
+
+  /* grid texture (matches site's faint 1px lattice on paper) */
+  --grid-line: rgba(33, 29, 31, 0.045);
+
+  /* scrollbar */
+  --scrollbar-thumb: rgba(33, 29, 31, 0.20);
+  --scrollbar-track: rgba(33, 29, 31, 0.04);
+
+  /* ── type — Space Grotesk + JetBrains Mono (verbatim from site) ──────── */
+  --font-sans: "Space Grotesk", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Berkeley Mono", ui-monospace, monospace;
+  --font-display: var(--font-sans);
+
+  /* fluid type scale — editorial, marketing energy */
+  --t-11: 12px; --t-12: 13px; --t-13: 15px; --t-15: 16px;
+  --t-18: 20px; --t-24: 26px; --t-32: 36px;
+  --t-hero: clamp(2.75rem, 7vw, 6rem);
+  --t-h1: clamp(1.9rem, 4vw, 3.25rem);
+  --t-h2: clamp(1.35rem, 2.6vw, 2rem);
+  --lh-tight: 1.06;
+  --lh-snug: 1.28;
+  --lh-relax: 1.55;
+
+  /* tracking — site uses hard negative on display, wide on smallcaps */
+  --track-display: -0.045em;
+  --track-tight: -0.02em;
+  --track-caps: 0.08em;
+  --track-caps-loose: 0.16em;
+
+  --num-feat: "tnum" 1, "zero" 1;
+
+  /* spacing — 4px grid */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-7: 28px; --space-8: 32px;
+  --space-10: 40px; --space-12: 48px; --space-16: 64px; --space-20: 80px;
+
+  /* motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-snap: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-breathe: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 380ms;
+  --motion-breathe: 12s;
+  --motion-drift: 16s;
+
+  /* radii — site is fairly square/editorial; keep small */
+  --r-sm: 3px;
+  --r-md: 6px;
+  --r-lg: 10px;
+
+  /* layout */
+  --shell-max: 1320px;
+  --tabbar-h: 60px;
+}
