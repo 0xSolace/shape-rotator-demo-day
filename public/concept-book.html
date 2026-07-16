@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" class="theme-paper">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shape Rotator Finale — Concept Book</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font-ui:'Neue Haas Grotesk Display Pro','Neue Haas Grotesk','Helvetica Neue','Inter',system-ui,-apple-system,sans-serif;
+  --font-serif:'CMU Serif','Computer Modern Serif','Latin Modern Roman',Georgia,'Times New Roman',serif;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --maxw:1080px; --radius:14px; --radius-sm:9px; --radius-pill:999px;
+  --ease:cubic-bezier(.2,.7,.2,1); --dur:.4s;
+  --glass-blur:22px; --glass-blur-strong:26px;
+}
+:root,[data-theme="dark"]{
+  --bg:#000000; --panel:#101216;
+  --line:rgba(255,255,255,0.20); --line-soft:rgba(255,255,255,0.06);
+  --ink:#f4f6f8; --ink-soft:#b9c0c9; --ink-mute:#7f868f;
+  --oxide:#8f220e; --oxide-bright:#b43a19;
+  --glass-fill:rgba(18,20,26,0.55); --glass-fill-2:rgba(24,27,34,0.72);
+  --glass-border:rgba(255,255,255,0.11); --glass-hi:rgba(255,255,255,0.14);
+  --shadow:0 10px 34px rgba(0,0,0,0.55); --shadow-soft:0 6px 20px rgba(0,0,0,0.40);
+  color-scheme:dark;
+}
+[data-theme="light"]{
+  --bg:#f2f0ec; --panel:#ffffff;
+  --line:rgba(12,14,22,0.22); --line-soft:rgba(12,14,22,0.08);
+  --ink:#0b0c0e; --ink-soft:#3b424b; --ink-mute:#6b7178;
+  --oxide:#b8860b; --oxide-bright:#8a6a00;
+  --glass-fill:rgba(255,255,255,0.75); --glass-fill-2:rgba(255,255,255,0.85);
+  --glass-border:rgba(12,14,22,0.10); --glass-hi:rgba(255,255,255,0.95);
+  --shadow:0 10px 30px rgba(18,24,40,0.12); --shadow-soft:0 4px 16px rgba(18,24,40,0.08);
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-ui);line-height:1.6;
+  -webkit-font-smoothing:antialiased;font-size:16px;
+  transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
+::selection{background:var(--oxide);color:#000}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+h1,h2{font-weight:500;line-height:1.14;letter-spacing:-0.015em}
+.cmdbar{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:80;
+  display:flex;align-items:center;gap:10px;padding:7px 8px 7px 16px;border-radius:var(--radius-pill);
+  background:var(--glass-fill-2);
+  -webkit-backdrop-filter:blur(var(--glass-blur-strong)) saturate(150%);
+  backdrop-filter:blur(var(--glass-blur-strong)) saturate(150%);
+  border:1px solid var(--glass-border);box-shadow:var(--shadow), inset 0 1px 0 var(--glass-hi)}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;
+  letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+.brand .dot{width:7px;height:7px;border-radius:50%;background:var(--oxide);animation:msPulse 2.6s infinite}
+.btn{font-family:var(--font-ui);font-size:13px;color:var(--ink);background:transparent;
+  border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:7px 14px;cursor:pointer;
+  box-shadow:inset 0 1px 0 var(--glass-hi)}
+.btn:hover{border-color:var(--glass-hi)}
+.btn:focus-visible{outline:2px solid var(--oxide);outline-offset:3px}
+.hero{padding:120px 0 26px;text-align:center}
+.eyebrow{font-family:var(--font-mono);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--oxide);margin-bottom:16px}
+.hero h1{font-size:clamp(32px,5vw,54px)}
+.hero h1 em{font-family:var(--font-serif);font-style:italic;font-weight:400;color:var(--oxide-bright)}
+.hero .sub{margin:14px auto 0;font-size:16.5px;color:var(--ink-soft);max-width:58ch}
+section{padding:54px 0;border-top:1px solid var(--line-soft)}
+.sec-num{font-family:var(--font-mono);font-size:11px;letter-spacing:0.2em;color:var(--oxide);text-transform:uppercase;margin-bottom:12px}
+section h2{font-size:clamp(21px,2.6vw,28px);margin-bottom:10px}
+.lede{color:var(--ink-soft);font-size:16px;max-width:66ch;margin-bottom:24px}
+.card{background:var(--glass-fill);
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(140%);
+  backdrop-filter:blur(var(--glass-blur)) saturate(140%);
+  border:1px solid var(--glass-border);border-radius:var(--radius);
+  box-shadow:var(--shadow-soft), inset 0 1px 0 var(--glass-hi);padding:14px;margin-bottom:16px;overflow:hidden}
+.viz svg{width:100%;height:auto;display:block;border-radius:8px}
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.frame{background:var(--glass-fill);border:1px solid var(--glass-border);border-radius:12px;
+  overflow:hidden;box-shadow:var(--shadow-soft)}
+.frame svg{width:100%;height:auto;display:block}
+.fcap{padding:12px 14px}
+.fcap b{display:block;font-family:var(--font-mono);font-size:9px;letter-spacing:0.16em;color:var(--oxide);margin-bottom:5px;font-weight:500}
+.fcap span{font-size:12.5px;color:var(--ink-soft);line-height:1.45;display:block}
+.panel{padding:0}
+.panel svg{width:100%;height:auto;display:block}
+.pcap{padding:14px 20px 16px;display:flex;gap:16px;align-items:baseline}
+.pcap b{font-family:var(--font-mono);font-size:11px;letter-spacing:0.18em;color:var(--oxide);white-space:nowrap;font-weight:500}
+.pcap span{font-size:13.5px;color:var(--ink-soft)}
+.fcard{background:var(--glass-fill);border:1px solid var(--glass-border);border-radius:12px;padding:18px 20px}
+.fcard b{display:block;font-size:15px;color:var(--ink);margin-bottom:8px;font-weight:500}
+.fcard p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0}
+.fcard p b{display:inline;font-size:inherit;margin:0}
+.feas{display:flex;flex-direction:column;gap:8px}
+.frow{display:grid;grid-template-columns:200px 110px 1fr;gap:14px;align-items:start;
+  background:var(--glass-fill);border:1px solid var(--glass-border);border-radius:10px;padding:12px 16px}
+.frow .fact{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;color:var(--ink);padding-top:2px}
+.frow .fst{font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;padding-top:2px}
+.frow.g .fst{color:#22b8cf} .frow.a .fst{color:#f0a93c} .frow.r .fst{color:#e5674f}
+.frow.g{border-left:3px solid #22b8cf} .frow.a{border-left:3px solid #f0a93c} .frow.r{border-left:3px solid #e5674f}
+.frow .fnote{font-size:13px;color:var(--ink-soft);line-height:1.5}
+@media (max-width:760px){ .frow{grid-template-columns:1fr;gap:4px} }
+.prompts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.pk{font-family:var(--font-mono);font-size:9px;letter-spacing:0.2em;color:var(--ink-mute)}
+.chip{font-size:12.5px;color:var(--ink-soft);background:var(--glass-fill);
+  border:1px solid var(--glass-border);border-radius:var(--radius-pill);padding:6px 14px}
+footer{padding:44px 0 70px;border-top:1px solid var(--line-soft);
+  font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;color:var(--ink-mute);text-align:center}
+@keyframes msPulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--oxide) 45%,transparent)}
+  70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important}
+}
+@media (max-width:980px){ .board{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:520px){ .board{grid-template-columns:1fr} .pcap{flex-direction:column;gap:4px} }
+@media print{ .cmdbar{display:none} }
+
+:root{--font-ui:"Space Grotesk",system-ui,sans-serif;--font-serif:"CMU Serif",Georgia,serif;--maxw:1080px;--radius:4px;--radius-sm:3px}
+:root,[data-theme="light"]{--bg:#FAF8F5;--panel:#F7F1EC;--line:rgba(35,31,32,.22);--line-soft:rgba(35,31,32,.10);--ink:#231F20;--ink-soft:#514947;--ink-mute:#655C59;--oxide:#8F220E;--oxide-bright:#B43A19;--glass-fill:#F7F1EC;--glass-fill-2:#FAF8F5;--glass-border:rgba(35,31,32,.18);--glass-hi:transparent;--shadow:0 10px 28px rgba(35,31,32,.07);--shadow-soft:0 5px 18px rgba(35,31,32,.06);color-scheme:light}
+[data-theme="dark"]{--bg:#04050a;--panel:#101216;--line:rgba(255,255,255,.20);--line-soft:rgba(255,255,255,.07);--ink:#f4f6f8;--ink-soft:#b9c0c9;--ink-mute:#7f868f;--oxide:#B43A19;--oxide-bright:#D95B3D;--glass-fill:#101216;--glass-fill-2:#101216;--glass-border:rgba(255,255,255,.12);--glass-hi:rgba(255,255,255,.08);color-scheme:dark}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.4;background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 75%)}
+h1,h2{font-weight:450;line-height:1.08;letter-spacing:-.045em}.cmdbar{background:color-mix(in srgb,var(--bg) 94%,transparent);border:1px solid var(--line);box-shadow:0 5px 18px rgba(35,31,32,.08);-webkit-backdrop-filter:none;backdrop-filter:none}.brand .dot{border-radius:0;width:8px;height:8px;border:1px solid var(--oxide);background:transparent;transform:rotate(45deg);animation:none}.btn{font:500 10px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--oxide);border-color:var(--oxide);border-radius:var(--radius-pill);box-shadow:none}.hero{padding:132px 0 48px;text-align:left;border-bottom:1px solid var(--line)}.hero h1{font-size:clamp(44px,7vw,82px);max-width:850px}.hero .sub{margin:28px 0 0;max-width:72ch}.hero:after{content:"CONCEPT BOOK / 08 SECTIONS";display:block;margin-top:44px;font:9px var(--font-mono);letter-spacing:.14em;color:var(--ink-mute)}section{padding:72px 0}.sec-num,.eyebrow{font-weight:500}.card,.frame,.fcard,.frow{border-radius:var(--radius);box-shadow:var(--shadow-soft);-webkit-backdrop-filter:none;backdrop-filter:none}.card{padding:12px}.fcap,.pcap{border-top:1px solid var(--line)}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.fcard{padding:22px 24px}.frow{box-shadow:none}.chip{background:transparent}.viz svg,.panel svg{border-radius:2px}
+[data-theme="light"] svg [fill="#04050a"],[data-theme="light"] svg [fill="#000000"]{fill:#F1ECE7}[data-theme="light"] svg [fill="#0a0c12"],[data-theme="light"] svg [fill="#07080d"],[data-theme="light"] svg [fill="#0d0f18"],[data-theme="light"] svg [fill="#101423"],[data-theme="light"] svg [fill="#0b0d14"]{fill:#F7F1EC}[data-theme="light"] svg [fill="#12141c"],[data-theme="light"] svg [fill="#171a24"]{fill:#DED6D0}[data-theme="light"] svg [fill="#14172a"],[data-theme="light"] svg [fill="#191c33"],[data-theme="light"] svg [fill="#161930"],[data-theme="light"] svg [fill="#1a1626"],[data-theme="light"] svg [fill="#1c1a12"],[data-theme="light"] svg [fill="#1f1216"],[data-theme="light"] svg [fill="#070409"]{fill:#231F20}[data-theme="light"] svg [stroke="#1c2030"],[data-theme="light"] svg [stroke="#242a3c"],[data-theme="light"] svg [stroke="#2a3044"],[data-theme="light"] svg [stroke="#232840"],[data-theme="light"] svg [stroke="#3a3355"],[data-theme="light"] svg [stroke="#12141c"]{stroke:#8F837D}[data-theme="light"] svg [fill="#f4f6f8"],[data-theme="light"] svg [fill="#e8edf5"],[data-theme="light"] svg [fill="#c9ced8"]{fill:#231F20}[data-theme="light"] svg [fill="#b9c0c9"]{fill:#3F3938}[data-theme="light"] svg [fill="#7f868f"],[data-theme="light"] svg [fill="#5c6472"],[data-theme="light"] svg [fill="#3a4152"]{fill:#655C59}[data-theme="light"] svg [fill="#b7a6ff"]{fill:#5746B8}[data-theme="light"] svg [stroke="#b7a6ff"]{stroke:#5746B8}[data-theme="light"] svg [fill="#8b7df0"]{fill:#6252C7}[data-theme="light"] svg [stroke="#8b7df0"]{stroke:#6252C7}[data-theme="light"] svg [fill="#22b8cf"]{fill:#08778A}[data-theme="light"] svg [stroke="#22b8cf"]{stroke:#08778A}[data-theme="light"] svg [fill="#f0a93c"]{fill:#9A5A12}[data-theme="light"] svg [stroke="#f0a93c"]{stroke:#9A5A12}[data-theme="light"] svg [fill="#9fd4ff"]{fill:#24609A}[data-theme="light"] svg [stroke="#4c7ee8"]{stroke:#315FB4}[data-theme="light"] svg [fill="#ff9a80"],[data-theme="light"] svg [fill="#ff8a6c"],[data-theme="light"] svg [fill="#ffd9c8"]{fill:#9B2E19}
+@media(max-width:760px){.wrap{padding:0 18px}.cmdbar{width:calc(100% - 24px);justify-content:space-between}.brand{font-size:8px}.hero{padding-top:110px}.hero h1{font-size:clamp(42px,13vw,64px)}section{padding:54px 0}.two{grid-template-columns:1fr}.board{grid-template-columns:1fr 1fr}.card{padding:5px;overflow-x:auto}.viz svg{min-width:650px}.panel svg{min-width:620px}.panel .pcap{position:sticky;left:0}}
+@media(max-width:520px){.board{grid-template-columns:1fr}.frame svg{max-height:240px}.hero .sub{font-size:15px}.cmdbar .brand{letter-spacing:.08em}}
+
+</style>
+</head>
+<body>
+<nav class="cmdbar" aria-label="Document controls">
+  <span class="brand"><span class="dot"></span>SR FINALE · CONCEPT BOOK</span>
+  <button class="btn" id="themeToggle" aria-label="Switch to dark theme">Dark</button>
+</nav>
+
+<header class="hero wrap">
+  <div class="eyebrow">Shape Rotator · Finale · Concept book v0.4</div>
+  <h1>The School of the <em>Future</em>.<br>One last day of class.</h1>
+  <p class="sub">The night as pictures: one key visual, the MVP floor circuit, the meme resolved as the School of the Future, the eight acts storyboarded with the Friday skeleton, three persona journeys, three spaces in atmosphere, the game plan, and the MVP line drawn out loud. Made to be argued with — updated from the Jul 16 midnight jam.</p>
+</header>
+
+<main class="wrap">
+
+<section>
+  <div class="sec-num">01 · Key visual</div>
+  <h2>The dial, drawn once</h2>
+  <p class="lede">The whole concept in a single cross-section: guests queue at the violet end and exit through the red. Every downstream design choice is a reading off this image.</p>
+  <div class="card viz"><svg viewBox="0 0 960 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cross-section of the school lit as a temperature gradient, violet to amber to red, with a queue at the cold entrance"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect x="0" y="0" width="960" height="360" fill="#04050a"/><rect x="0" y="250" width="960" height="60" fill="url(#dial)" opacity="0.16" filter="url(#soft)"/><rect x="60" y="120" width="840" height="170" rx="6" fill="#0a0c12" stroke="#1c2030" stroke-width="1.5"/><path d="M 60 120 L 900 120" stroke="#242a3c" stroke-width="2"/><rect x="86" y="140" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.5"/><rect x="86" y="186" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.735611875746211"/><rect x="86" y="232" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.7546032795111909"/><rect x="127" y="140" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.7087974594094817"/><rect x="127" y="186" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.4558312056398905"/><rect x="127" y="232" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.24347353771015262"/><rect x="168" y="140" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.22176651898262995"/><rect x="168" y="186" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.3232453413957499"/><rect x="168" y="232" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.5872315817837458"/><rect x="209" y="140" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.6619631340286959"/><rect x="209" y="186" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.7797035757151363"/><rect x="209" y="232" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.6402858398082081"/><rect x="250" y="140" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.5624091759480694"/><rect x="250" y="186" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.30403508747380814"/><rect x="250" y="232" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.22583023583763112"/><rect x="291" y="140" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.25487339108724"/><rect x="291" y="186" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.4814298687416638"/><rect x="291" y="232" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.725059639434454"/><rect x="332" y="140" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.7642347874443491"/><rect x="332" y="186" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.7207105788650888"/><rect x="332" y="232" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.47426608193624964"/><rect x="373" y="140" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.39302000318847835"/><rect x="373" y="186" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.22446179857714"/><rect x="373" y="232" width="24" height="32" rx="3" fill="#8b7df0" fill-opacity="0.3092321456444592"/><rect x="414" y="140" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.3783216258198689"/><rect x="414" y="186" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.646458414244155"/><rect x="414" y="232" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.7799420120399474"/><rect x="455" y="140" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.7691227628605927"/><rect x="455" y="186" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.580374742371764"/><rect x="455" y="232" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.3177305544134509"/><rect x="496" y="140" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.2630582868309522"/><rect x="496" y="186" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.24643805863814527"/><rect x="496" y="232" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.46294150997262357"/><rect x="537" y="140" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.5466144009904036"/><rect x="537" y="186" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.7575097405053652"/><rect x="537" y="232" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.7316518121667066"/><rect x="578" y="140" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.6748255979165904"/><rect x="578" y="186" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.41041681067242547"/><rect x="578" y="232" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.22837039456198832"/><rect x="619" y="140" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.22042139141413186"/><rect x="619" y="186" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.36186452141210207"/><rect x="619" y="232" width="24" height="32" rx="3" fill="#f0a93c" fill-opacity="0.6303087733793875"/><rect x="660" y="140" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.6977274480104922"/><rect x="660" y="186" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.7736559034698329"/><rect x="660" y="232" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.5979863833078672"/><rect x="701" y="140" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.5160964938693788"/><rect x="701" y="186" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.2734747454606662"/><rect x="701" y="232" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.23911927140068245"/><rect x="742" y="140" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.2808231362058168"/><rect x="742" y="186" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.5282007871579002"/><rect x="742" y="232" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.7496507644516034"/><rect x="783" y="140" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.7759680836613769"/><rect x="783" y="186" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.6889462380102842"/><rect x="783" y="232" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.4282080925027569"/><rect x="824" y="140" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.35143503022994294"/><rect x="824" y="186" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.22001851744753498"/><rect x="824" y="232" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.3460156885231026"/><rect x="865" y="140" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.422002470258524"/><rect x="865" y="186" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.684143658443882"/><rect x="865" y="232" width="24" height="32" rx="3" fill="#ff5a3c" fill-opacity="0.7769840162779251"/><rect x="60" y="120" width="340" height="170" fill="url(#violetPool)" opacity="0.5"/><rect x="380" y="120" width="240" height="170" fill="url(#sun)" opacity="0.35"/><rect x="600" y="120" width="300" height="170" fill="url(#redWash)" opacity="0.6"/><rect x="60" y="292" width="840" height="30" fill="url(#dial)" opacity="0.22" filter="url(#soft)"/><g fill="#14172a" fill-opacity="0.9"><circle cx="96" cy="277.92" r="3.9200000000000004"/><path d="M 91.24 302 Q 91.24 281.84 96 281.28 Q 100.76 281.84 100.76 302 Z"/></g><g fill="#14172a" fill-opacity="0.9"><circle cx="116" cy="274.48" r="4.48"/><path d="M 110.56 302 Q 110.56 278.96 116 278.32 Q 121.44 278.96 121.44 302 Z"/></g><g fill="#14172a" fill-opacity="0.9"><circle cx="136" cy="277.92" r="3.9200000000000004"/><path d="M 131.24 302 Q 131.24 281.84 136 281.28 Q 140.76 281.84 140.76 302 Z"/></g><g fill="#14172a" fill-opacity="0.9"><circle cx="156" cy="274.48" r="4.48"/><path d="M 150.56 302 Q 150.56 278.96 156 278.32 Q 161.44 278.96 161.44 302 Z"/></g><g fill="#14172a" fill-opacity="0.9"><circle cx="176" cy="277.92" r="3.9200000000000004"/><path d="M 171.24 302 Q 171.24 281.84 176 281.28 Q 180.76 281.84 180.76 302 Z"/></g><g fill="#14172a" fill-opacity="0.9"><circle cx="196" cy="274.48" r="4.48"/><path d="M 190.56 302 Q 190.56 278.96 196 278.32 Q 201.44 278.96 201.44 302 Z"/></g><text x="90" y="106" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#8b7df0" text-anchor="start" font-weight="500">TEMP 0.0</text><text x="500" y="106" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#f0a93c" text-anchor="middle" font-weight="500">TEMP 1.0</text><text x="896" y="106" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#ff6a4c" text-anchor="end" font-weight="500">TEMP 2.0</text><text x="480" y="340" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.8" fill="#5c6472" text-anchor="middle">29 NASSAU AVE, CROSS-SECTION — THE BUILDING IS THE DIAL</text></svg></div>
+  <div class="prompts"><span class="pk">RIFF ON</span><span class="chip">Print this as the invite's only graphic?</span><span class="chip">Projection-map the real facade with the same gradient at night?</span></div>
+</section>
+<section>
+  <div class="sec-num">02 · The floor</div>
+  <h2>The MVP circuit, one level</h2>
+  <p class="lede">Tonight's spatial decision, ratified: concentrate everything on the auditorium floor. Guests enter off Nassau, hit the nurse's desk (temperature taken, voiceprint and consent captured, report card issued), do a half-circle through two or three team-owned entry rooms — there's a sculpture room and neighbors right at the auditorium entry, no third floor required — and the real school bell calls everyone in for the talent show. Upstairs classrooms become overflow, a nice-to-have. Crowd density is a feature: the worry was people dispersing, so the design stops offering them places to disperse to.</p>
+  <div class="card viz"><svg viewBox="0 0 960 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MVP floor circuit: three doors, nurse desk with temperature and voiceprint, three team-owned entry rooms in a half circle, the school bell, and the auditorium holding fair, stage, and optional tub"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect width="960" height="520" fill="#04050a"/><text x="60" y="40" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#c9ced8" text-anchor="start" font-weight="500">THE MVP FLOOR — ONE LEVEL, ONE CIRCUIT · ENTRY ROOMS HALF-CIRCLE INTO THE AUDITORIUM</text><text x="60" y="58" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="1.2" fill="#5c6472" text-anchor="start">UPSTAIRS CLASSROOMS = OVERFLOW, NICE-TO-HAVE · CROWD STAYS CONCENTRATED BY DESIGN (SHAW'S CALL, RATIFIED)</text><text x="120" y="498" font-family="JetBrains Mono, monospace" font-size="8.5" letter-spacing="2" fill="#3a4152" text-anchor="middle">NASSAU AVE ENTRY</text><path d="M 66 476 L 66 452 A 14 14 0 0 1 96 452 L 96 476 Z" fill="#07080d" stroke="#b7a6ff" stroke-width="1.2"/><text x="81" y="470" font-family="JetBrains Mono, monospace" font-size="4.6" letter-spacing="0.6" fill="#b7a6ff" text-anchor="middle">BOYS</text><path d="M 112 476 L 112 452 A 14 14 0 0 1 142 452 L 142 476 Z" fill="#07080d" stroke="#b7a6ff" stroke-width="1.2"/><text x="127" y="470" font-family="JetBrains Mono, monospace" font-size="4.6" letter-spacing="0.6" fill="#b7a6ff" text-anchor="middle">GIRLS</text><path d="M 158 476 L 158 452 A 14 14 0 0 1 188 452 L 188 476 Z" fill="#07080d" stroke="#b7a6ff" stroke-width="1.2"/><text x="173" y="470" font-family="JetBrains Mono, monospace" font-size="4.6" letter-spacing="0.6" fill="#b7a6ff" text-anchor="middle">CONVENT</text><rect x="46" y="340" width="150" height="86" rx="12" fill="#0a0c12" stroke="#8b7df0" stroke-width="1.5"/><text x="121" y="368" font-family="JetBrains Mono, monospace" font-size="8.5" letter-spacing="1.4" fill="#b7a6ff" text-anchor="middle" font-weight="500">THE NURSE'S DESK</text><text x="121" y="386" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="1.1" fill="#7f868f" text-anchor="middle">TEMPERATURE TAKEN</text><text x="121" y="400" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="1.1" fill="#7f868f" text-anchor="middle">VOICEPRINT + CONSENT</text><text x="121" y="414" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="1.1" fill="#7f868f" text-anchor="middle">REPORT CARD ISSUED</text><rect x="250" y="300" width="130" height="72" rx="12" fill="#0a0c12" stroke="#b7a6ff" stroke-width="1.5"/><text x="315" y="330" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.2" fill="#b7a6ff" text-anchor="middle" font-weight="500">SCULPTURE /</text><text x="315" y="346" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.2" fill="#b7a6ff" text-anchor="middle" font-weight="500">SORTING HAT</text><text x="315" y="362" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="1.2" fill="#5c6472" text-anchor="middle">TEAM-OWNED</text><rect x="380" y="220" width="130" height="72" rx="12" fill="#0a0c12" stroke="#22b8cf" stroke-width="1.5"/><text x="445" y="250" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.2" fill="#22b8cf" text-anchor="middle" font-weight="500">BRAIN IN</text><text x="445" y="266" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.2" fill="#22b8cf" text-anchor="middle" font-weight="500">A JAR</text><text x="445" y="282" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="1.2" fill="#5c6472" text-anchor="middle">TEAM-OWNED</text><rect x="530" y="190" width="130" height="72" rx="12" fill="#0a0c12" stroke="#f0a93c" stroke-width="1.5"/><text x="595" y="220" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.2" fill="#f0a93c" text-anchor="middle" font-weight="500">VIBE CODING /</text><text x="595" y="236" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.2" fill="#f0a93c" text-anchor="middle" font-weight="500">THERAPY</text><text x="595" y="252" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="1.2" fill="#5c6472" text-anchor="middle">TEAM-OWNED</text><rect x="700" y="120" width="220" height="330" rx="14" fill="#0a0c12" stroke="#8f220e" stroke-width="1.8"/><rect x="700" y="120" width="220" height="330" fill="url(#redWash)" opacity="0.28"/><text x="810" y="150" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="1.8" fill="#8f220e" text-anchor="middle" font-weight="500">THE AUDITORIUM</text><rect x="724" y="170" width="172" height="60" rx="8" fill="#101423" stroke="#8f220e" stroke-opacity="0.7"/><text x="810" y="196" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="1.3" fill="#8f220e" text-anchor="middle">STAGE · TALENT SHOW</text><text x="810" y="212" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1" fill="#7f868f" text-anchor="middle">EMERGENCE VIZ (BRENDAN)</text><rect x="724" y="248" width="82" height="52" rx="7" fill="#0d0f18" stroke="#e5674f" stroke-opacity="0.55"/><rect x="814" y="248" width="82" height="52" rx="7" fill="#0d0f18" stroke="#e5674f" stroke-opacity="0.55"/><rect x="724" y="314" width="82" height="52" rx="7" fill="#0d0f18" stroke="#e5674f" stroke-opacity="0.55"/><rect x="814" y="314" width="82" height="52" rx="7" fill="#0d0f18" stroke="#e5674f" stroke-opacity="0.55"/><text x="810" y="262" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="2" fill="#ff9a80" text-anchor="middle">FAIR</text><text x="810" y="278" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="1" fill="#7f868f" text-anchor="middle">BOOTHS + POSTERS</text><rect x="724" y="386" width="172" height="44" rx="8" fill="#0d0f18" stroke="#4c7ee8" stroke-opacity="0.7"/><text x="810" y="406" font-family="JetBrains Mono, monospace" font-size="6.8" letter-spacing="1" fill="#9fd4ff" text-anchor="middle">TUB (IF A TEAM OWNS IT)</text><text x="810" y="420" font-family="JetBrains Mono, monospace" font-size="6" letter-spacing="1.1" fill="#5c6472" text-anchor="middle">NICE-TO-HAVE</text><circle cx="672" cy="140" r="16" fill="none" stroke="#8f220e" stroke-width="1.5"/><path d="M 665 146 Q 672 130 679 146 Z" fill="#8f220e" fill-opacity="0.8"/><text x="672" y="172" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.2" fill="#8f220e" text-anchor="middle">THE BELL</text><text x="672" y="184" font-family="JetBrains Mono, monospace" font-size="5.8" letter-spacing="1" fill="#5c6472" text-anchor="middle">(REAL, PROBABLY)</text><path d="M 121 452 L 121 430 L 250 336 L 380 292 L 530 262 L 660 220 L 760 200" fill="none" stroke="#8f220e" stroke-width="1.6" stroke-dasharray="4 6" stroke-opacity="0.85"/><circle cx="121" cy="452" r="9" fill="#04050a" stroke="#8f220e" stroke-width="1.4"/><text x="121" y="455" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0" fill="#8f220e" text-anchor="middle" font-weight="500">1</text><circle cx="121" cy="430" r="9" fill="#04050a" stroke="#8f220e" stroke-width="1.4"/><text x="121" y="433" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0" fill="#8f220e" text-anchor="middle" font-weight="500">2</text><circle cx="250" cy="336" r="9" fill="#04050a" stroke="#8f220e" stroke-width="1.4"/><text x="250" y="339" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0" fill="#8f220e" text-anchor="middle" font-weight="500">3</text><circle cx="380" cy="292" r="9" fill="#04050a" stroke="#8f220e" stroke-width="1.4"/><text x="380" y="295" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0" fill="#8f220e" text-anchor="middle" font-weight="500">4</text><circle cx="530" cy="262" r="9" fill="#04050a" stroke="#8f220e" stroke-width="1.4"/><text x="530" y="265" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0" fill="#8f220e" text-anchor="middle" font-weight="500">5</text><circle cx="660" cy="220" r="9" fill="#04050a" stroke="#8f220e" stroke-width="1.4"/><text x="660" y="223" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0" fill="#8f220e" text-anchor="middle" font-weight="500">6</text><circle cx="760" cy="200" r="9" fill="#04050a" stroke="#8f220e" stroke-width="1.4"/><text x="760" y="203" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="0" fill="#8f220e" text-anchor="middle" font-weight="500">7</text><text x="60" y="512" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="1.2" fill="#5c6472" text-anchor="start">1 DOORS · 2 NURSE'S DESK · 3–5 ENTRY ROOMS (ANY ORDER) · 6 BELL RINGS · 7 AUDITORIUM — FAIR, THEN TALENT SHOW</text></svg></div>
+  <div class="prompts"><span class="pk">RIFF ON</span><span class="chip">Which three entry rooms exactly — confirm on the walkthrough half-circle.</span><span class="chip">The courtyard stays the tub's fallback site if the auditorium runs too hot.</span><span class="chip">Where does the nurse's desk queue go if fifty people arrive at once?</span></div>
+</section>
+<section>
+  <div class="sec-num">03 · The meme</div>
+  <h2>School of the Future, made coherent</h2>
+  <p class="lede">Tonight resolved the aesthetic tension Shaw named — high-tech temperature vibes versus class vibes — into one world: the School of the Future. Not Harry Potter, because it's AI, not magic. The Last Human Demo Day is the event held there; the temperature meme is the overarching feel (the creativity direction of intelligence, the exponential answer to HF0's subtraction) and no longer needs literal instantiation in every room. Three layers hold every act.</p>
+  
+<div class="two">
+  <div class="fcard">
+    <b>The frame: one last day of school</b>
+    <p>Every mechanic already speaks school: enrollment (the link), first bell (the doors), sorting (houses), class periods (the rooms), extra credit (the quests), report cards (the sorting output and the guest state), detention slips (the jar roasts), finals (the stage), the class photo (the broadcast), commencement (graduation). Nothing needs a new metaphor — the building supplies all of it, and the wayfinding kit was already printed in this idiom. Acts III–VI are <b>periods, not a sequence</b>: any order, attendance stamped, all open all night, so late arrivals and stage-lull loops both work.</p>
+  </div>
+  <div class="fcard">
+    <b>The spine: five relations to the machine</b>
+    <p>The reason the rooms cohere instead of reading as disconnected gags: each one stages a different relation between a human and an AI, in escalating order — sorted (it classifies you), jarred (it replaces you), amplified (it multiplies you), treated (it consoles you), judged (it scores you). Walk the periods and you've walked the argument of the event's own name. The stage is the fifth rung — and tonight it got its true school-theme name: <b>the talent show.</b> Pitches as acts, variety-show register, the anti-Hunger-Games staged as the most cooperative format a school owns.</p>
+  </div>
+</div>
+<div class="fcard" style="margin-top:14px">
+  <b>The economy: temperature as currency</b>
+  <p>The temperature meme stops being decoration and becomes the game loop: every completed period raises your temperature (creativity accrues; the report card shows it climbing), the auditorium is the hottest room in the building by design and by July, and <b>the plunge is the only way down</b> — which is exactly why it's the overtime penalty for founders. Guests spend the night heating up; discipline is the scarce resource. One sentence for the poster: <i>they do subtraction, we do exponential — and the thermostat is a bathtub.</i></p>
+</div>
+<div class="card viz"><svg viewBox="0 0 916 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The meme ladder: sorted, jarred, amplified, treated, judged — five human-AI relations walked room by room, over a rising temperature axis where the tub is the only way down"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect x="40" y="90" width="156" height="76" rx="12" fill="#0a0c12" stroke="#8b7df0" stroke-width="1.6"/><text x="118" y="122" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2" fill="#8b7df0" text-anchor="middle" font-weight="500">SORTED</text><text x="118" y="144" font-family="JetBrains Mono, monospace" font-size="6.8" letter-spacing="1.1" fill="#7f868f" text-anchor="middle">THE AI CLASSIFIES YOU</text><path d="M 196 128 L 214 128" stroke="#5c6472" stroke-width="1.4"/><rect x="216" y="90" width="156" height="76" rx="12" fill="#0a0c12" stroke="#22b8cf" stroke-width="1.6"/><text x="294" y="122" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2" fill="#22b8cf" text-anchor="middle" font-weight="500">JARRED</text><text x="294" y="144" font-family="JetBrains Mono, monospace" font-size="6.8" letter-spacing="1.1" fill="#7f868f" text-anchor="middle">THE AI REPLACES YOU</text><path d="M 372 128 L 390 128" stroke="#5c6472" stroke-width="1.4"/><rect x="392" y="90" width="156" height="76" rx="12" fill="#0a0c12" stroke="#f0a93c" stroke-width="1.6"/><text x="470" y="122" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2" fill="#f0a93c" text-anchor="middle" font-weight="500">AMPLIFIED</text><text x="470" y="144" font-family="JetBrains Mono, monospace" font-size="6.8" letter-spacing="1.1" fill="#7f868f" text-anchor="middle">THE AI MULTIPLIES YOU</text><path d="M 548 128 L 566 128" stroke="#5c6472" stroke-width="1.4"/><rect x="568" y="90" width="156" height="76" rx="12" fill="#0a0c12" stroke="#b7a6ff" stroke-width="1.6"/><text x="646" y="122" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2" fill="#b7a6ff" text-anchor="middle" font-weight="500">TREATED</text><text x="646" y="144" font-family="JetBrains Mono, monospace" font-size="6.8" letter-spacing="1.1" fill="#7f868f" text-anchor="middle">THE AI CONSOLES YOU</text><path d="M 724 128 L 742 128" stroke="#5c6472" stroke-width="1.4"/><rect x="744" y="90" width="156" height="76" rx="12" fill="#0a0c12" stroke="#e5443a" stroke-width="1.6"/><text x="822" y="122" font-family="JetBrains Mono, monospace" font-size="11" letter-spacing="2" fill="#e5443a" text-anchor="middle" font-weight="500">JUDGED</text><text x="822" y="144" font-family="JetBrains Mono, monospace" font-size="6.8" letter-spacing="1.1" fill="#7f868f" text-anchor="middle">THE AI SCORES YOU</text><rect x="40" y="200" width="836" height="10" rx="5" fill="url(#dial)"/><text x="40" y="232" font-family="JetBrains Mono, monospace" font-size="8.5" letter-spacing="1.4" fill="#8b7df0" text-anchor="start">TEMP 0.0</text><text x="876" y="232" font-family="JetBrains Mono, monospace" font-size="8.5" letter-spacing="1.4" fill="#ff6a4c" text-anchor="end">TEMP 2.0</text><text x="458" y="232" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.4" fill="#7f868f" text-anchor="middle">EVERY ROOM HEATS YOU UP</text><path d="M 800 196 C 800 170, 760 170, 758 150" fill="none" stroke="#4c7ee8" stroke-width="1.6" stroke-dasharray="3 5" marker-end="url(#cool)"/><text x="830" y="178" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="1.1" fill="#9fd4ff" text-anchor="middle">THE TUB IS THE</text><text x="830" y="192" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="1.1" fill="#9fd4ff" text-anchor="middle">ONLY WAY DOWN</text><defs><marker id="cool" markerWidth="9" markerHeight="9" refX="7" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#4c7ee8" stroke-width="1.4"/></marker></defs><text x="458" y="50" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#c9ced8" text-anchor="middle" font-weight="500">THE LAST HUMAN SCHOOL — FIVE RELATIONS TO THE MACHINE, WALKED ROOM BY ROOM</text></svg></div>
+  <div class="prompts"><span class="pk">RIFF ON</span><span class="chip">Ring the actual school bell — the building probably still has one.</span><span class="chip">Report card shows live temperature per guest?</span><span class="chip">The commencement speech: who gives it, human or jar?</span></div>
+</section>
+<section>
+  <div class="sec-num">04 · The journey, filmed</div>
+  <h2>Eight acts, one night</h2>
+  <p class="lede">The Friday skeleton first — tonight's schedule decision, built around New York arrival physics and a 90-minute show — then the acts as a storyboard. Each frame is a scene a guest will remember and a shot the documentation crew should plan for.</p>
+  <div class="card viz"><svg viewBox="0 0 960 165" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Friday skeleton: doors and rooms from 3pm, the bell at 6, talent show to 7:30, dinner and journey talks after"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect x="24" y="40" width="296" height="86" rx="12" fill="#0a0c12" stroke="#8b7df0" stroke-width="1.5"/><text x="40" y="66" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#8b7df0" text-anchor="start" font-weight="500">3–6PM</text><text x="40" y="86" font-family="JetBrains Mono, monospace" font-size="9.5" letter-spacing="1.4" fill="#f4f6f8" text-anchor="start" font-weight="500">DOORS + ROOMS + FAIR</text><text x="40" y="106" font-family="JetBrains Mono, monospace" font-size="6.6" letter-spacing="1" fill="#7f868f" text-anchor="start">STROLLING IN; QUESTS, BOOTHS, POSTERS, HANGS</text><rect x="330" y="40" width="120" height="86" rx="12" fill="#0a0c12" stroke="#8f220e" stroke-width="1.5"/><text x="346" y="66" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#8f220e" text-anchor="start" font-weight="500">~6PM</text><text x="346" y="86" font-family="JetBrains Mono, monospace" font-size="9.5" letter-spacing="1.4" fill="#f4f6f8" text-anchor="start" font-weight="500">THE BELL</text><text x="346" y="106" font-family="JetBrains Mono, monospace" font-size="6.6" letter-spacing="1" fill="#7f868f" text-anchor="start">EVERYONE INTO THE AUDITORIUM</text><rect x="460" y="40" width="240" height="86" rx="12" fill="#0a0c12" stroke="#e5443a" stroke-width="1.5"/><text x="476" y="66" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#e5443a" text-anchor="start" font-weight="500">6–7:30</text><text x="476" y="86" font-family="JetBrains Mono, monospace" font-size="9.5" letter-spacing="1.4" fill="#f4f6f8" text-anchor="start" font-weight="500">THE TALENT SHOW</text><text x="476" y="106" font-family="JetBrains Mono, monospace" font-size="6.6" letter-spacing="1" fill="#7f868f" text-anchor="start">~15 ACTS × 3 MIN + BUNDLE DEMOS</text><rect x="710" y="40" width="226" height="86" rx="12" fill="#0a0c12" stroke="#f0a93c" stroke-width="1.5"/><text x="726" y="66" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#f0a93c" text-anchor="start" font-weight="500">7:30–LATE</text><text x="726" y="86" font-family="JetBrains Mono, monospace" font-size="9.5" letter-spacing="1.4" fill="#f4f6f8" text-anchor="start" font-weight="500">DINNER + JOURNEY</text><text x="726" y="106" font-family="JetBrains Mono, monospace" font-size="6.6" letter-spacing="1" fill="#7f868f" text-anchor="start">TALKS, DEBATES, SHAPER STORIES, FILTER-OUT</text><text x="480" y="152" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="1.2" fill="#5c6472" text-anchor="middle">FRIDAY JUL 24 · 4–5 HOURS TOTAL · NO STAGE Q&A — QUESTIONS HAPPEN AT THE BOOTHS AND OVER DINNER</text></svg></div><div class="board"><div class="frame"><svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect width="300" height="190" fill="#04050a"/><rect x="115" y="40" width="70" height="120" rx="12" fill="#0a0c12" stroke="#2a3044"/><rect x="123" y="52" width="54" height="96" rx="6" fill="url(#screenGlow)"/><text x="150" y="96" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="1.5" fill="#111" text-anchor="middle" font-weight="500">DELEGATE</text><text x="150" y="108" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="1.5" fill="#111" text-anchor="middle" font-weight="500">ONE TWEET</text><ellipse cx="150" cy="172" rx="60" ry="8" fill="url(#screenGlow)" opacity="0.5"/></svg><div class="fcap"><b>ACT I · THE LINK</b><span>Admissions. A rare invite priced at one delegated tweet or one contributed eval. Enrollment opens your report card.</span></div></div><div class="frame"><svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect width="300" height="190" fill="#04050a"/><path d="M 52 160 L 52 80 A 26 26 0 0 1 104 80 L 104 160 Z" fill="#07080d" stroke="#3a3355" stroke-width="1.4"/><text x="78" y="70" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.5" fill="#8b7df0" text-anchor="middle">BOYS</text><path d="M 124 160 L 124 80 A 26 26 0 0 1 176 80 L 176 160 Z" fill="#07080d" stroke="#3a3355" stroke-width="1.4"/><text x="150" y="70" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.5" fill="#8b7df0" text-anchor="middle">GIRLS</text><path d="M 196 160 L 196 80 A 26 26 0 0 1 248 80 L 248 160 Z" fill="#07080d" stroke="#3a3355" stroke-width="1.4"/><text x="222" y="70" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.5" fill="#8b7df0" text-anchor="middle">CONVENT</text><rect x="0" y="0" width="300" height="190" fill="url(#violetPool)" opacity="0.5"/><g fill="#191c33" fill-opacity="0.95"><circle cx="150" cy="142.2" r="4.2"/><path d="M 144.9 168 Q 144.9 146.4 150 145.8 Q 155.1 146.4 155.1 168 Z"/></g></svg><div class="fcap"><b>ACT II · THE SCHOOL</b><span>First bell. Three doors carved in stone have sorted people here since 1930; your phone credential opens them tonight.</span></div></div><div class="frame"><svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect width="300" height="190" fill="#04050a"/><rect x="70" y="45" width="160" height="100" rx="10" fill="#0a0c12" stroke="#8b7df0" stroke-width="1.4"/><text x="150" y="78" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="2" fill="#5c6472" text-anchor="middle">HOUSE:</text><text x="150" y="102" font-family="JetBrains Mono, monospace" font-size="13" letter-spacing="3" fill="#b7a6ff" text-anchor="middle">█ █ █ █</text><text x="150" y="128" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="2" fill="#5c6472" text-anchor="middle">SCREENSHOT ME</text><rect x="70" y="45" width="160" height="100" rx="10" fill="url(#violetPool)" opacity="0.35"/></svg><div class="fcap"><b>ACT III · PERIOD 1 — SORTED</b><span>The AI classifies you. Short quiz, a house, one screenshotable card. Extra credit: stamped. Temperature: +0.2.</span></div></div><div class="frame"><svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect width="300" height="190" fill="#04050a"/><rect x="40" y="120" width="220" height="6" rx="3" fill="#171a24"/><circle cx="80" cy="96" r="30" fill="url(#jarGlow)"/><rect x="58" y="70" width="44" height="52" rx="10" fill="none" stroke="#22b8cf" stroke-opacity="0.7" stroke-width="1.2"/><circle cx="150" cy="96" r="30" fill="url(#jarGlow)"/><rect x="128" y="70" width="44" height="52" rx="10" fill="none" stroke="#22b8cf" stroke-opacity="0.7" stroke-width="1.2"/><circle cx="220" cy="96" r="30" fill="url(#jarGlow)"/><rect x="198" y="70" width="44" height="52" rx="10" fill="none" stroke="#22b8cf" stroke-opacity="0.7" stroke-width="1.2"/><g fill="#14172a" fill-opacity="0.95"><circle cx="255" cy="148.76" r="4.760000000000001"/><path d="M 249.22 178 Q 249.22 153.52 255 152.84 Q 260.78 153.52 260.78 178 Z"/></g></svg><div class="fcap"><b>ACT IV · PERIOD 2 — JARRED</b><span>The AI replaces the absent. Locally simulated luminaries roast your TAM slide. Extra credit: stamped. Temperature: +0.3.</span></div></div><div class="frame"><svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect width="300" height="190" fill="#04050a"/><circle cx="150" cy="70" r="46" fill="url(#sun)"/><rect x="80" y="34" width="140" height="80" rx="4" fill="none" stroke="#2a3044" stroke-width="1.4"/><line x1="150" y1="34" x2="150" y2="114" stroke="#2a3044"/><path d="M 56 150 q -7 -22 2 -36 M 56 150 q 9 -19 -1 -34" stroke="#22b8cf" stroke-width="1.5" fill="none"/><path d="M 244 150 q -7 -22 2 -36 M 244 150 q 9 -19 -1 -34" stroke="#22b8cf" stroke-width="1.5" fill="none"/><g fill="#1c1a12" fill-opacity="0.9"><circle cx="120" cy="136.76" r="4.760000000000001"/><path d="M 114.22 166 Q 114.22 141.52 120 140.84 Q 125.78 141.52 125.78 166 Z"/></g><g fill="#1c1a12" fill-opacity="0.9"><circle cx="180" cy="136.76" r="4.760000000000001"/><path d="M 174.22 166 Q 174.22 141.52 180 140.84 Q 185.78 141.52 185.78 166 Z"/></g></svg><div class="fcap"><b>ACT V · PERIOD 3 — AMPLIFIED</b><span>The AI multiplies you. Vibe coding in the one warm classroom: ship something dramatic in ten minutes. Temperature: +0.4.</span></div></div><div class="frame"><svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect width="300" height="190" fill="#04050a"/><rect x="0" y="0" width="300" height="190" fill="#04050a"/><rect x="70" y="140" width="70" height="10" rx="4" fill="#171a24"/><rect x="78" y="150" width="10" height="24" fill="#12141c"/><rect x="122" y="150" width="10" height="24" fill="#12141c"/><g fill="#1a1626" fill-opacity="0.95"><circle cx="105" cy="114.76" r="4.760000000000001"/><path d="M 99.22 144 Q 99.22 119.52 105 118.84 Q 110.78 119.52 110.78 144 Z"/></g><rect x="176" y="52" width="86" height="110" rx="10" fill="#0a0c12" stroke="#b7a6ff" stroke-width="1.3"/><circle cx="203" cy="96" r="5" fill="#b7a6ff" fill-opacity="0.9"/><circle cx="235" cy="96" r="5" fill="#b7a6ff" fill-opacity="0.9"/><path d="M 203 122 Q 219 132 235 122" fill="none" stroke="#b7a6ff" stroke-width="1.6" stroke-opacity="0.8"/><rect x="176" y="52" width="86" height="110" rx="10" fill="url(#violetPool)" opacity="0.3"/><text x="150" y="30" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.1" fill="#8f86b8" text-anchor="middle">SPEAK, CHILD. WHICH MODEL HURT YOU?</text></svg><div class="fcap"><b>ACT VI · PERIOD 4 — TREATED</b><span>The AI consoles you. Bring your AI psychosis to the booth; the AI is the therapist now. Temperature: +0.3, forgiven.</span></div></div><div class="frame"><svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect width="300" height="190" fill="#04050a"/><rect x="0" y="0" width="300" height="190" fill="url(#redWash)" opacity="0.35"/><rect x="60" y="30" width="110" height="130" rx="4" fill="#07080d" stroke="#2a3044" stroke-width="1.3"/><rect x="64" y="139" width="23" height="18" rx="3" fill="#8b7df0" fill-opacity="0.85"/><rect x="90" y="139" width="23" height="18" rx="3" fill="#8b7df0" fill-opacity="0.85"/><rect x="64" y="118" width="23" height="18" rx="3" fill="#8b7df0" fill-opacity="0.85"/><rect x="90" y="118" width="23" height="18" rx="3" fill="#8b7df0" fill-opacity="0.85"/><rect x="116" y="139" width="23" height="18" rx="3" fill="#f0a93c" fill-opacity="0.85"/><rect x="142" y="139" width="23" height="18" rx="3" fill="#f0a93c" fill-opacity="0.85"/><rect x="142" y="118" width="23" height="18" rx="3" fill="#f0a93c" fill-opacity="0.85"/><rect x="142" y="97" width="23" height="18" rx="3" fill="#f0a93c" fill-opacity="0.85"/><rect x="116" y="118" width="23" height="18" rx="3" fill="#22b8cf" fill-opacity="0.85"/><rect x="116" y="97" width="23" height="18" rx="3" fill="#22b8cf" fill-opacity="0.85"/><rect x="90" y="97" width="23" height="18" rx="3" fill="#22b8cf" fill-opacity="0.85"/><rect x="64" y="97" width="23" height="18" rx="3" fill="#22b8cf" fill-opacity="0.85"/><rect x="60" y="97" width="110" height="20" fill="#8f220e" fill-opacity="0.35"/><text x="115" y="26" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.2" fill="#8f220e" text-anchor="middle">LINE CLEAR = BUNDLE</text><rect x="196" y="118" width="80" height="42" rx="10" fill="#0a0c12" stroke="#4c7ee8" stroke-width="1.5"/><ellipse cx="236" cy="122" rx="36" ry="8" fill="url(#tubGlow)"/><circle cx="236" cy="116" r="6" fill="none" stroke="#e8edf5" stroke-width="1.2"/><text x="236" y="176" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.1" fill="#9fd4ff" text-anchor="middle">OVERTIME LIVES HERE</text></svg><div class="fcap"><b>ACT VII · THE TALENT SHOW</b><span>The AI judges you — but the format is the school's own: ~15 acts, three minutes each, bundles clearing lines on the rotator; Brendan's emergence visualization plays center stage; the tub waits for whoever earns it.</span></div></div><div class="frame"><svg viewBox="0 0 300 190" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect width="300" height="190" fill="#04050a"/><rect x="0" y="0" width="300" height="190" fill="url(#redWash)" opacity="0.85"/><g fill="#070409" fill-opacity="0.95"><circle cx="36" cy="152.76" r="4.760000000000001"/><path d="M 30.22 182 Q 30.22 157.52 36 156.84 Q 41.78 157.52 41.78 182 Z"/></g><rect x="30" y="132" width="12" height="18" rx="2" fill="#ffe9a8" fill-opacity="0.95"/><g fill="#070409" fill-opacity="0.95"><circle cx="65" cy="152.76" r="4.760000000000001"/><path d="M 59.22 182 Q 59.22 157.52 65 156.84 Q 70.78 157.52 70.78 182 Z"/></g><rect x="59" y="132" width="12" height="18" rx="2" fill="#ffe9a8" fill-opacity="0.95"/><g fill="#070409" fill-opacity="0.95"><circle cx="94" cy="152.76" r="4.760000000000001"/><path d="M 88.22 182 Q 88.22 157.52 94 156.84 Q 99.78 157.52 99.78 182 Z"/></g><rect x="88" y="132" width="12" height="18" rx="2" fill="#ffe9a8" fill-opacity="0.95"/><g fill="#070409" fill-opacity="0.95"><circle cx="123" cy="152.76" r="4.760000000000001"/><path d="M 117.22 182 Q 117.22 157.52 123 156.84 Q 128.78 157.52 128.78 182 Z"/></g><rect x="117" y="132" width="12" height="18" rx="2" fill="#ffe9a8" fill-opacity="0.95"/><g fill="#070409" fill-opacity="0.95"><circle cx="152" cy="152.76" r="4.760000000000001"/><path d="M 146.22 182 Q 146.22 157.52 152 156.84 Q 157.78 157.52 157.78 182 Z"/></g><rect x="146" y="132" width="12" height="18" rx="2" fill="#ffe9a8" fill-opacity="0.95"/><g fill="#070409" fill-opacity="0.95"><circle cx="181" cy="152.76" r="4.760000000000001"/><path d="M 175.22 182 Q 175.22 157.52 181 156.84 Q 186.78 157.52 186.78 182 Z"/></g><rect x="175" y="132" width="12" height="18" rx="2" fill="#ffe9a8" fill-opacity="0.95"/><g fill="#070409" fill-opacity="0.95"><circle cx="210" cy="152.76" r="4.760000000000001"/><path d="M 204.22 182 Q 204.22 157.52 210 156.84 Q 215.78 157.52 215.78 182 Z"/></g><rect x="204" y="132" width="12" height="18" rx="2" fill="#ffe9a8" fill-opacity="0.95"/><g fill="#070409" fill-opacity="0.95"><circle cx="239" cy="152.76" r="4.760000000000001"/><path d="M 233.22 182 Q 233.22 157.52 239 156.84 Q 244.78 157.52 244.78 182 Z"/></g><rect x="233" y="132" width="12" height="18" rx="2" fill="#ffe9a8" fill-opacity="0.95"/><g fill="#070409" fill-opacity="0.95"><circle cx="268" cy="152.76" r="4.760000000000001"/><path d="M 262.22 182 Q 262.22 157.52 268 156.84 Q 273.78 157.52 273.78 182 Z"/></g><rect x="262" y="132" width="12" height="18" rx="2" fill="#ffe9a8" fill-opacity="0.95"/><text x="150" y="52" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.8" fill="#ffd9c8" text-anchor="middle" font-weight="500">THE CLASS PHOTO</text><text x="150" y="68" font-family="JetBrains Mono, monospace" font-size="7" letter-spacing="1.4" fill="#ffd9c8" text-anchor="middle">POSTED BY EVERYONE AT ONCE</text></svg><div class="fcap"><b>ACT VIII · THE CLASS PHOTO</b><span>Every delegated account posts the same moment simultaneously. The yearbook publishes itself; commencement is tomorrow.</span></div></div></div>
+  <div class="prompts"><span class="pk">RIFF ON</span><span class="chip">Which frame is the poster?</span><span class="chip">Where does a guest first laugh out loud?</span><span class="chip">Which frame does the aftermovie open on?</span></div>
+</section>
+<section>
+  <div class="sec-num">05 · Three journeys</div>
+  <h2>Guest, founder, judge</h2>
+  <p class="lede">The same six stations, three different paths. The guest walks the full gauntlet; the founder arrives early through the Threshold and owes only an attested dossier and a pitch; the judge skips the games, holds court, and lives under the jar rule. All three converge at the stage.</p>
+  <div class="card viz"><svg viewBox="0 0 960 510" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Three persona journeys — guest, founder, judge — as parallel swimlanes across six stations from the gate to the after"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><text x="137.0" y="40" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#c9ced8" text-anchor="middle" font-weight="500">THE GATE</text><text x="137.0" y="56" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.1" fill="#5c6472" text-anchor="middle">ONLINE, DAYS BEFORE</text><line x1="212" y1="66" x2="212" y2="470" stroke="#12141c" stroke-width="1"/><text x="287.0" y="40" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#c9ced8" text-anchor="middle" font-weight="500">THE DOORS</text><text x="287.0" y="56" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.1" fill="#5c6472" text-anchor="middle">NASSAU FACADE</text><line x1="362" y1="66" x2="362" y2="470" stroke="#12141c" stroke-width="1"/><text x="437.0" y="40" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#c9ced8" text-anchor="middle" font-weight="500">THE CELLS</text><text x="437.0" y="56" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.1" fill="#5c6472" text-anchor="middle">GAUNTLET</text><line x1="512" y1="66" x2="512" y2="470" stroke="#12141c" stroke-width="1"/><text x="587.0" y="40" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#c9ced8" text-anchor="middle" font-weight="500">THE COMMONS</text><text x="587.0" y="56" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.1" fill="#5c6472" text-anchor="middle">BODY</text><line x1="662" y1="66" x2="662" y2="470" stroke="#12141c" stroke-width="1"/><text x="737.0" y="40" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#c9ced8" text-anchor="middle" font-weight="500">THE WORKS</text><text x="737.0" y="56" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.1" fill="#5c6472" text-anchor="middle">GYM + STAGE</text><line x1="812" y1="66" x2="812" y2="470" stroke="#12141c" stroke-width="1"/><text x="887.0" y="40" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#c9ced8" text-anchor="middle" font-weight="500">AFTER</text><text x="887.0" y="56" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.1" fill="#5c6472" text-anchor="middle">COURTYARD + TIMELINE</text><line x1="962" y1="66" x2="962" y2="470" stroke="#12141c" stroke-width="1"/><text x="24" y="82" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#8b7df0" font-weight="500">THE GUEST</text><line x1="70" y1="110" x2="940" y2="110" stroke="#8b7df0" stroke-opacity="0.4" stroke-width="1.6" stroke-dasharray="5 6"/><circle cx="84" cy="110" r="6" fill="#8b7df0"/><text x="98" y="104" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Delegates one tweet;</text><text x="98" y="119" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">swipes quick dossiers</text><circle cx="234" cy="110" r="6" fill="#8b7df0"/><text x="248" y="104" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Sorted under the</text><text x="248" y="119" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">carved arches</text><circle cx="384" cy="110" r="6" fill="#8b7df0"/><text x="398" y="104" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Quests: hat, jars,</text><text x="398" y="119" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">therapy — earns credits</text><circle cx="534" cy="110" r="6" fill="#8b7df0"/><text x="548" y="104" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Eats; Etherea walls;</text><text x="548" y="119" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">maybe eyes the tub</text><circle cx="684" cy="110" r="6" fill="#8b7df0"/><text x="698" y="104" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Swipes post-pitch;</text><text x="698" y="119" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">films the plunge</text><circle cx="834" cy="110" r="6" fill="#8b7df0"/><text x="848" y="104" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Their delegated post</text><text x="848" y="119" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">fires; courtyard air</text><text x="24" y="222" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#8f220e" font-weight="500">THE FOUNDER</text><line x1="70" y1="250" x2="940" y2="250" stroke="#8f220e" stroke-opacity="0.4" stroke-width="1.6" stroke-dasharray="5 6"/><circle cx="84" cy="250" r="6" fill="#8f220e"/><text x="98" y="244" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Attests dossier +</text><text x="98" y="259" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">poster by Thu 2pm</text><circle cx="234" cy="250" r="6" fill="#8f220e"/><text x="248" y="244" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Arrives early via</text><text x="248" y="259" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">the Threshold</text><circle cx="384" cy="250" r="6" fill="#8f220e"/><text x="398" y="244" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Claims a room cell</text><text x="398" y="259" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">(cartridge filed)</text><circle cx="534" cy="250" r="6" fill="#8f220e"/><text x="548" y="244" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Prep + towels staged</text><text x="548" y="259" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">for the worst case</text><circle cx="684" cy="250" r="6" fill="#8f220e"/><text x="698" y="244" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Pitches; overtime =</text><text x="698" y="259" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">tub; bundle demo</text><circle cx="834" cy="250" r="6" fill="#8f220e"/><text x="848" y="244" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Overnight crunch;</text><text x="848" y="259" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">results at graduation</text><text x="24" y="362" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" fill="#e5674f" font-weight="500">THE JUDGE</text><line x1="70" y1="390" x2="940" y2="390" stroke="#e5674f" stroke-opacity="0.4" stroke-width="1.6" stroke-dasharray="5 6"/><circle cx="84" cy="390" r="6" fill="#e5674f"/><text x="98" y="384" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Recruited; told the</text><text x="98" y="399" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">jar rule, cheerfully</text><circle cx="234" cy="390" r="6" fill="#e5674f"/><text x="248" y="384" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Fashionably late</text><text x="248" y="399" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">(the jar is warming up)</text><circle cx="384" cy="390" r="6" fill="#e5674f"/><text x="398" y="384" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Skips the gauntlet</text><text x="398" y="399" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">(deep dossier instead)</text><circle cx="534" cy="390" r="6" fill="#e5674f"/><text x="548" y="384" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Holds court at the</text><text x="548" y="399" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">bar between blocks</text><circle cx="684" cy="390" r="6" fill="#e5674f"/><text x="698" y="384" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Chair-turn scoring;</text><text x="698" y="399" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">picks mentee team</text><circle cx="834" cy="390" r="6" fill="#e5674f"/><text x="848" y="384" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">Stuck with jar's pick</text><text x="848" y="399" font-family="var(--font-ui)" font-size="10.5" fill="#b9c0c9">if they no-showed</text><text x="480" y="496" font-family="JetBrains Mono, monospace" font-size="8.5" letter-spacing="1.4" fill="#5c6472" text-anchor="middle">THREE PATHS, ONE BUILDING — THEY ALL CONVERGE AT THE STAGE AND DIVERGE AT THE AFTER</text></svg></div>
+  <div class="prompts"><span class="pk">RIFF ON</span><span class="chip">Where do the three paths physically cross — engineer one collision on purpose?</span><span class="chip">Does a founder's family walk the guest path or the founder path?</span><span class="chip">What does the judge see that nobody else sees?</span></div>
+</section>
+<section>
+  <div class="sec-num">06 · The spaces</div>
+  <h2>Three rooms, rendered</h2>
+  <p class="lede">The register-setting spaces in atmosphere rather than plan. Each names its light, its sound, and its one artifact.</p>
+  <div class="card panel"><svg viewBox="0 0 940 300" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect width="940" height="300" fill="#04050a"/><path d="M 0 40 L 470 150 L 940 40" stroke="#1c2030" fill="none"/><path d="M 0 280 L 470 170 L 940 280" stroke="#1c2030" fill="none"/><ellipse cx="80" cy="230" rx="80.0" ry="20.0" fill="url(#violetPool)"/><rect x="50.0" y="80.0" width="14.0" height="120.0" fill="#0b0d14" stroke="#232840" stroke-width="1"/><rect x="96.0" y="80.0" width="14.0" height="120.0" fill="#0b0d14" stroke="#232840" stroke-width="1"/><ellipse cx="240" cy="230" rx="70.4" ry="17.6" fill="url(#violetPool)"/><rect x="213.6" y="88.8" width="12.32" height="105.6" fill="#0b0d14" stroke="#232840" stroke-width="1"/><rect x="254.08" y="88.8" width="12.32" height="105.6" fill="#0b0d14" stroke="#232840" stroke-width="1"/><ellipse cx="400" cy="230" rx="60.8" ry="15.2" fill="url(#violetPool)"/><rect x="377.2" y="97.6" width="10.64" height="91.2" fill="#0b0d14" stroke="#232840" stroke-width="1"/><rect x="412.16" y="97.6" width="10.64" height="91.2" fill="#0b0d14" stroke="#232840" stroke-width="1"/><ellipse cx="560" cy="230" rx="51.2" ry="12.8" fill="url(#violetPool)"/><rect x="540.8" y="106.4" width="8.96" height="76.8" fill="#0b0d14" stroke="#232840" stroke-width="1"/><rect x="570.24" y="106.4" width="8.96" height="76.8" fill="#0b0d14" stroke="#232840" stroke-width="1"/><ellipse cx="720" cy="230" rx="41.6" ry="10.4" fill="url(#violetPool)"/><rect x="704.4" y="115.2" width="7.28" height="62.400000000000006" fill="#0b0d14" stroke="#232840" stroke-width="1"/><rect x="728.32" y="115.2" width="7.28" height="62.400000000000006" fill="#0b0d14" stroke="#232840" stroke-width="1"/><g fill="#191c33" fill-opacity="0.95"><circle cx="320" cy="207.28" r="7.280000000000001"/><path d="M 311.16 252 Q 311.16 214.56 320 213.52 Q 328.84 214.56 328.84 252 Z"/></g><g fill="#161930" fill-opacity="0.95"><circle cx="600" cy="206.16" r="6.16"/><path d="M 592.52 244 Q 592.52 212.32 600 211.44 Q 607.48 212.32 607.48 244 Z"/></g><g fill="#14172a" fill-opacity="0.95"><circle cx="760" cy="205.32" r="5.32"/><path d="M 753.54 238 Q 753.54 210.64 760 209.88 Q 766.46 210.64 766.46 238 Z"/></g><rect x="150" y="64" width="84" height="42" rx="6" fill="#0a0c12" stroke="#8b7df0" stroke-width="1.2"/><text x="192" y="90" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="2" fill="#b7a6ff" text-anchor="middle">CELL·04</text></svg><div class="pcap"><b>THE GAUNTLET</b><span>Locker corridor, cold pools of violet, chalk dust in hard light. Screens are the warmest objects in the wing. Artifact: your report card.</span></div></div><div class="card panel"><svg viewBox="0 0 940 300" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect width="940" height="300" fill="#04050a"/><rect x="330" y="150" width="280" height="90" rx="18" fill="#0a0c12" stroke="#4c7ee8" stroke-width="2"/><ellipse cx="470" cy="158" rx="130" ry="26" fill="url(#tubGlow)"/><circle cx="470" cy="146" r="13" fill="none" stroke="#e8edf5" stroke-width="1.6"/><path d="M 348 172 q 18 -9 36 0 t 36 0 t 36 0 t 36 0 t 36 0 t 36 0" fill="none" stroke="#9fd4ff" stroke-width="1.4" stroke-opacity="0.8"/><g fill="#1f1216" fill-opacity="0.95"><circle cx="823.623410262328" cy="252.41617164154232" r="6.16"/><path d="M 816.143410262328 290.2561716415423 Q 816.143410262328 258.5761716415423 823.623410262328 257.6961716415423 Q 831.103410262328 258.5761716415423 831.103410262328 290.2561716415423 Z"/></g><g fill="#1f1216" fill-opacity="0.95"><circle cx="801.419505082244" cy="241.85483472323435" r="6.16"/><path d="M 793.939505082244 279.69483472323435 Q 793.939505082244 248.01483472323434 801.419505082244 247.13483472323435 Q 808.899505082244 248.01483472323434 808.899505082244 279.69483472323435 Z"/></g><g fill="#1f1216" fill-opacity="0.95"><circle cx="764.2835619320505" cy="232.20834287062874" r="6.16"/><path d="M 756.8035619320505 270.04834287062874 Q 756.8035619320505 238.36834287062874 764.2835619320505 237.48834287062874 Q 771.7635619320505 238.36834287062874 771.7635619320505 270.04834287062874 Z"/></g><g fill="#1f1216" fill-opacity="0.95"><circle cx="713.8887331297949" cy="223.91131679980472" r="6.16"/><path d="M 706.4087331297949 261.7513167998047 Q 706.4087331297949 230.07131679980472 713.8887331297949 229.19131679980472 Q 721.3687331297949 230.07131679980472 721.3687331297949 261.7513167998047 Z"/></g><g fill="#1f1216" fill-opacity="0.95"><circle cx="652.5055473728926" cy="217.33757732223742" r="6.16"/><path d="M 645.0255473728926 255.17757732223743 Q 645.0255473728926 223.49757732223742 652.5055473728926 222.61757732223742 Q 659.9855473728926 223.49757732223742 659.9855473728926 255.17757732223743 Z"/></g><g fill="#1f1216" fill-opacity="0.95"><circle cx="287.4944526271074" cy="217.33757732223742" r="6.16"/><path d="M 280.0144526271074 255.17757732223743 Q 280.0144526271074 223.49757732223742 287.4944526271074 222.61757732223742 Q 294.97445262710744 223.49757732223742 294.97445262710744 255.17757732223743 Z"/></g><g fill="#1f1216" fill-opacity="0.95"><circle cx="226.11126687020504" cy="223.91131679980472" r="6.16"/><path d="M 218.63126687020505 261.7513167998047 Q 218.63126687020505 230.07131679980472 226.11126687020504 229.19131679980472 Q 233.59126687020503 230.07131679980472 233.59126687020503 261.7513167998047 Z"/></g><g fill="#1f1216" fill-opacity="0.95"><circle cx="175.71643806794964" cy="232.20834287062874" r="6.16"/><path d="M 168.23643806794965 270.04834287062874 Q 168.23643806794965 238.36834287062874 175.71643806794964 237.48834287062874 Q 183.19643806794963 238.36834287062874 183.19643806794963 270.04834287062874 Z"/></g><g fill="#1f1216" fill-opacity="0.95"><circle cx="138.58049491775597" cy="241.85483472323435" r="6.16"/><path d="M 131.10049491775598 279.69483472323435 Q 131.10049491775598 248.01483472323434 138.58049491775597 247.13483472323435 Q 146.06049491775596 248.01483472323434 146.06049491775596 279.69483472323435 Z"/></g><g fill="#1f1216" fill-opacity="0.95"><circle cx="116.37658973767208" cy="252.41617164154232" r="6.16"/><path d="M 108.89658973767207 290.2561716415423 Q 108.89658973767207 258.5761716415423 116.37658973767208 257.6961716415423 Q 123.85658973767208 258.5761716415423 123.85658973767208 290.2561716415423 Z"/></g><rect x="0" y="0" width="940" height="300" fill="url(#redWash)" opacity="0.3"/><rect x="700" y="60" width="150" height="60" rx="8" fill="#0a0c12" stroke="#e5674f" stroke-width="1.3"/><text x="775" y="86" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.8" fill="#ff8a6c" text-anchor="middle" font-weight="500">LEADERBOARD</text><text x="775" y="104" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="1.4" fill="#c9ced8" text-anchor="middle">04:12 · @…</text></svg><div class="pcap"><b>THE PLUNGE ARENA</b><span>Cold light on the tub, hot light on the crowd, steam as the haze budget. The leaderboard is biological. Artifact: the clip.</span></div></div><div class="card panel"><svg viewBox="0 0 940 300" xmlns="http://www.w3.org/2000/svg"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><rect width="940" height="300" fill="#04050a"/><rect x="0" y="0" width="940" height="300" fill="url(#redWash)" opacity="0.9"/><rect x="330" y="40" width="280" height="90" rx="10" fill="#0a0c12" stroke="#8f220e" stroke-width="1.8"/><text x="470" y="82" font-family="JetBrains Mono, monospace" font-size="16" letter-spacing="6" fill="#8f220e" text-anchor="middle" font-weight="500">3 · 2 · 1</text><text x="470" y="108" font-family="JetBrains Mono, monospace" font-size="8" letter-spacing="2" fill="#ffd9a8" text-anchor="middle">THE QUOTE TWEET</text><g fill="#070409" fill-opacity="0.95"><circle cx="60" cy="246.44" r="6.44"/><path d="M 52.18 286 Q 52.18 252.88 60 251.96 Q 67.82 252.88 67.82 286 Z"/></g><rect x="53" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="60" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="107" cy="246.44" r="6.44"/><path d="M 99.18 286 Q 99.18 252.88 107 251.96 Q 114.82 252.88 114.82 286 Z"/></g><rect x="100" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="107" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="154" cy="246.44" r="6.44"/><path d="M 146.18 286 Q 146.18 252.88 154 251.96 Q 161.82 252.88 161.82 286 Z"/></g><rect x="147" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="154" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="201" cy="246.44" r="6.44"/><path d="M 193.18 286 Q 193.18 252.88 201 251.96 Q 208.82 252.88 208.82 286 Z"/></g><rect x="194" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="201" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="248" cy="246.44" r="6.44"/><path d="M 240.18 286 Q 240.18 252.88 248 251.96 Q 255.82 252.88 255.82 286 Z"/></g><rect x="241" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="248" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="295" cy="246.44" r="6.44"/><path d="M 287.18 286 Q 287.18 252.88 295 251.96 Q 302.82 252.88 302.82 286 Z"/></g><rect x="288" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="295" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="342" cy="246.44" r="6.44"/><path d="M 334.18 286 Q 334.18 252.88 342 251.96 Q 349.82 252.88 349.82 286 Z"/></g><rect x="335" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="342" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="389" cy="246.44" r="6.44"/><path d="M 381.18 286 Q 381.18 252.88 389 251.96 Q 396.82 252.88 396.82 286 Z"/></g><rect x="382" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="389" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="436" cy="246.44" r="6.44"/><path d="M 428.18 286 Q 428.18 252.88 436 251.96 Q 443.82 252.88 443.82 286 Z"/></g><rect x="429" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="436" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="483" cy="246.44" r="6.44"/><path d="M 475.18 286 Q 475.18 252.88 483 251.96 Q 490.82 252.88 490.82 286 Z"/></g><rect x="476" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="483" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="530" cy="246.44" r="6.44"/><path d="M 522.18 286 Q 522.18 252.88 530 251.96 Q 537.82 252.88 537.82 286 Z"/></g><rect x="523" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="530" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="577" cy="246.44" r="6.44"/><path d="M 569.18 286 Q 569.18 252.88 577 251.96 Q 584.82 252.88 584.82 286 Z"/></g><rect x="570" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="577" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="624" cy="246.44" r="6.44"/><path d="M 616.18 286 Q 616.18 252.88 624 251.96 Q 631.82 252.88 631.82 286 Z"/></g><rect x="617" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="624" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="671" cy="246.44" r="6.44"/><path d="M 663.18 286 Q 663.18 252.88 671 251.96 Q 678.82 252.88 678.82 286 Z"/></g><rect x="664" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="671" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="718" cy="246.44" r="6.44"/><path d="M 710.18 286 Q 710.18 252.88 718 251.96 Q 725.82 252.88 725.82 286 Z"/></g><rect x="711" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="718" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="765" cy="246.44" r="6.44"/><path d="M 757.18 286 Q 757.18 252.88 765 251.96 Q 772.82 252.88 772.82 286 Z"/></g><rect x="758" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="765" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="812" cy="246.44" r="6.44"/><path d="M 804.18 286 Q 804.18 252.88 812 251.96 Q 819.82 252.88 819.82 286 Z"/></g><rect x="805" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="812" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/><g fill="#070409" fill-opacity="0.95"><circle cx="859" cy="246.44" r="6.44"/><path d="M 851.18 286 Q 851.18 252.88 859 251.96 Q 866.82 252.88 866.82 286 Z"/></g><rect x="852" y="212" width="14" height="22" rx="3" fill="#ffe9a8" fill-opacity="0.95"/><circle cx="859" cy="223" r="16" fill="url(#screenGlow)" opacity="0.5"/></svg><div class="pcap"><b>THE BROADCAST</b><span>The one full-saturation moment. Every raised phone is a delegated account about to fire. Artifact: none in the room — that's the point.</span></div></div>
+  <div class="prompts"><span class="pk">RIFF ON</span><span class="chip">What does each space smell like?</span><span class="chip">One sound per wing: chalk squeak, water, crowd?</span><span class="chip">Where does someone propose marriage? (Every memorable venue has the spot.)</span></div>
+</section>
+<section>
+  <div class="sec-num">07 · The game plan</div>
+  <h2>One spread, three shapes</h2>
+  <p class="lede">Loop, map, cartridge. Everything the cohort needs to co-create, compressed until it fits in one glance: the loop is the event, the map has holes, and a filled cartridge claims one.</p>
+  <div class="card viz"><svg viewBox="0 0 960 290" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Game plan spread: the online-offline loop, the map with claimable empty cells, and the cartridge that claims one"><defs>
+<linearGradient id="dial" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#6f5fe8"/><stop offset="0.45" stop-color="#e8962a"/>
+  <stop offset="1" stop-color="#e5443a"/></linearGradient>
+<radialGradient id="violetPool" cx="0.5" cy="0.25" r="0.8">
+  <stop offset="0" stop-color="#8b7df0" stop-opacity="0.55"/><stop offset="1" stop-color="#8b7df0" stop-opacity="0"/></radialGradient>
+<radialGradient id="jarGlow" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#38e0c8" stop-opacity="0.9"/><stop offset="0.5" stop-color="#22b8cf" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#22b8cf" stop-opacity="0"/></radialGradient>
+<radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+  <stop offset="0" stop-color="#ffd37a" stop-opacity="0.95"/><stop offset="0.55" stop-color="#f0a93c" stop-opacity="0.5"/>
+  <stop offset="1" stop-color="#f0a93c" stop-opacity="0"/></radialGradient>
+<radialGradient id="tubGlow" cx="0.5" cy="0.4" r="0.75">
+  <stop offset="0" stop-color="#9fd4ff" stop-opacity="0.8"/><stop offset="0.5" stop-color="#4c7ee8" stop-opacity="0.35"/>
+  <stop offset="1" stop-color="#4c7ee8" stop-opacity="0"/></radialGradient>
+<radialGradient id="redWash" cx="0.5" cy="0.2" r="1">
+  <stop offset="0" stop-color="#ff5a3c" stop-opacity="0.6"/><stop offset="0.6" stop-color="#e5443a" stop-opacity="0.22"/>
+  <stop offset="1" stop-color="#e5443a" stop-opacity="0"/></radialGradient>
+<radialGradient id="screenGlow" cx="0.5" cy="0.5" r="0.6">
+  <stop offset="0" stop-color="#8f220e" stop-opacity="0.75"/><stop offset="1" stop-color="#8f220e" stop-opacity="0"/></radialGradient>
+<filter id="soft"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="soft2"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs><circle cx="160" cy="150" r="90" fill="none" stroke="url(#dial)" stroke-width="2.5" stroke-dasharray="6 7"/><circle cx="160" cy="60" r="16" fill="#0a0c12" stroke="#8f220e" stroke-width="1.3"/><text x="160.0" y="63.0" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1" fill="#8f220e" text-anchor="middle">LINK</text><circle cx="246" cy="122" r="16" fill="#0a0c12" stroke="#8f220e" stroke-width="1.3"/><text x="245.59508646656383" y="125.18847050625473" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1" fill="#8f220e" text-anchor="middle">SORT</text><circle cx="213" cy="223" r="16" fill="#0a0c12" stroke="#8f220e" stroke-width="1.3"/><text x="212.90067270632258" y="225.81152949374527" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1" fill="#8f220e" text-anchor="middle">ROOMS</text><circle cx="107" cy="223" r="16" fill="#0a0c12" stroke="#8f220e" stroke-width="1.3"/><text x="107.09932729367742" y="225.81152949374527" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1" fill="#8f220e" text-anchor="middle">STAGE</text><circle cx="74" cy="122" r="16" fill="#0a0c12" stroke="#8f220e" stroke-width="1.3"/><text x="74.40491353343617" y="125.18847050625475" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1" fill="#8f220e" text-anchor="middle">POST</text><text x="160" y="270" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="2" fill="#5c6472" text-anchor="middle">THE LOOP</text><rect x="360" y="70" width="100" height="160" rx="10" fill="#0a0c12" stroke="#8b7df0" stroke-width="1.6"/><rect x="376" y="86" width="68" height="32" rx="6" fill="#8b7df0" fill-opacity="0.35" stroke="#8b7df0" stroke-opacity="0.5" stroke-dasharray="0 0"/><rect x="376" y="132" width="68" height="32" rx="6" fill="none" fill-opacity="0.35" stroke="#8b7df0" stroke-opacity="0.5" stroke-dasharray="3 4"/><text x="410" y="152" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.5" fill="#8b7df0" text-anchor="middle">CLAIM</text><rect x="376" y="178" width="68" height="32" rx="6" fill="#8b7df0" fill-opacity="0.35" stroke="#8b7df0" stroke-opacity="0.5" stroke-dasharray="0 0"/><rect x="480" y="70" width="100" height="160" rx="10" fill="#0a0c12" stroke="#f0a93c" stroke-width="1.6"/><rect x="496" y="86" width="68" height="32" rx="6" fill="none" fill-opacity="0.35" stroke="#f0a93c" stroke-opacity="0.5" stroke-dasharray="3 4"/><text x="530" y="106" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.5" fill="#f0a93c" text-anchor="middle">CLAIM</text><rect x="496" y="132" width="68" height="32" rx="6" fill="#f0a93c" fill-opacity="0.35" stroke="#f0a93c" stroke-opacity="0.5" stroke-dasharray="0 0"/><rect x="496" y="178" width="68" height="32" rx="6" fill="none" fill-opacity="0.35" stroke="#f0a93c" stroke-opacity="0.5" stroke-dasharray="3 4"/><text x="530" y="198" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.5" fill="#f0a93c" text-anchor="middle">CLAIM</text><rect x="600" y="70" width="100" height="160" rx="10" fill="#0a0c12" stroke="#e5443a" stroke-width="1.6"/><rect x="616" y="86" width="68" height="32" rx="6" fill="#e5443a" fill-opacity="0.35" stroke="#e5443a" stroke-opacity="0.5" stroke-dasharray="0 0"/><rect x="616" y="132" width="68" height="32" rx="6" fill="none" fill-opacity="0.35" stroke="#e5443a" stroke-opacity="0.5" stroke-dasharray="3 4"/><text x="650" y="152" font-family="JetBrains Mono, monospace" font-size="6.5" letter-spacing="1.5" fill="#e5443a" text-anchor="middle">CLAIM</text><rect x="616" y="178" width="68" height="32" rx="6" fill="#e5443a" fill-opacity="0.35" stroke="#e5443a" stroke-opacity="0.5" stroke-dasharray="0 0"/><text x="480" y="270" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#5c6472" text-anchor="middle">THE MAP SHIPS WITH EMPTY CELLS</text><rect x="740" y="60" width="170" height="180" rx="12" fill="#0a0c12" stroke="#8f220e" stroke-width="1.6"/><rect x="756" y="84" width="138" height="24" rx="5" fill="#101423"/><text x="766" y="100" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="1.6" fill="#c9ced8" text-anchor="start">PLAY</text><rect x="756" y="120" width="138" height="24" rx="5" fill="#101423"/><text x="766" y="136" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="1.6" fill="#c9ced8" text-anchor="start">COLLECT</text><rect x="756" y="156" width="138" height="24" rx="5" fill="#101423"/><text x="766" y="172" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="1.6" fill="#c9ced8" text-anchor="start">TEMP</text><rect x="756" y="192" width="138" height="24" rx="5" fill="#101423"/><text x="766" y="208" font-family="JetBrains Mono, monospace" font-size="7.5" letter-spacing="1.6" fill="#c9ced8" text-anchor="start">FALLBACK</text><text x="825" y="270" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1.6" fill="#5c6472" text-anchor="middle">THE PRICE OF A CELL</text></svg></div>
+  <div class="prompts"><span class="pk">RIFF ON</span><span class="chip">Physical version: a corkboard map with cartridge index cards?</span><span class="chip">Does claiming a cell happen live at mock demo day?</span></div>
+</section>
+<section>
+  <div class="sec-num">08 · MVP vs nice-to-have</div>
+  <h2>The minimum viable loop, said out loud</h2>
+  <p class="lede">Tonight's scoping words were Tina's own: the main thing is a minimum viable loop. Everything else is team-owned or nice-to-have. MVP ships no matter what; TEAM-OWNED ships if a team claims it by cartridge; NICE-TO-HAVE ships only after MVP is rehearsed; CUT stays cut.</p>
+  
+<div class="feas">
+  <div class="frow g"><span class="fact">MVP · THE LINK + GATE</span><span class="fst">MUST SHIP</span><span class="fnote">Invite site (Sam, TinyCloud, trust graph in progress — "open key" path named tonight), ~3 invites per guest, quick-dossier swipe deck. Teleport delegation stays TBD-optional inside it; the loop works without it.</span></div>
+  <div class="frow g"><span class="fact">MVP · THE NURSE'S DESK</span><span class="fst">MUST SHIP</span><span class="fnote">Door step, named tonight: temperature taken (the handed thing), voiceprint + consent captured (Conclave's "give me a voiceprint" at the door), report card issued. This is the consent architecture and the bit, in one desk.</span></div>
+  <div class="frow g"><span class="fact">MVP · 2–3 ENTRY ROOMS</span><span class="fst">MUST SHIP</span><span class="fnote">Sorting hat (dmarz, fixed) is the anchor; the sculpture room and neighbors host the rest. Each room team-owned per Shaw's ratified rule: every team takes a piece and owns it.</span></div>
+  <div class="frow g"><span class="fact">MVP · FAIR + POSTERS</span><span class="fst">MUST SHIP</span><span class="fnote">Booths + printed boards generated from dossiers (template form circulated tonight; Shash has a version; teams edit and attest). No stage Q&A — questions happen at booths after.</span></div>
+  <div class="frow g"><span class="fact">MVP · BELL + TALENT SHOW</span><span class="fst">MUST SHIP</span><span class="fnote">~6pm, ~15 acts × 3 min (mock demo tests the format at 2pm today). Brainrot corner + swipe deltas ride along. Working demos get stage time: "if the thing is running, get up and show it."</span></div>
+  <div class="frow g"><span class="fact">MVP · DINNER + JOURNEY</span><span class="fst">MUST SHIP</span><span class="fnote">Talks, debates, and the shaper-journey stories move here from the stage. This is where Ari-tier remote guests dial in if they dial in at all.</span></div>
+  <div class="frow a"><span class="fact">TEAM-OWNED · THE TUB</span><span class="fst">IF CLAIMED</span><span class="fnote">Tonight's telling phrasing: "is there a cold plunge? blah blah — each team should think about what they're gonna do." The plunge lives if a team (Matt + Clobe are closest) claims it by cartridge; the meme survives without it because temperature is now the overarching feel, not a fixture list.</span></div>
+  <div class="frow a"><span class="fact">TEAM-OWNED · JARS / THERAPY / VIBE ROOM</span><span class="fst">IF CLAIMED</span><span class="fnote">Jar room green as theater; therapy room consent-gated; vibe coding still has no owner ("if Ron can get that working" — he's busy). Unclaimed rooms become lounges, which is fine.</span></div>
+  <div class="frow a"><span class="fact">NICE · EMERGENCE VIZ</span><span class="fst">AFTER MVP</span><span class="fnote">Brendan on the trust-emergence visualization for center stage — 1001 harnesses converging as trust forms, straight from the transcripts. The strongest single addition if it lands; the talent show works without it.</span></div>
+  <div class="frow a"><span class="fact">NICE · CLASS PHOTO BROADCAST</span><span class="fst">AFTER MVP</span><span class="fnote">Pre-filled memetic rotation tweets / QTs of each other's rotations at the flash-mob moment. Tonight's verdict verbatim: "we'll deal with that later." Manual QT cascade remains the floor.</span></div>
+  <div class="frow a"><span class="fact">NICE · STACK EXHIBIT</span><span class="fst">AFTER MVP</span><span class="fnote">Shashank's whiteboard diagram — TinyCloud credentials, Conclave ingestion, Teleport injection, BitRouter models — cleaned up as the Rubik-cube supply-chain exhibit. The composability thesis, drawn from a real running system.</span></div>
+  <div class="frow r"><span class="fact">CUT</span><span class="fst">CUT</span><span class="fnote">Third-floor rooms (crowd concentration wins); stage Q&A; per-guest synced state beyond the credit counter; jars as binding scorers without rehearsal proof; any new Teleport infrastructure work this week.</span></div>
+</div>
+
+  <div class="prompts"><span class="pk">RIFF ON</span><span class="chip">Which teams claim which entry rooms — settle it at today's 2pm mock demo?</span><span class="chip">The bell: confirm it exists and works on the walkthrough.</span></div>
+</section>
+</main>
+
+<footer class="wrap">
+  SR FINALE · CONCEPT BOOK v0.1 · ALL RENDERS ARE CONCEPT ATMOSPHERE, NOT PLANS · COMPANION DOCS CARRY THE OPS
+</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('themeToggle');
+  var root=document.documentElement;
+  btn.addEventListener('click',function(){
+    var next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    btn.textContent=next==='dark'?'Light':'Dark'; btn.setAttribute('aria-label',next==='dark'?'Switch to light theme':'Switch to dark theme');
+  });
+})();
+</script>
+</body>
+</html>
